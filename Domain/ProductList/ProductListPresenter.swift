@@ -12,8 +12,8 @@ public class ProductListPresenter<View: IProductListView, Coordinator: IProductL
     let useCase: GetProductListUseCase<View.Product>
     let coordinator: Coordinator
 
-    public init(database: IDatabase, coordinator: Coordinator) {
-        self.useCase = GetProductListUseCase(database: database)
+    public init(coordinator: Coordinator) {
+        self.useCase = GetProductListUseCase(database: coordinator.database)
         self.coordinator = coordinator
     }
 

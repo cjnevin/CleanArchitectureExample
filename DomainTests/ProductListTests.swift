@@ -18,8 +18,8 @@ class ProductListTests: XCTestCase {
     override func setUp() {
         super.setUp()
         database = Database()
-        coordinator = ProductListCoordinator()
-        presenter = ProductListPresenter(database: database, coordinator: coordinator)
+        coordinator = ProductListCoordinator(database: database)
+        presenter = ProductListPresenter(coordinator: coordinator)
     }
     
     func testAttachWhenEmpty() {
@@ -54,10 +54,28 @@ struct Product: IProduct {
 }
 
 class ProductListCoordinator: IProductListCoordinator {
-    var spySelectedProduct: Product?
-    
-    func selectedProduct(_ product: Product) {
-        spySelectedProduct = product
+    func view(for product: Product, database: IDatabase) -> ProductView {
+        ProductView()
+    }
+
+    required init(database: IDatabase) {
+        self.database = database
+    }
+
+    var database: IDatabase
+
+    typealias ProductView = DomainTests.ProductView
+
+    typealias Product = DomainTests.Product
+
+    var spySelectedProduct: Bool = false
+
+    func push(_ any: Any) {
+        spySelectedProduct = true
+    }
+
+    func pop() {
+
     }
 }
 

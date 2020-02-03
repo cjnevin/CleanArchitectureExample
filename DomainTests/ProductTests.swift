@@ -55,7 +55,7 @@ final class ProductView: IProductView {
 class ProductCoordinator: IProductCoordinator {
     var spyReturnedToList: Bool = false
 
-    func returnToList() {
+    func pop() {
         spyReturnedToList = true
     }
 }

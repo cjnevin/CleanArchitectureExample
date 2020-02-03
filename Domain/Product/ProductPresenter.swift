@@ -29,6 +29,6 @@ public struct ProductPresenter<View: IProductView, Coordinator: IProductCoordina
 
     public func save(name: String) {
         editUseCase.edit(name: name)
-        coordinator.returnToList()
+        coordinator.pop()
     }
 }

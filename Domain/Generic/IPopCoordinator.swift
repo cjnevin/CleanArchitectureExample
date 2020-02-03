@@ -1,5 +1,5 @@
 //
-//  IProductCoordinator.swift
+//  IPopCoordinator.swift
 //  Domain
 //
 //  Created by Chris on 04/02/2020.
@@ -8,4 +8,6 @@
 
 import Foundation
 
-public protocol IProductCoordinator: PopCoordinator { }
+public protocol PopCoordinator {
+    func pop()
+}

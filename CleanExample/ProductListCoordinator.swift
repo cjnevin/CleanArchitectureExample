@@ -16,7 +16,7 @@ class ProductListCoordinator: UINavigationController, IProductListCoordinator, I
         self.database = database
         let viewController = ProductListViewController()
         super.init(rootViewController: viewController)
-        viewController.presenter = ProductListPresenter(database: database, coordinator: self)
+        viewController.presenter = ProductListPresenter(coordinator: self)
     }
 
     @available(*, unavailable)
@@ -29,13 +29,9 @@ class ProductListCoordinator: UINavigationController, IProductListCoordinator, I
         view.backgroundColor = UIColor.white
     }
 
-    func selectedProduct(_ product: Product) {
+    func view(for product: Product, database: IDatabase) -> ProductViewController {
         let viewController = ProductViewController()
-        viewController.presenter = ProductPresenter(id: product.id, database: database, coordinator: self)
-        pushViewController(viewController, animated: true)
-    }
-
-    func returnToList() {
-        popViewController(animated: true)
+        viewController.presenter = ProductPresenter<ProductViewController, ProductListCoordinator>(id: product.id, database: database, coordinator: self)
+        return viewController
     }
 }
