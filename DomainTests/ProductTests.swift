@@ -12,13 +12,15 @@ import XCTest
 
 class ProductTests: XCTestCase {
     var database: Database!
-    var presenter: ProductPresenter<ProductView>!
+    var coordinator: ProductCoordinator!
+    var presenter: ProductPresenter<ProductView, ProductCoordinator>!
     
     override func setUp() {
         super.setUp()
         database = Database()
         database.lookup["id"] = Product()
-        presenter = ProductPresenter(id: "id", database: database)
+        coordinator = ProductCoordinator()
+        presenter = ProductPresenter(id: "id", database: database, coordinator: coordinator)
     }
     
     func testAttach() {
@@ -27,6 +29,19 @@ class ProductTests: XCTestCase {
         XCTAssertNotNil(view.spyProduct)
         presenter.detach()
     }
+
+    func testSave() {
+        let view = ProductView()
+        presenter.attach(view: view)
+        XCTAssertNotNil(view.spyProduct)
+
+        XCTAssertFalse(coordinator.spyReturnedToList)
+        presenter.save(name: "new name")
+        XCTAssertTrue(coordinator.spyReturnedToList)
+
+        let product: Product = database.get(id: "id")
+        XCTAssertEqual(product.name, "new name")
+    }
 }
 
 final class ProductView: IProductView {
@@ -34,5 +49,13 @@ final class ProductView: IProductView {
     
     func setProduct(_ product: Product) {
         spyProduct = product
+    }
+}
+
+class ProductCoordinator: IProductCoordinator {
+    var spyReturnedToList: Bool = false
+
+    func returnToList() {
+        spyReturnedToList = true
     }
 }

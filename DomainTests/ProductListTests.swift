@@ -25,14 +25,16 @@ class ProductListTests: XCTestCase {
     func testAttachWhenEmpty() {
         let view = ProductListView()
         presenter.attach(view: view)
-        XCTAssertTrue(view.spyProducts.isEmpty)
+        XCTAssertTrue(view.products.isEmpty)
     }
     
     func testAttach() {
-        database.lookup["id"] = Product()
+        database.lookup["id1"] = Product(id: "id1", name: "product 1")
+        database.lookup["id2"] = Product(id: "id2", name: "product 2")
+        database.lookup["id3"] = Product(id: "id3", name: "product 3")
         let view = ProductListView()
         presenter.attach(view: view)
-        XCTAssertFalse(view.spyProducts.isEmpty)
+        XCTAssertEqual(view.products.map { $0.id }, database.lookup.keys.sorted())
         presenter.detach()
     }
     
@@ -40,14 +42,15 @@ class ProductListTests: XCTestCase {
         database.lookup["id"] = Product()
         let view = ProductListView()
         presenter.attach(view: view)
-        XCTAssertFalse(view.spyProducts.isEmpty)
-        presenter.selected(product: view.spyProducts[0])
+        XCTAssertFalse(view.products.isEmpty)
+        presenter.selected(product: view.products[0])
         XCTAssertNotNil(coordinator.spySelectedProduct)
     }
 }
 
 struct Product: IProduct {
     var id: String = "id"
+    var name: String = "name"
 }
 
 class ProductListCoordinator: IProductListCoordinator {
@@ -59,9 +62,5 @@ class ProductListCoordinator: IProductListCoordinator {
 }
 
 final class ProductListView: IProductListView {
-    var spyProducts: [Product] = []
-    
-    func setProducts(_ products: [Product]) {
-        spyProducts = products
-    }
+    var products: [Product] = []
 }
