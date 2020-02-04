@@ -23,11 +23,26 @@ class ProductListTests: XCTestCase {
         coordinator = ProductListCoordinator(dependencies: Dependencies(api: api, database: database))
         presenter = ProductListPresenter(coordinator: coordinator)
     }
-    
+
+    func testAttachHitsApiForDataIfDatabaseIsEmptyThenFailsAndRetriesOnReattach() {
+        api.success = false
+        let view = ProductListView()
+        presenter.attach(view: view)
+        XCTAssertEqual(view.productsUnavailable, true)
+        XCTAssertTrue(view.products.isEmpty)
+        XCTAssertEqual(api.spyExecuteCount, 1)
+        XCTAssertEqual(database.spyListCount, 1)
+        presenter.detach()
+        presenter.attach(view: view)
+        XCTAssertEqual(api.spyExecuteCount, 2)
+        XCTAssertEqual(database.spyListCount, 2)
+    }
+
     func testAttachHitsApiForDataIfDatabaseIsEmptyThenDatabaseAfterApiReturns() {
         let apiProductIds = ["1", "2", "3", "4"]
         let view = ProductListView()
         presenter.attach(view: view)
+        XCTAssertEqual(view.productsUnavailable, false)
         XCTAssertEqual(view.products.map { $0.id }, apiProductIds)
         XCTAssertEqual(api.spyExecuteCount, 1)
         XCTAssertEqual(database.spyListCount, 1)
@@ -43,6 +58,7 @@ class ProductListTests: XCTestCase {
         database.lookup["id3"] = Product(id: "id3", name: "product 3")
         let view = ProductListView()
         presenter.attach(view: view)
+        XCTAssertEqual(view.productsUnavailable, false)
         XCTAssertEqual(view.products.map { $0.id }, database.lookup.keys.sorted())
         presenter.detach()
         XCTAssertEqual(api.spyExecuteCount, 0)
@@ -65,29 +81,20 @@ struct Product: IProduct {
 }
 
 class ProductListCoordinator: IProductListCoordinator {
+    var dependencies: ProductListDependencies
     required init(dependencies: ProductListDependencies) {
         self.dependencies = dependencies
     }
-
-    var dependencies: ProductListDependencies
 
     func view(for product: Product, database: IDatabase) -> ProductView {
         ProductView()
     }
 
-    typealias ProductView = DomainTests.ProductView
-
-    typealias Product = DomainTests.Product
-
     var spySelectedProduct: Bool = false
-
     func push(_ any: Any) {
         spySelectedProduct = true
     }
-
-    func pop() {
-
-    }
+    func pop() { }
 }
 
 final class ProductListView: IProductListView {
