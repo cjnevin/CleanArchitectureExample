@@ -11,13 +11,14 @@ import Foundation
 public protocol IProductListCoordinator: PushCoordinator, IProductCoordinator {
     associatedtype ProductView: IProductView
     associatedtype Product: IProduct
-    init(database: IDatabase)
-    var database: IDatabase { get }
+    init(dependencies: ProductListDependencies)
+    var dependencies: ProductListDependencies { get }
     func view(for product: Product, database: IDatabase) -> ProductView
 }
 
 extension IProductListCoordinator {
+    public typealias ProductListDependencies = APIServiceHaving & DatabaseHaving
     func selectedProduct(_ product: Product) {
-        push(view(for: product, database: database))
+        push(view(for: product, database: dependencies.database))
     }
 }

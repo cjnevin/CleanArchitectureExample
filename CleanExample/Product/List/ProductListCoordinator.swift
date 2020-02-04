@@ -10,10 +10,10 @@ import Domain
 import UIKit
 
 class ProductListCoordinator: UINavigationController, IProductListCoordinator, IProductCoordinator {
-    let database: IDatabase
+    let dependencies: ProductListDependencies
 
-    required init(database: IDatabase) {
-        self.database = database
+    required init(dependencies: ProductListDependencies) {
+        self.dependencies = dependencies
         let viewController = ProductListViewController()
         super.init(rootViewController: viewController)
         viewController.presenter = ProductListPresenter(coordinator: self)
@@ -31,7 +31,7 @@ class ProductListCoordinator: UINavigationController, IProductListCoordinator, I
 
     func view(for product: Product, database: IDatabase) -> ProductViewController {
         let viewController = ProductViewController()
-        viewController.presenter = ProductPresenter<ProductViewController, ProductListCoordinator>(id: product.id, database: database, coordinator: self)
+        viewController.presenter = ProductPresenter<ProductViewController, ProductListCoordinator>(id: product.id, database: dependencies.database, coordinator: self)
         return viewController
     }
 }

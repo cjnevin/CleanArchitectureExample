@@ -12,6 +12,12 @@ import UIKit
 class ProductListViewController: UITableViewController, IProductListView {
     var presenter: ProductListPresenter<ProductListViewController, ProductListCoordinator>?
 
+    var productsUnavailable: Bool = false {
+        didSet {
+            // Show some error?
+        }
+    }
+
     var products: [Product] = [] {
         didSet {
             tableView.reloadData()

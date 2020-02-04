@@ -9,7 +9,7 @@
 import Domain
 import Foundation
 
-struct Product: IProduct {
+struct Product: IProduct, Decodable {
     let id: String
     var name: String
 }

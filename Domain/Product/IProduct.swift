@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol IProduct: Comparable {
+public protocol IProduct: Comparable, Decodable {
     var id: String { get }
     var name: String { get set }
 }

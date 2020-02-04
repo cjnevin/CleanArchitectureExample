@@ -9,13 +9,8 @@
 import Foundation
 
 struct GetProductUseCase<Product: IProduct> {
-    let database: IDatabase
     let id: String
-
-    init(id: String, database: IDatabase) {
-        self.id = id
-        self.database = database
-    }
+    let database: IDatabase
 
     func get() -> Product {
         database.get(id: id)

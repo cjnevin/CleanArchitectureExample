@@ -13,10 +13,10 @@ class MainCoordinator: IMainCoordinator {
     typealias ProductListCoordinator = CleanExample.ProductListCoordinator
 
     var window: UIWindow!
-    var database: IDatabase
+    var dependencies: IDependencies
 
-    init(database: IDatabase) {
-        self.database = database
+    init(dependencies: IDependencies) {
+        self.dependencies = dependencies
     }
 
     func setRoot(_ any: Any) {

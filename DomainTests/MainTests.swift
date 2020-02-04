@@ -11,13 +11,11 @@ import Foundation
 import XCTest
 
 class MainTests: XCTestCase {
-    var database: Database!
     var coordinator: MainCoordinator!
 
     override func setUp() {
         super.setUp()
-        database = Database()
-        coordinator = MainCoordinator(database: database)
+        coordinator = MainCoordinator(dependencies: Dependencies())
     }
 
     func testStartSetsRootToProductList() {
@@ -30,9 +28,9 @@ class MainTests: XCTestCase {
 class MainCoordinator: IMainCoordinator {
     typealias ProductListCoordinator = DomainTests.ProductListCoordinator
 
-    var database: IDatabase
-    init(database: IDatabase) {
-        self.database = database
+    var dependencies: IDependencies
+    init(dependencies: IDependencies) {
+        self.dependencies = dependencies
     }
 
     var spyRoot: Any?

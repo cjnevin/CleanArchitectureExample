@@ -11,24 +11,33 @@ import Foundation
 import XCTest
 
 class ProductListTests: XCTestCase {
+    var api: APIService!
     var database: Database!
     var coordinator: ProductListCoordinator!
     var presenter: ProductListPresenter<ProductListView, ProductListCoordinator>!
     
     override func setUp() {
         super.setUp()
+        api = APIService()
         database = Database()
-        coordinator = ProductListCoordinator(database: database)
+        coordinator = ProductListCoordinator(dependencies: Dependencies(api: api, database: database))
         presenter = ProductListPresenter(coordinator: coordinator)
     }
     
-    func testAttachWhenEmpty() {
+    func testAttachHitsApiForDataIfDatabaseIsEmptyThenDatabaseAfterApiReturns() {
+        let apiProductIds = ["1", "2", "3", "4"]
         let view = ProductListView()
         presenter.attach(view: view)
-        XCTAssertTrue(view.products.isEmpty)
+        XCTAssertEqual(view.products.map { $0.id }, apiProductIds)
+        XCTAssertEqual(api.spyExecuteCount, 1)
+        XCTAssertEqual(database.spyListCount, 1)
+        presenter.detach()
+        presenter.attach(view: view)
+        XCTAssertEqual(api.spyExecuteCount, 1)
+        XCTAssertEqual(database.spyListCount, 2)
     }
     
-    func testAttach() {
+    func testAttachHitsDatabaseForData() {
         database.lookup["id1"] = Product(id: "id1", name: "product 1")
         database.lookup["id2"] = Product(id: "id2", name: "product 2")
         database.lookup["id3"] = Product(id: "id3", name: "product 3")
@@ -36,6 +45,8 @@ class ProductListTests: XCTestCase {
         presenter.attach(view: view)
         XCTAssertEqual(view.products.map { $0.id }, database.lookup.keys.sorted())
         presenter.detach()
+        XCTAssertEqual(api.spyExecuteCount, 0)
+        XCTAssertEqual(database.spyListCount, 1)
     }
     
     func testSelectedProduct() {
@@ -54,15 +65,15 @@ struct Product: IProduct {
 }
 
 class ProductListCoordinator: IProductListCoordinator {
+    required init(dependencies: ProductListDependencies) {
+        self.dependencies = dependencies
+    }
+
+    var dependencies: ProductListDependencies
+
     func view(for product: Product, database: IDatabase) -> ProductView {
         ProductView()
     }
-
-    required init(database: IDatabase) {
-        self.database = database
-    }
-
-    var database: IDatabase
 
     typealias ProductView = DomainTests.ProductView
 
@@ -80,5 +91,6 @@ class ProductListCoordinator: IProductListCoordinator {
 }
 
 final class ProductListView: IProductListView {
+    var productsUnavailable: Bool = false
     var products: [Product] = []
 }

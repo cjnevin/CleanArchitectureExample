@@ -11,16 +11,23 @@ import Foundation
 
 class Database: IDatabase {
     var lookup: [String: Any] = [:]
-    
+
+    var spyGetCount: Int = 0
+    var spyListCount: Int = 0
+    var spySetCount: Int = 0
+
     func get<Object>(id: String) -> Object {
-        lookup[id] as! Object
+        spyGetCount += 1
+        return lookup[id] as! Object
     }
     
     func list<Object>() -> [Object] {
-        lookup.values.compactMap { $0 as? Object }
+        spyListCount += 1
+        return lookup.values.compactMap { $0 as? Object }
     }
 
     func set<Object>(_ object: Object, id: String) {
-        lookup[id] = object
+        spySetCount += 1
+        return lookup[id] = object
     }
 }

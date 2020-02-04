@@ -10,13 +10,13 @@ import Foundation
 
 public protocol IMainCoordinator {
     associatedtype ProductListCoordinator: IProductListCoordinator
-    var database: IDatabase { get }
+    var dependencies: IDependencies { get }
     func start()
     func setRoot(_ any: Any)
 }
 
 public extension IMainCoordinator {
     func start() {
-        setRoot(ProductListCoordinator(database: database))
+        setRoot(ProductListCoordinator(dependencies: dependencies))
     }
 }

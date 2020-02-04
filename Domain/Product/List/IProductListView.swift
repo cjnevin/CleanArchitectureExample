@@ -11,4 +11,5 @@ import Foundation
 public protocol IProductListView: AnyObject {
     associatedtype Product: IProduct
     var products: [Product] { get set }
+    var productsUnavailable: Bool { get set }
 }
