@@ -1,5 +1,5 @@
 //
-//  PopCoordinator.swift
+//  PopCoordinating.swift
 //  CleanExample
 //
 //  Created by Chris on 04/02/2020.
@@ -9,7 +9,7 @@
 import Domain
 import UIKit
 
-extension PopCoordinator where Self: UINavigationController {
+extension PopCoordinating where Self: UINavigationController {
     func pop() {
         popViewController(animated: true)
     }

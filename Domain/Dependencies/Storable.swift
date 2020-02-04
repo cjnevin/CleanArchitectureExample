@@ -1,5 +1,5 @@
 //
-//  IDatabase.swift
+//  Storable.swift
 //  Domain
 //
 //  Created by Chris on 03/02/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol IDatabase {
+public protocol Storable {
     func get<Object>(id: String) -> Object
     func list<Object>() -> [Object]
     func set<Object>(_ object: Object, id: String)

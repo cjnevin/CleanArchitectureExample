@@ -1,5 +1,5 @@
 //
-//  Product.swift
+//  ProductModel.swift
 //  Domain
 //
 //  Created by Chris on 03/02/2020.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-public protocol IProduct: Comparable, Decodable {
+public protocol ProductModel: Comparable, Decodable {
     var id: String { get }
     var name: String { get set }
 }
 
-extension IProduct where Self: Comparable {
+extension ProductModel where Self: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         lhs.id < rhs.id
     }

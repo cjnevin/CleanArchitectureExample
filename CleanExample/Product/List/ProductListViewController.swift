@@ -9,7 +9,7 @@
 import Domain
 import UIKit
 
-class ProductListViewController: UITableViewController, IProductListView {
+class ProductListViewController: UITableViewController, ProductListViewing {
     var presenter: ProductListPresenter<ProductListViewController, ProductListCoordinator>?
 
     var productsUnavailable: Bool = false {

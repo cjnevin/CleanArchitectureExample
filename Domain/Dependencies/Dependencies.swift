@@ -1,5 +1,5 @@
 //
-//  IDependencies.swift
+//  Dependencies.swift
 //  Domain
 //
 //  Created by Chris on 04/02/2020.
@@ -9,11 +9,11 @@
 import Foundation
 
 public protocol APIServiceHaving {
-    var api: IAPIService { get }
+    var api: Requestable { get }
 }
 
 public protocol DatabaseHaving {
-    var database: IDatabase { get }
+    var database: Storable { get }
 }
 
-public protocol IDependencies: APIServiceHaving, DatabaseHaving { }
+public protocol Dependencies: APIServiceHaving, DatabaseHaving { }

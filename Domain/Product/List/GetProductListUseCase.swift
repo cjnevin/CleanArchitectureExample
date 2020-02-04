@@ -9,9 +9,9 @@
 import Combine
 import Foundation
 
-struct GetProductListUseCase<Product: IProduct> {
-    let api: IAPIService
-    let database: IDatabase
+struct GetProductListUseCase<Product: ProductModel> {
+    let api: Requestable
+    let database: Storable
 
     func list() -> AnyPublisher<[Product], Error> {
         let products: [Product] = database.list().sorted()

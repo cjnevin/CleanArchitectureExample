@@ -1,5 +1,5 @@
 //
-//  IMainCoordinator.swift
+//  RootCoordinating.swift
 //  Domain
 //
 //  Created by Chris on 04/02/2020.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-public protocol IMainCoordinator {
-    associatedtype ProductListCoordinator: IProductListCoordinator
-    var dependencies: IDependencies { get }
+public protocol RootCoordinating {
+    associatedtype ProductListCoordinator: ProductListCoordinating
+    var dependencies: Dependencies { get }
     func start()
     func setRoot(_ any: Any)
 }
 
-public extension IMainCoordinator {
+public extension RootCoordinating {
     func start() {
         setRoot(ProductListCoordinator(dependencies: dependencies))
     }

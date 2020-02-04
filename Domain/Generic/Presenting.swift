@@ -1,5 +1,5 @@
 //
-//  IPresenter.swift
+//  Presenting.swift
 //  Domain
 //
 //  Created by Chris on 03/02/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol IPresenter {
+public protocol Presenting {
     associatedtype View
     func attach(view: View)
     func detach()

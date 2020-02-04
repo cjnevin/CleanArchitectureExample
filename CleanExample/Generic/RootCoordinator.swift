@@ -1,5 +1,5 @@
 //
-//  MainCoordinator.swift
+//  RootCoordinator.swift
 //  CleanExample
 //
 //  Created by Chris on 03/02/2020.
@@ -9,13 +9,13 @@
 import Domain
 import UIKit
 
-class MainCoordinator: IMainCoordinator {
+class RootCoordinator: RootCoordinating {
     typealias ProductListCoordinator = CleanExample.ProductListCoordinator
 
     var window: UIWindow!
-    var dependencies: IDependencies
+    var dependencies: Dependencies
 
-    init(dependencies: IDependencies) {
+    init(dependencies: Dependencies) {
         self.dependencies = dependencies
     }
 

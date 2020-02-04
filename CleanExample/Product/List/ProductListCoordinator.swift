@@ -9,7 +9,7 @@
 import Domain
 import UIKit
 
-class ProductListCoordinator: UINavigationController, IProductListCoordinator, IProductCoordinator {
+class ProductListCoordinator: UINavigationController, ProductListCoordinating {
     let dependencies: ProductListDependencies
 
     required init(dependencies: ProductListDependencies) {
@@ -29,7 +29,7 @@ class ProductListCoordinator: UINavigationController, IProductListCoordinator, I
         view.backgroundColor = UIColor.white
     }
 
-    func view(for product: Product, database: IDatabase) -> ProductViewController {
+    func view(for product: Product, database: Storable) -> ProductViewController {
         let viewController = ProductViewController()
         viewController.presenter = ProductPresenter<ProductViewController, ProductListCoordinator>(id: product.id, database: dependencies.database, coordinator: self)
         return viewController

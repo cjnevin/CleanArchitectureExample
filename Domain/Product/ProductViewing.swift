@@ -1,5 +1,5 @@
 //
-//  IProductView.swift
+//  ProductViewing.swift
 //  Domain
 //
 //  Created by Chris on 03/02/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol IProductView {
-    associatedtype Product: IProduct
+public protocol ProductViewing {
+    associatedtype Product: ProductModel
     func setProduct(_ product: Product)
 }

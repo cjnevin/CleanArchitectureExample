@@ -1,5 +1,5 @@
 //
-//  Database.swift
+//  MockDatabase.swift
 //  DomainTests
 //
 //  Created by Chris Nevin on 3/2/20.
@@ -9,7 +9,7 @@
 import Domain
 import Foundation
 
-class Database: IDatabase {
+class MockDatabase: Storable {
     var lookup: [String: Any] = [:]
 
     var spyGetCount: Int = 0

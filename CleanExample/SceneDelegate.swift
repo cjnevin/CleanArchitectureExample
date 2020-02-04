@@ -9,12 +9,12 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
-    var coordinator: MainCoordinator?
+    var coordinator: RootCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
-            coordinator = MainCoordinator(dependencies: Dependencies())
+            coordinator = RootCoordinator(dependencies: AllDependencies())
             coordinator?.window = window
             coordinator?.start()
         }

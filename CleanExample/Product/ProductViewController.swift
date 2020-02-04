@@ -9,7 +9,7 @@
 import Domain
 import UIKit
 
-class ProductViewController: UIViewController, IProductView {
+class ProductViewController: UIViewController, ProductViewing {
     let textField = UITextField()
     var presenter: ProductPresenter<ProductViewController, ProductListCoordinator>?
 

@@ -11,11 +11,11 @@ import Foundation
 import XCTest
 
 class MainTests: XCTestCase {
-    var coordinator: MainCoordinator!
+    var coordinator: RootCoordinator!
 
     override func setUp() {
         super.setUp()
-        coordinator = MainCoordinator(dependencies: Dependencies())
+        coordinator = RootCoordinator(dependencies: MockDependencies())
     }
 
     func testStartSetsRootToProductList() {
@@ -25,11 +25,11 @@ class MainTests: XCTestCase {
     }
 }
 
-class MainCoordinator: IMainCoordinator {
+class RootCoordinator: RootCoordinating {
     typealias ProductListCoordinator = DomainTests.ProductListCoordinator
 
-    var dependencies: IDependencies
-    init(dependencies: IDependencies) {
+    var dependencies: Dependencies
+    init(dependencies: Dependencies) {
         self.dependencies = dependencies
     }
 

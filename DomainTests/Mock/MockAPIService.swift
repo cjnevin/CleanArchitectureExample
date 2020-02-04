@@ -1,5 +1,5 @@
 //
-//  APIService.swift
+//  MockAPIService.swift
 //  DomainTests
 //
 //  Created by Chris on 04/02/2020.
@@ -10,7 +10,7 @@ import Combine
 import Domain
 import Foundation
 
-class APIService: IAPIService {
+class MockAPIService: Requestable {
     var spyExecuteCount: Int = 0
     var success: Bool = true
 

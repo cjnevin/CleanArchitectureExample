@@ -9,12 +9,12 @@
 import Domain
 import Foundation
 
-class Dependencies: IDependencies {
-    let api: IAPIService
-    let database: IDatabase
+class MockDependencies: Dependencies {
+    let api: Requestable
+    let database: Storable
 
-    init(api: IAPIService = APIService(),
-         database: IDatabase = Database()) {
+    init(api: Requestable = MockAPIService(),
+         database: Storable = MockDatabase()) {
         self.api = api
         self.database = database
     }

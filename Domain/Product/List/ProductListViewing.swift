@@ -1,5 +1,5 @@
 //
-//  IProductListView.swift
+//  ProductListViewing.swift
 //  Domain
 //
 //  Created by Chris on 03/02/2020.
@@ -8,8 +8,8 @@
 
 import Foundation
 
-public protocol IProductListView: AnyObject {
-    associatedtype Product: IProduct
+public protocol ProductListViewing: AnyObject {
+    associatedtype Product: ProductModel
     var products: [Product] { get set }
     var productsUnavailable: Bool { get set }
 }

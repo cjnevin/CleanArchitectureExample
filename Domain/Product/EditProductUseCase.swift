@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct EditProductUseCase<Product: IProduct> {
+struct EditProductUseCase<Product: ProductModel> {
     let id: String
-    let database: IDatabase
+    let database: Storable
 
     func edit(name: String) {
         var product: Product = database.get(id: id)

@@ -8,12 +8,12 @@
 
 import Foundation
 
-public struct ProductPresenter<View: IProductView, Coordinator: IProductCoordinator>: IPresenter {
+public struct ProductPresenter<View: ProductViewing, Coordinator: ProductCoordinating>: Presenting {
     let coordinator: Coordinator
     let getUseCase: GetProductUseCase<View.Product>
     let editUseCase: EditProductUseCase<View.Product>
 
-    public init(id: String, database: IDatabase, coordinator: Coordinator) {
+    public init(id: String, database: Storable, coordinator: Coordinator) {
         self.coordinator = coordinator
         self.getUseCase = GetProductUseCase(id: id, database: database)
         self.editUseCase = EditProductUseCase(id: id, database: database)

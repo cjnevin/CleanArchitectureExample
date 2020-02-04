@@ -9,7 +9,7 @@
 import Combine
 import Foundation
 
-public class ProductListPresenter<View: IProductListView, Coordinator: IProductListCoordinator>: IPresenter where Coordinator.Product == View.Product {
+public class ProductListPresenter<View: ProductListViewing, Coordinator: ProductListCoordinating>: Presenting where Coordinator.Product == View.Product {
     var listStream: AnyCancellable?
     let useCase: GetProductListUseCase<View.Product>
     let coordinator: Coordinator

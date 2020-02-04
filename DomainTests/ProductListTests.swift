@@ -11,16 +11,16 @@ import Foundation
 import XCTest
 
 class ProductListTests: XCTestCase {
-    var api: APIService!
-    var database: Database!
+    var api: MockAPIService!
+    var database: MockDatabase!
     var coordinator: ProductListCoordinator!
     var presenter: ProductListPresenter<ProductListView, ProductListCoordinator>!
     
     override func setUp() {
         super.setUp()
-        api = APIService()
-        database = Database()
-        coordinator = ProductListCoordinator(dependencies: Dependencies(api: api, database: database))
+        api = MockAPIService()
+        database = MockDatabase()
+        coordinator = ProductListCoordinator(dependencies: MockDependencies(api: api, database: database))
         presenter = ProductListPresenter(coordinator: coordinator)
     }
 
@@ -75,18 +75,18 @@ class ProductListTests: XCTestCase {
     }
 }
 
-struct Product: IProduct {
+struct Product: ProductModel {
     var id: String = "id"
     var name: String = "name"
 }
 
-class ProductListCoordinator: IProductListCoordinator {
+class ProductListCoordinator: ProductListCoordinating {
     var dependencies: ProductListDependencies
     required init(dependencies: ProductListDependencies) {
         self.dependencies = dependencies
     }
 
-    func view(for product: Product, database: IDatabase) -> ProductView {
+    func view(for product: Product, database: Storable) -> ProductView {
         ProductView()
     }
 
@@ -97,7 +97,7 @@ class ProductListCoordinator: IProductListCoordinator {
     func pop() { }
 }
 
-final class ProductListView: IProductListView {
+final class ProductListView: ProductListViewing {
     var productsUnavailable: Bool = false
     var products: [Product] = []
 }
