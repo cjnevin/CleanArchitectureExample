@@ -1,5 +1,5 @@
 //
-//  Coordinator+Extensions.swift
+//  PushCoordinator.swift
 //  CleanExample
 //
 //  Created by Chris on 04/02/2020.
@@ -8,12 +8,6 @@
 
 import Domain
 import UIKit
-
-extension PopCoordinator where Self: UINavigationController {
-    func pop() {
-        popViewController(animated: true)
-    }
-}
 
 extension PushCoordinator where Self: UINavigationController {
     func push(_ any: Any) {
