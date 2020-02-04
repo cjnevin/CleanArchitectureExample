@@ -13,10 +13,10 @@ public struct ProductPresenter<View: ProductViewing, Coordinator: ProductCoordin
     let getUseCase: GetProductUseCase<View.Product>
     let editUseCase: EditProductUseCase<View.Product>
 
-    public init(id: String, database: Storable, coordinator: Coordinator) {
+    public init(id: String, modelStorage: ModelStorage, coordinator: Coordinator) {
         self.coordinator = coordinator
-        self.getUseCase = GetProductUseCase(id: id, database: database)
-        self.editUseCase = EditProductUseCase(id: id, database: database)
+        self.getUseCase = GetProductUseCase(id: id, modelStorage: modelStorage)
+        self.editUseCase = EditProductUseCase(id: id, modelStorage: modelStorage)
     }
 
     public func attach(view: View) {

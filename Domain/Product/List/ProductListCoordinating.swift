@@ -13,12 +13,12 @@ public protocol ProductListCoordinating: PushCoordinating, ProductCoordinating {
     associatedtype Product: ProductModel
     init(dependencies: ProductListDependencies)
     var dependencies: ProductListDependencies { get }
-    func view(for product: Product, database: Storable) -> ProductView
+    func view(for product: Product, modelStorage: ModelStorage) -> ProductView
 }
 
 extension ProductListCoordinating {
-    public typealias ProductListDependencies = APIServiceHaving & DatabaseHaving
+    public typealias ProductListDependencies = ModelStorageHaving & RequestExecutorHaving
     func selectedProduct(_ product: Product) {
-        push(view(for: product, database: dependencies.database))
+        push(view(for: product, modelStorage: dependencies.modelStorage))
     }
 }

@@ -10,11 +10,11 @@ import Foundation
 
 struct EditProductUseCase<Product: ProductModel> {
     let id: String
-    let database: Storable
+    let modelStorage: ModelStorage
 
     func edit(name: String) {
-        var product: Product = database.get(id: id)
+        var product: Product = modelStorage.get(id: id)
         product.name = name
-        database.set(product, id: id)
+        modelStorage.set(product, id: id)
     }
 }

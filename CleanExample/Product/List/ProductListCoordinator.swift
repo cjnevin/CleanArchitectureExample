@@ -29,9 +29,9 @@ class ProductListCoordinator: UINavigationController, ProductListCoordinating {
         view.backgroundColor = UIColor.white
     }
 
-    func view(for product: Product, database: Storable) -> ProductViewController {
+    func view(for product: Product, modelStorage: ModelStorage) -> ProductViewController {
         let viewController = ProductViewController()
-        viewController.presenter = ProductPresenter<ProductViewController, ProductListCoordinator>(id: product.id, database: dependencies.database, coordinator: self)
+        viewController.presenter = ProductPresenter<ProductViewController, ProductListCoordinator>(id: product.id, modelStorage: dependencies.modelStorage, coordinator: self)
         return viewController
     }
 }

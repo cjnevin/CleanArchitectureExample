@@ -10,7 +10,7 @@ import Combine
 import Domain
 import Foundation
 
-class MockAPIService: Requestable {
+class MockRequestExecutor: RequestExecutor {
     var spyExecuteCount: Int = 0
     var success: Bool = true
 

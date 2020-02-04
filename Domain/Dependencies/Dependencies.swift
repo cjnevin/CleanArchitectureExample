@@ -8,12 +8,12 @@
 
 import Foundation
 
-public protocol APIServiceHaving {
-    var api: Requestable { get }
+public protocol ModelStorageHaving {
+    var modelStorage: ModelStorage { get }
 }
 
-public protocol DatabaseHaving {
-    var database: Storable { get }
+public protocol RequestExecutorHaving {
+    var requestExecutor: RequestExecutor { get }
 }
 
-public protocol Dependencies: APIServiceHaving, DatabaseHaving { }
+public protocol Dependencies: ModelStorageHaving, RequestExecutorHaving { }

@@ -9,7 +9,7 @@
 import Domain
 import Foundation
 
-class MockDatabase: Storable {
+class MockDatabase: ModelStorage {
     var lookup: [String: Any] = [:]
 
     var spyGetCount: Int = 0

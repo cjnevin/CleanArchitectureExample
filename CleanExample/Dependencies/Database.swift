@@ -9,7 +9,7 @@
 import Domain
 import Foundation
 
-class Database: Storable {
+class Database: ModelStorage {
     var lookup: [String: Any] = [:]
 
     func get<Object>(id: String) -> Object {

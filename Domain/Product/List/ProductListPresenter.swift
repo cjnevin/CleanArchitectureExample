@@ -15,7 +15,7 @@ public class ProductListPresenter<View: ProductListViewing, Coordinator: Product
     let coordinator: Coordinator
 
     public init(coordinator: Coordinator) {
-        self.useCase = GetProductListUseCase(api: coordinator.dependencies.api, database: coordinator.dependencies.database)
+        self.useCase = GetProductListUseCase(dependencies: coordinator.dependencies)
         self.coordinator = coordinator
     }
 

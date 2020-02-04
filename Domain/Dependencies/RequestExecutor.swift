@@ -1,5 +1,5 @@
 //
-//  Requestable.swift
+//  RequestExecutor.swift
 //  Domain
 //
 //  Created by Chris on 04/02/2020.
@@ -9,6 +9,6 @@
 import Combine
 import Foundation
 
-public protocol Requestable {
+public protocol RequestExecutor {
     func execute(request: URLRequest) -> AnyPublisher<Data, Error>
 }
