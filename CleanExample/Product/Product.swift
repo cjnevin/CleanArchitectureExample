@@ -9,7 +9,12 @@
 import Domain
 import Foundation
 
-struct Product: IProduct, Decodable {
-    let id: String
-    var name: String
+// This example object looks like a Realm one by using dynamic dispatch to prove the concept is sound.
+class Product: IProduct, Decodable {
+    static func == (lhs: Product, rhs: Product) -> Bool {
+        lhs.id == rhs.id && lhs.name == rhs.name
+    }
+
+    dynamic var id: String
+    dynamic var name: String
 }
