@@ -2,7 +2,13 @@
 
 An example of how to setup an app using a separate framework for the Domain->Presentation logic as is shown in the Clean Architecture diagram.
 
-Domain contains Model Interfaces, Dependency Interfaces, Use Cases, Presenters, View Interfaces, and Coordinator Interfaces.
+Domain contains:
+- Use Cases (Private)
+- Presenters (Subject under Test)
+- View Interfaces
+- Coordinator Interfaces
+- Model Interfaces
+- Dependency Interfaces
 
 App imports Domain then:
 - Each UIViewController implements a View Interface
