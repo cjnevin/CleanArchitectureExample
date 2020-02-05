@@ -10,12 +10,15 @@ import Combine
 import Foundation
 
 public class ProductListPresenter<View: ProductListViewing, Coordinator: ProductListCoordinating>: Presenting where Coordinator.Product == View.Product {
+    let refreshTrigger = PassthroughSubject<Void, Error>()
     var listStream: AnyCancellable?
-    let useCase: GetProductListUseCase<View.Product>
+    let deleteUseCase: DeleteProductUseCase<View.Product>
+    let listUseCase: GetProductListUseCase<View.Product>
     let coordinator: Coordinator
 
     public init(coordinator: Coordinator) {
-        self.useCase = GetProductListUseCase(dependencies: coordinator.dependencies)
+        self.deleteUseCase = DeleteProductUseCase(modelStorage: coordinator.dependencies.modelStorage)
+        self.listUseCase = GetProductListUseCase(dependencies: coordinator.dependencies)
         self.coordinator = coordinator
     }
 
@@ -23,7 +26,8 @@ public class ProductListPresenter<View: ProductListViewing, Coordinator: Product
         view.productsUnavailable = false
         view.products = []
         listStream?.cancel()
-        listStream = useCase.list()
+        listStream = refreshTrigger
+            .flatMap(listUseCase.list)
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished: break
@@ -33,11 +37,17 @@ public class ProductListPresenter<View: ProductListViewing, Coordinator: Product
             }, receiveValue: { products in
                 view.products = products
             })
+        refreshTrigger.send(())
     }
 
     public func detach() {
         listStream?.cancel()
         listStream = nil
+    }
+
+    public func deleted(product: View.Product) {
+        deleteUseCase.delete(id: product.id)
+        refreshTrigger.send(())
     }
 
     public func selected(product: View.Product) {

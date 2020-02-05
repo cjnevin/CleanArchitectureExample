@@ -39,6 +39,7 @@
 		8376545D23EB1EEF001D4B5D /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376545C23EB1EEF001D4B5D /* SettingsPresenter.swift */; };
 		8376545F23EB1F76001D4B5D /* SettingsCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376545E23EB1F76001D4B5D /* SettingsCoordinating.swift */; };
 		8376546123EB1F97001D4B5D /* SettingsViewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376546023EB1F97001D4B5D /* SettingsViewing.swift */; };
+		8376546323EB2D44001D4B5D /* DeleteProductUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376546223EB2D44001D4B5D /* DeleteProductUseCase.swift */; };
 		FEEBF05623E7CC8F009DFEDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF05523E7CC8F009DFEDA /* AppDelegate.swift */; };
 		FEEBF05A23E7CC8F009DFEDA /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF05923E7CC8F009DFEDA /* ProductListViewController.swift */; };
 		FEEBF05F23E7CC90009DFEDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEEBF05E23E7CC90009DFEDA /* Assets.xcassets */; };
@@ -133,6 +134,7 @@
 		8376545C23EB1EEF001D4B5D /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		8376545E23EB1F76001D4B5D /* SettingsCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinating.swift; sourceTree = "<group>"; };
 		8376546023EB1F97001D4B5D /* SettingsViewing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewing.swift; sourceTree = "<group>"; };
+		8376546223EB2D44001D4B5D /* DeleteProductUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteProductUseCase.swift; sourceTree = "<group>"; };
 		FEEBF05223E7CC8F009DFEDA /* CleanExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEEBF05523E7CC8F009DFEDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEEBF05923E7CC8F009DFEDA /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				FEEBF0A523E7CCC7009DFEDA /* List */,
 				FEEBF0A123E7CCC7009DFEDA /* GetProductUseCase.swift */,
+				8376546223EB2D44001D4B5D /* DeleteProductUseCase.swift */,
 				837653FD23E88023001D4B5D /* EditProductUseCase.swift */,
 				FEEBF0A423E7CCC7009DFEDA /* ProductModel.swift */,
 				837653FF23E882F7001D4B5D /* ProductCoordinating.swift */,
@@ -555,6 +558,7 @@
 				8376540423E88A71001D4B5D /* PopCoordinating.swift in Sources */,
 				8376545D23EB1EEF001D4B5D /* SettingsPresenter.swift in Sources */,
 				FEEBF0B123E7CCC7009DFEDA /* ProductListViewing.swift in Sources */,
+				8376546323EB2D44001D4B5D /* DeleteProductUseCase.swift in Sources */,
 				8376545023EB160E001D4B5D /* SettingStorage.swift in Sources */,
 				8376541623E9A43E001D4B5D /* Dependencies.swift in Sources */,
 				8376545F23EB1F76001D4B5D /* SettingsCoordinating.swift in Sources */,

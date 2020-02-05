@@ -12,4 +12,5 @@ public protocol ModelStorage {
     func get<Model>(id: String) -> Model
     func list<Model>() -> [Model]
     func set<Model>(_ object: Model, id: String)
+    func delete<Model>(id: String) -> Model
 }

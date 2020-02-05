@@ -23,4 +23,10 @@ class Database: ModelStorage {
     func set<Object>(_ object: Object, id: String) {
         lookup[id] = object
     }
+
+    func delete<Model>(id: String) -> Model {
+        let object: Model = get(id: id)
+        lookup.removeValue(forKey: id)
+        return object
+    }
 }
