@@ -11,6 +11,7 @@ import UIKit
 
 class TabCoordinator: UITabBarController, TabCoordinating {
     typealias ProductListCoordinator = CleanExample.ProductListCoordinator
+    typealias SettingsCoordinator = CleanExample.SettingsCoordinator
 
     var dependencies: Dependencies
     required init(dependencies: Dependencies) {

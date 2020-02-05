@@ -27,6 +27,7 @@ class ProductViewController: UIViewController, ProductViewing {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.attach(view: self)
+        textField.becomeFirstResponder()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -35,7 +36,7 @@ class ProductViewController: UIViewController, ProductViewing {
     }
 
     func setProduct(_ product: Product) {
-        navigationItem.title = product.id
+        navigationItem.title = "Change Name"
         textField.text = product.name
     }
 

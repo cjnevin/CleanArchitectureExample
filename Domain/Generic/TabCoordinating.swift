@@ -10,6 +10,7 @@ import Foundation
 
 public protocol TabCoordinating {
     associatedtype ProductListCoordinator: ProductListCoordinating
+    associatedtype SettingsCoordinator: SettingsCoordinating
     var dependencies: Dependencies { get }
     init(dependencies: Dependencies)
     func start()
@@ -21,5 +22,6 @@ public protocol TabCoordinating {
 extension TabCoordinating {
     public func start() {
         addTab(ProductListCoordinator(dependencies: dependencies))
+        addTab(SettingsCoordinator(dependencies: dependencies))
     }
 }

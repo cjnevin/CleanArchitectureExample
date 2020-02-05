@@ -52,6 +52,7 @@ class ProductListViewController: UITableViewController, ProductListViewing {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell")
             ?? UITableViewCell(style: .default, reuseIdentifier: "ProductCell")
         cell.textLabel?.text = products[indexPath.row].name
+        cell.accessoryType = .disclosureIndicator
         return cell
     }
 

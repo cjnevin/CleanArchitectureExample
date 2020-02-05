@@ -10,6 +10,7 @@ import Domain
 import Foundation
 
 class AllDependencies: Dependencies {
+    let settingStorage: SettingStorage = Settings()
     let requestExecutor: RequestExecutor = API()
     let modelStorage: ModelStorage = Database()
 }

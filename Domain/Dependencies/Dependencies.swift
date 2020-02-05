@@ -8,6 +8,10 @@
 
 import Foundation
 
+public protocol SettingStorageHaving {
+    var settingStorage: SettingStorage { get }
+}
+
 public protocol ModelStorageHaving {
     var modelStorage: ModelStorage { get }
 }
@@ -16,4 +20,4 @@ public protocol RequestExecutorHaving {
     var requestExecutor: RequestExecutor { get }
 }
 
-public protocol Dependencies: ModelStorageHaving, RequestExecutorHaving { }
+public protocol Dependencies: ModelStorageHaving, RequestExecutorHaving, SettingStorageHaving { }
