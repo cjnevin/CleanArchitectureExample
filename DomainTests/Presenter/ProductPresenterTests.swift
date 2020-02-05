@@ -1,5 +1,5 @@
 //
-//  ProductTests.swift
+//  ProductPresenterTests.swift
 //  DomainTests
 //
 //  Created by Chris Nevin on 3/2/20.
@@ -10,7 +10,7 @@ import Domain
 import Foundation
 import XCTest
 
-class ProductTests: XCTestCase {
+class ProductPresenterTests: XCTestCase {
     var modelStorage: MockDatabase!
     var coordinator: ProductCoordinator!
     var presenter: ProductPresenter<ProductView, ProductCoordinator>!
@@ -45,21 +45,5 @@ class ProductTests: XCTestCase {
 
         let product: Product = modelStorage.get(id: "id")
         XCTAssertEqual(product.name, "new name")
-    }
-}
-
-final class ProductView: ProductViewing {
-    var spyProduct: Product?
-    
-    func setProduct(_ product: Product) {
-        spyProduct = product
-    }
-}
-
-class ProductCoordinator: ProductCoordinating {
-    var spyReturnedToList: Bool = false
-
-    func pop() {
-        spyReturnedToList = true
     }
 }

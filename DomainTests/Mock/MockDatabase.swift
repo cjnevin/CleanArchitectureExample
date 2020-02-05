@@ -15,19 +15,25 @@ class MockDatabase: ModelStorage {
     var spyGetCount: Int = 0
     var spyListCount: Int = 0
     var spySetCount: Int = 0
+    var spyDeleteCount: Int = 0
 
-    func get<Object>(id: String) -> Object {
+    func get<Model>(id: String) -> Model {
         spyGetCount += 1
-        return lookup[id] as! Object
+        return lookup[id] as! Model
     }
     
-    func list<Object>() -> [Object] {
+    func list<Model>() -> [Model] {
         spyListCount += 1
-        return lookup.values.compactMap { $0 as? Object }
+        return lookup.values.compactMap { $0 as? Model }
     }
 
-    func set<Object>(_ object: Object, id: String) {
+    func set<Model>(_ object: Model, id: String) {
         spySetCount += 1
         return lookup[id] = object
+    }
+
+    func delete<Model>(id: String) -> Model {
+        spyDeleteCount += 1
+        return lookup.removeValue(forKey: id)! as! Model
     }
 }

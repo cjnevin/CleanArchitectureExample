@@ -10,12 +10,15 @@ import Domain
 import Foundation
 
 class MockDependencies: Dependencies {
+    let settingStorage: SettingStorage
     let modelStorage: ModelStorage
     let requestExecutor: RequestExecutor
 
-    init(modelStorage: ModelStorage = MockDatabase(),
+    init(settingStorage: SettingStorage = MockSettingsStorage(),
+         modelStorage: ModelStorage = MockDatabase(),
          requestExecutor: RequestExecutor = MockRequestExecutor())
     {
+        self.settingStorage = settingStorage
         self.modelStorage = modelStorage
         self.requestExecutor = requestExecutor
     }

@@ -1,5 +1,5 @@
 //
-//  ProductListTests.swift
+//  ProductListPresenterTests.swift
 //  DomainTests
 //
 //  Created by Chris Nevin on 3/2/20.
@@ -10,7 +10,7 @@ import Domain
 import Foundation
 import XCTest
 
-class ProductListTests: XCTestCase {
+class ProductListPresenterTests: XCTestCase {
     var requestExecutor: MockRequestExecutor!
     var modelStorage: MockDatabase!
     var coordinator: ProductListCoordinator!
@@ -64,6 +64,15 @@ class ProductListTests: XCTestCase {
         XCTAssertEqual(requestExecutor.spyExecuteCount, 0)
         XCTAssertEqual(modelStorage.spyListCount, 1)
     }
+
+    func testDeletedProduct() {
+        let view = ProductListView()
+        presenter.attach(view: view)
+        XCTAssertEqual(view.products.count, 4)
+        presenter.deleted(product: view.products[0])
+        XCTAssertEqual(modelStorage.spyDeleteCount, 1)
+        XCTAssertEqual(view.products.count, 3)
+    }
     
     func testSelectedProduct() {
         modelStorage.lookup["id"] = Product()
@@ -73,31 +82,4 @@ class ProductListTests: XCTestCase {
         presenter.selected(product: view.products[0])
         XCTAssertNotNil(coordinator.spySelectedProduct)
     }
-}
-
-struct Product: ProductModel {
-    var id: String = "id"
-    var name: String = "name"
-}
-
-class ProductListCoordinator: ProductListCoordinating {
-    var dependencies: ProductListDependencies
-    required init(dependencies: ProductListDependencies) {
-        self.dependencies = dependencies
-    }
-
-    func view(for product: Product, modelStorage: ModelStorage) -> ProductView {
-        ProductView()
-    }
-
-    var spySelectedProduct: Bool = false
-    func push(_ any: Any) {
-        spySelectedProduct = true
-    }
-    func pop() { }
-}
-
-final class ProductListView: ProductListViewing {
-    var productsUnavailable: Bool = false
-    var products: [Product] = []
 }

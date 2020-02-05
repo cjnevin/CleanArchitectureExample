@@ -12,6 +12,7 @@ public class SettingsPresenter<View: SettingsViewing, Coordinator: SettingsCoord
     let coordinator: Coordinator
     let getSettingsUseCase: GetSettingsUseCase
     let editSettingsUseCase: EditSettingsUseCase
+    var onDetach: (() -> Void)?
 
     public init(coordinator: Coordinator) {
         self.coordinator = coordinator
@@ -21,10 +22,11 @@ public class SettingsPresenter<View: SettingsViewing, Coordinator: SettingsCoord
 
     public func attach(view: View) {
         view.settings = getSettingsUseCase.get()
+        onDetach = { view.settings = nil }
     }
 
     public func detach() {
-
+        onDetach?()
     }
 
     public func save(settings: SettingsModel) {
