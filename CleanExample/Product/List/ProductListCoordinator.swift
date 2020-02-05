@@ -27,6 +27,7 @@ class ProductListCoordinator: UINavigationController, ProductListCoordinating {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+        tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
     }
 
     func view(for product: Product, modelStorage: ModelStorage) -> ProductViewController {

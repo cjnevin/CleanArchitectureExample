@@ -27,6 +27,8 @@
 		8376541C23E9AB51001D4B5D /* MockDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376541B23E9AB51001D4B5D /* MockDependencies.swift */; };
 		8376541E23E9AB69001D4B5D /* MockRequestExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376541D23E9AB69001D4B5D /* MockRequestExecutor.swift */; };
 		8376542123E9C015001D4B5D /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376542023E9C015001D4B5D /* API.swift */; };
+		8376544923EB1093001D4B5D /* TabCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376544823EB1093001D4B5D /* TabCoordinating.swift */; };
+		8376544B23EB132D001D4B5D /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376544A23EB132D001D4B5D /* TabCoordinator.swift */; };
 		FEEBF05623E7CC8F009DFEDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF05523E7CC8F009DFEDA /* AppDelegate.swift */; };
 		FEEBF05A23E7CC8F009DFEDA /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF05923E7CC8F009DFEDA /* ProductListViewController.swift */; };
 		FEEBF05F23E7CC90009DFEDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEEBF05E23E7CC90009DFEDA /* Assets.xcassets */; };
@@ -109,6 +111,8 @@
 		8376541B23E9AB51001D4B5D /* MockDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDependencies.swift; sourceTree = "<group>"; };
 		8376541D23E9AB69001D4B5D /* MockRequestExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequestExecutor.swift; sourceTree = "<group>"; };
 		8376542023E9C015001D4B5D /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		8376544823EB1093001D4B5D /* TabCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinating.swift; sourceTree = "<group>"; };
+		8376544A23EB132D001D4B5D /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		FEEBF05223E7CC8F009DFEDA /* CleanExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEEBF05523E7CC8F009DFEDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEEBF05923E7CC8F009DFEDA /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				837653F223E866B5001D4B5D /* RootCoordinator.swift */,
 				8376540C23E97640001D4B5D /* PopCoordinator.swift */,
 				8376540723E88DDD001D4B5D /* PushCoordinator.swift */,
+				8376544A23EB132D001D4B5D /* TabCoordinator.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				8376540123E88A64001D4B5D /* RootCoordinating.swift */,
 				8376540323E88A71001D4B5D /* PopCoordinating.swift */,
 				8376540523E88A77001D4B5D /* PushCoordinating.swift */,
+				8376544823EB1093001D4B5D /* TabCoordinating.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -461,6 +467,7 @@
 				8376541A23E9A7A1001D4B5D /* Dependencies.swift in Sources */,
 				8376540823E88DDD001D4B5D /* PushCoordinator.swift in Sources */,
 				FEEBF05A23E7CC8F009DFEDA /* ProductListViewController.swift in Sources */,
+				8376544B23EB132D001D4B5D /* TabCoordinator.swift in Sources */,
 				8376540D23E97640001D4B5D /* PopCoordinator.swift in Sources */,
 				837653F323E866B5001D4B5D /* RootCoordinator.swift in Sources */,
 				837653EF23E863B1001D4B5D /* SceneDelegate.swift in Sources */,
@@ -479,6 +486,7 @@
 			files = (
 				8376541223E99F40001D4B5D /* RequestExecutor.swift in Sources */,
 				FEEBF0AF23E7CCC7009DFEDA /* ProductViewing.swift in Sources */,
+				8376544923EB1093001D4B5D /* TabCoordinating.swift in Sources */,
 				FEEBF0B523E7CCC7009DFEDA /* ModelStorage.swift in Sources */,
 				FEEBF0B623E7CCC7009DFEDA /* Presenting.swift in Sources */,
 				FEEBF0AE23E7CCC7009DFEDA /* ProductPresenter.swift in Sources */,

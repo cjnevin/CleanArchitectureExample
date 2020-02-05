@@ -10,7 +10,7 @@ import Domain
 import UIKit
 
 class RootCoordinator: RootCoordinating {
-    typealias ProductListCoordinator = CleanExample.ProductListCoordinator
+    typealias TabCoordinator = CleanExample.TabCoordinator
 
     var window: UIWindow!
     var dependencies: Dependencies
@@ -22,5 +22,6 @@ class RootCoordinator: RootCoordinating {
     func setRoot(_ any: Any) {
         window.rootViewController = any as? UIViewController
         window.makeKeyAndVisible()
+        (any as? TabCoordinator)?.start()
     }
 }

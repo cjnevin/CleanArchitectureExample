@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol RootCoordinating {
-    associatedtype ProductListCoordinator: ProductListCoordinating
+    associatedtype TabCoordinator: TabCoordinating
     var dependencies: Dependencies { get }
     func start()
     func setRoot(_ any: Any)
@@ -17,6 +17,6 @@ public protocol RootCoordinating {
 
 public extension RootCoordinating {
     func start() {
-        setRoot(ProductListCoordinator(dependencies: dependencies))
+        setRoot(TabCoordinator(dependencies: dependencies))
     }
 }
