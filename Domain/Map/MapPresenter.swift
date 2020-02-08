@@ -20,15 +20,15 @@ public class MapPresenter<View: AnyMapView, Coordinator: MapCoordinating>: Prese
 
     public func attach(view: View) {
         locationCancellable?.cancel()
-        locationCancellable = coordinator.dependencies.location.locationStatus.sink(receiveCompletion: { _ in
-
-        }, receiveValue: { status in
-            if case .enabled(let location) = status {
-                view.updated(location: location)
-            }
+        locationCancellable = coordinator.dependencies.location.locationStatus.sink(
+            receiveCompletion: { _ in },
+            receiveValue: { status in
+                if case .enabled(let location) = status {
+                    view.updated(location: location)
+                }
         })
     }
-
+    
     public func detach() {
         locationCancellable?.cancel()
         locationCancellable = nil
