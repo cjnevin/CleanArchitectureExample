@@ -8,12 +8,22 @@
 
 import Foundation
 
-public struct Setting<Value> {
-    public let key: String
-    public var value: Value
+struct StoredSetting<Value> {
+    let key: String
+    var value: Value
 }
 
-public struct SettingsModel {
-    public var notifications: Setting<Bool>
-    public var location: Setting<Bool>
+struct StoredSettings {
+    var notifications: StoredSetting<Bool>
+    var location: StoredSetting<Bool>
+}
+
+public enum SettingValue {
+    case onOff(Bool, toggle: () -> Void)
+}
+
+public protocol Setting {
+    var name: String { get }
+    var value: SettingValue { get }
+    init(key: String, value: SettingValue)
 }

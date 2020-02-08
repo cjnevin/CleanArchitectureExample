@@ -11,7 +11,7 @@ import Foundation
 struct EditSettingsUseCase {
     let settingStorage: SettingStorage
 
-    func edit(settings: SettingsModel) {
+    func edit(settings: StoredSettings) {
         settingStorage.setSetting(settings.notifications)
         settingStorage.setSetting(settings.location)
     }

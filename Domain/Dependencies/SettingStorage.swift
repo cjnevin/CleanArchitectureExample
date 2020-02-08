@@ -14,12 +14,12 @@ public protocol SettingStorage {
 }
 
 extension SettingStorage {
-    func getSetting<Value>(key: String, defaultValue: Value) -> Setting<Value> {
+    func getSetting<Value>(key: String, defaultValue: Value) -> StoredSetting<Value> {
         let value = get(key: key, defaultValue: defaultValue)
-        return Setting(key: key, value: value)
+        return StoredSetting(key: key, value: value)
     }
 
-    func setSetting<Value>(_ setting: Setting<Value>) {
+    func setSetting<Value>(_ setting: StoredSetting<Value>) {
         set(setting.value, key: setting.key)
     }
 }

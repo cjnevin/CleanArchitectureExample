@@ -34,5 +34,13 @@ class SettingsCoordinator: SettingsCoordinating {
 }
 
 final class SettingsView: SettingsViewing {
-    var settings: SettingsModel?
+    struct Item: Setting {
+        let name: String
+        let value: SettingValue
+        init(key: String, value: SettingValue) {
+            self.name = key
+            self.value = value
+        }
+    }
+    var settings: [Item] = []
 }

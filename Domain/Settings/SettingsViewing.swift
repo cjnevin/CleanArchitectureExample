@@ -9,5 +9,6 @@
 import Foundation
 
 public protocol SettingsViewing: AnyObject {
-    var settings: SettingsModel? { get set }
+    associatedtype Item: Setting
+    var settings: [Item] { get set }
 }

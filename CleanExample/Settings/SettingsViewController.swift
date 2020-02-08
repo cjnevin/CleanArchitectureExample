@@ -12,34 +12,19 @@ import UIKit
 class SettingsViewController: UITableViewController, SettingsViewing {
     var presenter: SettingsPresenter<SettingsViewController, SettingsCoordinator>?
 
-    var items: [SettingItem] = [] {
-        didSet {
-            tableView.reloadData()
+    struct Item: Setting {
+        let name: String
+        let value: SettingValue
+
+        init(key: String, value: SettingValue) {
+            self.name = key == "notifications" ? "Enable Notifications" : "Enable Location"
+            self.value = value
         }
     }
 
-    var settings: SettingsModel? {
+    var settings: [Item] = [] {
         didSet {
-            guard var settings = settings else {
-                items = []
-                return
-            }
-            func item(_ setting: Setting<Bool>, name: String, toggled: @escaping () -> SettingsModel) -> SettingItem {
-                SettingItem(setting.key, name: name, value: .onOff(setting.value, toggle: {
-                    self.presenter?.save(settings: toggled())
-                }))
-            }
-
-            items = [
-                item(settings.location, name: "Enable Location") {
-                    settings.location.value.toggle()
-                    return settings
-                },
-                item(settings.notifications, name: "Enable Notifications") {
-                    settings.notifications.value.toggle()
-                    return settings
-                }
-            ]
+            tableView.reloadData()
         }
     }
 
@@ -65,14 +50,14 @@ class SettingsViewController: UITableViewController, SettingsViewing {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        settings == nil ? 0 : 2
+        settings.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch items[indexPath.row].value {
+        switch settings[indexPath.row].value {
         case let .onOff(isOn, toggle):
             let cell = tableView.dequeueReusableCell(withIdentifier: "SettingsToggleCell", for: indexPath) as! SettingsToggleCell
-            cell.bind(name: items[indexPath.row].name, isOn: isOn, toggle: toggle)
+            cell.bind(name: settings[indexPath.row].name, isOn: isOn, toggle: toggle)
             return cell
         }
     }
@@ -93,21 +78,5 @@ class SettingsToggleCell: UITableViewCell {
 
     @objc private func toggled() {
         toggle?()
-    }
-}
-
-struct SettingItem {
-    enum Value {
-        case onOff(Bool, toggle: () -> Void)
-    }
-
-    let key: String
-    let name: String
-    let value: Value
-
-    init(_ key: String, name: String, value: Value) {
-        self.key = key
-        self.name = name
-        self.value = value
     }
 }

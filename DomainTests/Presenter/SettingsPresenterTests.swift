@@ -24,10 +24,11 @@ class SettingsPresenterTests: XCTestCase {
 
     func testAttachAndDetach() {
         let view = SettingsView()
+        XCTAssertTrue(view.settings.isEmpty)
         presenter.attach(view: view)
-        XCTAssertNotNil(view.settings)
+        XCTAssertFalse(view.settings.isEmpty)
         presenter.detach()
-        XCTAssertNil(view.settings)
+        XCTAssertTrue(view.settings.isEmpty)
     }
 
     func testModifySettings() {
@@ -36,12 +37,12 @@ class SettingsPresenterTests: XCTestCase {
         XCTAssertEqual(settingStorage.spyGetCount, 2)
         XCTAssertFalse(settingStorage.get(key: "location", defaultValue: false))
         XCTAssertFalse(settingStorage.get(key: "notifications", defaultValue: false))
-
-        var copy = view.settings!
-        copy.notifications.value.toggle()
-        copy.location.value.toggle()
-        presenter.save(settings: copy)
-        XCTAssertEqual(settingStorage.spySetCount, 2)
+        view.settings.forEach { item in
+            switch item.value {
+            case let .onOff(_, toggle): toggle()
+            }
+        }
+        XCTAssertEqual(settingStorage.spySetCount, 4)
         XCTAssertTrue(settingStorage.get(key: "location", defaultValue: false))
         XCTAssertTrue(settingStorage.get(key: "notifications", defaultValue: false))
     }

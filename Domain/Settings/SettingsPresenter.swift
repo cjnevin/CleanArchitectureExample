@@ -21,15 +21,25 @@ public class SettingsPresenter<View: SettingsViewing, Coordinator: SettingsCoord
     }
 
     public func attach(view: View) {
-        view.settings = getSettingsUseCase.get()
-        onDetach = { view.settings = nil }
+        var settings = getSettingsUseCase.get()
+        view.settings = [
+            .init(key: settings.notifications.key, value: .onOff(settings.notifications.value, toggle: {
+                settings.notifications.value.toggle()
+                self.save(settings: settings)
+            })),
+            .init(key: settings.location.key, value: .onOff(settings.location.value, toggle: {
+                settings.location.value.toggle()
+                self.save(settings: settings)
+            }))
+        ]
+        onDetach = { view.settings = [] }
     }
 
     public func detach() {
         onDetach?()
     }
 
-    public func save(settings: SettingsModel) {
+    private func save(settings: StoredSettings) {
         editSettingsUseCase.edit(settings: settings)
     }
 }
