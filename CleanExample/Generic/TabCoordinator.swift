@@ -7,13 +7,17 @@
 //
 
 import Domain
+import Combine
 import UIKit
 
 class TabCoordinator: UITabBarController, TabCoordinating {
     typealias ProductListCoordinator = CleanExample.ProductListCoordinator
+    typealias MapCoordinator = CleanExample.MapCoordinator
     typealias SettingsCoordinator = CleanExample.SettingsCoordinator
 
     var dependencies: AnyDependencies
+    var locationCancellable: AnyCancellable?
+    
     required init(dependencies: AnyDependencies) {
         self.dependencies = dependencies
         super.init(nibName: nil, bundle: nil)

@@ -6,12 +6,15 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
+import Combine
 import Foundation
 
-public protocol TabCoordinating {
+public protocol TabCoordinating: AnyObject {
     associatedtype ProductListCoordinator: ProductListCoordinating
+    associatedtype MapCoordinator: MapCoordinating
     associatedtype SettingsCoordinator: SettingsCoordinating
     var dependencies: AnyDependencies { get }
+    var locationCancellable: AnyCancellable? { get set }
     init(dependencies: AnyDependencies)
     func start()
     func addTab(_ any: Any)
@@ -25,9 +28,36 @@ extension TabCoordinating {
     public func start() {
         addTab(ProductListCoordinator(dependencies: dependencies))
         addTab(SettingsCoordinator(dependencies: dependencies, tabCoordinator: self))
+
+        if GetSettingsUseCase(keyValues: dependencies.keyValues).get().location.value {
+            dependencies.location.enableLocationService()
+        }
+
+        locationCancellable?.cancel()
+        locationCancellable = dependencies.location.locationStatus.sink(receiveCompletion: { _ in
+
+        }, receiveValue: { status in
+            if !self.hasMap, case .enabled = status {
+                self.insertMap()
+            } else if self.hasMap, case .disabled = status {
+                self.removeMap()
+            }
+        })
     }
 
-    func addProductList() {
+    func insertMap() {
+        insertTab(MapCoordinator(dependencies: dependencies), at: hasProductList ? 1 : 0)
+    }
+
+    var hasMap: Bool {
+        index(of: MapCoordinator.self) != nil
+    }
+
+    func removeMap() {
+        removeTab(MapCoordinator.self)
+    }
+
+    func insertProductList() {
         insertTab(ProductListCoordinator(dependencies: dependencies), at: 0)
     }
 

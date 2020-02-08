@@ -6,6 +6,7 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
+import Combine
 import Foundation
 
 public class SettingsPresenter<View: AnySettingsView, Coordinator: SettingsCoordinating, TabCoordinator: TabCoordinating>: Presenting {
@@ -14,7 +15,7 @@ public class SettingsPresenter<View: AnySettingsView, Coordinator: SettingsCoord
     let getSettingsUseCase: GetSettingsUseCase
     let editSettingsUseCase: EditSettingsUseCase
     var onDetach: (() -> Void)?
-
+    
     public init(coordinator: Coordinator, tabCoordinator: TabCoordinator) {
         self.coordinator = coordinator
         self.tabCoordinator = tabCoordinator
@@ -30,7 +31,7 @@ public class SettingsPresenter<View: AnySettingsView, Coordinator: SettingsCoord
                     callback()
                 }))
                 : .init(key: "add_product_list", value: .action({
-                    self.tabCoordinator.addProductList()
+                    self.tabCoordinator.insertProductList()
                     callback()
                 }))
         }
@@ -45,12 +46,18 @@ public class SettingsPresenter<View: AnySettingsView, Coordinator: SettingsCoord
                 .init(key: copy.location.key, value: .onOff(settings.location.value, toggle: {
                     copy.location.value.toggle()
                     self.save(settings: copy)
+                    if copy.location.value {
+                        self.coordinator.dependencies.location.enableLocationService()
+                    } else {
+                        self.coordinator.dependencies.location.disableLocationService()
+                    }
                 })),
                 makeProductItem {
                     refresh(settings: copy)
                 }
             ]
         }
+
         refresh(settings: getSettingsUseCase.get())
         onDetach = { view.settings = [] }
     }

@@ -20,4 +20,8 @@ public protocol KeyValueStorageHaving {
     var keyValues: AnyKeyValueStore { get }
 }
 
-public protocol AnyDependencies: APIHaving, DatabaseHaving, KeyValueStorageHaving { }
+public protocol LocationServiceHaving {
+    var location: AnyLocationService { get }
+}
+
+public protocol AnyDependencies: APIHaving, DatabaseHaving, KeyValueStorageHaving, LocationServiceHaving { }

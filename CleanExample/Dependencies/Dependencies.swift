@@ -10,7 +10,8 @@ import Domain
 import Foundation
 
 class Dependencies: AnyDependencies {
-    let keyValues: AnyKeyValueStore = Settings()
     let api: AnyAPI = API()
     let database: AnyDatabase = Database()
+    let keyValues: AnyKeyValueStore = Settings()
+    let location: AnyLocationService = LocationService()
 }
