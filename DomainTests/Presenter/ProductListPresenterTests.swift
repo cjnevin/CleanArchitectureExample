@@ -84,13 +84,20 @@ class ProductListPresenterTests: XCTestCase {
     }
 
     func testSearchForProduct() {
-        database.lookup["id1"] = Product(id: "id1", name: "nintendo switch")
-        database.lookup["id2"] = Product(id: "id2", name: "nintendo ds")
-        database.lookup["id3"] = Product(id: "id3", name: "ninja")
+        let nswitch = Product(id: "id1", name: "nintendo switch")
+        let nds = Product(id: "id2", name: "nintendo ds")
+        let ps = Product(id: "id3", name: "playstation")
+        database.lookup["id1"] = nswitch
+        database.lookup["id2"] = nds
+        database.lookup["id3"] = ps
+        let nSection = Section(name: "n", items: [nds, nswitch])
+        let pSection = Section(name: "p", items: [ps])
         let view = ProductListView()
         presenter.attach(view: view)
-        XCTAssertFalse(view.sections.isEmpty)
+        XCTAssertEqual(view.sections, [nSection, pSection])
         presenter.search(query: "nintendo")
-        XCTAssertEqual(view.sections[0].items.map { $0.name }, ["nintendo ds", "nintendo switch"])
+        XCTAssertEqual(view.sections, [nSection])
+        presenter.search(query: "")
+        XCTAssertEqual(view.sections.sorted(), [nSection, pSection])
     }
 }

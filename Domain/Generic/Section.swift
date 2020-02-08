@@ -17,4 +17,9 @@ public struct Section<Item: Comparable>: Comparable {
     }
     public let name: String
     public let items: [Item]
+
+    public init(name: String, items: [Item]) {
+        self.name = name
+        self.items = items
+    }
 }
