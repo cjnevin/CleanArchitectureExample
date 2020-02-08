@@ -48,6 +48,8 @@
 		837807F923EE652000A6580F /* AnyDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837807F823EE652000A6580F /* AnyDependencies.swift */; };
 		837807FB23EE662F00A6580F /* AnyDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837807FA23EE662F00A6580F /* AnyDatabase.swift */; };
 		837807FD23EE664500A6580F /* Database.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837807FC23EE664500A6580F /* Database.swift */; };
+		837807FF23EEA43600A6580F /* SearchProductListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837807FE23EEA43600A6580F /* SearchProductListUseCase.swift */; };
+		8378080123EEAE4300A6580F /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8378080023EEAE4300A6580F /* Section.swift */; };
 		FEEBF05623E7CC8F009DFEDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF05523E7CC8F009DFEDA /* AppDelegate.swift */; };
 		FEEBF05A23E7CC8F009DFEDA /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF05923E7CC8F009DFEDA /* ProductListViewController.swift */; };
 		FEEBF05F23E7CC90009DFEDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEEBF05E23E7CC90009DFEDA /* Assets.xcassets */; };
@@ -150,6 +152,8 @@
 		837807F823EE652000A6580F /* AnyDependencies.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyDependencies.swift; sourceTree = "<group>"; };
 		837807FA23EE662F00A6580F /* AnyDatabase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyDatabase.swift; sourceTree = "<group>"; };
 		837807FC23EE664500A6580F /* Database.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Database.swift; sourceTree = "<group>"; };
+		837807FE23EEA43600A6580F /* SearchProductListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProductListUseCase.swift; sourceTree = "<group>"; };
+		8378080023EEAE4300A6580F /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		FEEBF05223E7CC8F009DFEDA /* CleanExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEEBF05523E7CC8F009DFEDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEEBF05923E7CC8F009DFEDA /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
@@ -376,6 +380,7 @@
 			children = (
 				FEEBF0A623E7CCC7009DFEDA /* AnyProductListView.swift */,
 				FEEBF0A923E7CCC7009DFEDA /* GetProductListUseCase.swift */,
+				837807FE23EEA43600A6580F /* SearchProductListUseCase.swift */,
 				FEEBF0A723E7CCC7009DFEDA /* ProductListCoordinating.swift */,
 				FEEBF0A823E7CCC7009DFEDA /* ProductListPresenter.swift */,
 			);
@@ -390,6 +395,7 @@
 				8376540323E88A71001D4B5D /* PopCoordinating.swift */,
 				8376540523E88A77001D4B5D /* PushCoordinating.swift */,
 				8376544823EB1093001D4B5D /* TabCoordinating.swift */,
+				8378080023EEAE4300A6580F /* Section.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -591,6 +597,8 @@
 				8376546123EB1F97001D4B5D /* AnySettingsView.swift in Sources */,
 				FEEBF0B423E7CCC7009DFEDA /* GetProductListUseCase.swift in Sources */,
 				8376540623E88A77001D4B5D /* PushCoordinating.swift in Sources */,
+				8378080123EEAE4300A6580F /* Section.swift in Sources */,
+				837807FF23EEA43600A6580F /* SearchProductListUseCase.swift in Sources */,
 				FEEBF0AD23E7CCC7009DFEDA /* GetProductUseCase.swift in Sources */,
 				FEEBF0B023E7CCC7009DFEDA /* AnyProduct.swift in Sources */,
 				8376540423E88A71001D4B5D /* PopCoordinating.swift in Sources */,

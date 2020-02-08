@@ -10,6 +10,7 @@ import Domain
 import UIKit
 
 class ProductListViewController: UITableViewController, AnyProductListView {
+    let searchController = UISearchController(searchResultsController: nil)
     var presenter: ProductListPresenter<ProductListViewController, ProductListCoordinator>?
 
     var productsUnavailable: Bool = false {
@@ -18,7 +19,7 @@ class ProductListViewController: UITableViewController, AnyProductListView {
         }
     }
 
-    var products: [Product] = [] {
+    var sections: [Section<Product>] = [] {
         didSet {
             tableView.reloadData()
         }
@@ -28,6 +29,11 @@ class ProductListViewController: UITableViewController, AnyProductListView {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
         navigationItem.title = "Products"
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Search Products"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -41,17 +47,21 @@ class ProductListViewController: UITableViewController, AnyProductListView {
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
-        1
+        sections.count
+    }
+
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        sections.map { $0.name }
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        products.count
+        sections[section].items.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ProductCell")
             ?? UITableViewCell(style: .default, reuseIdentifier: "ProductCell")
-        cell.textLabel?.text = products[indexPath.row].name
+        cell.textLabel?.text = sections[indexPath.section].items[indexPath.row].name
         cell.accessoryType = .disclosureIndicator
         return cell
     }
@@ -63,11 +73,17 @@ class ProductListViewController: UITableViewController, AnyProductListView {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
             // handle delete (by removing the data from your array and updating the tableview)
-            presenter?.deleted(product: products[indexPath.row])
+            presenter?.deleted(product: sections[indexPath.section].items[indexPath.row])
         }
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presenter?.selected(product: products[indexPath.row])
+        presenter?.selected(product: sections[indexPath.section].items[indexPath.row])
+    }
+}
+
+extension ProductListViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        presenter?.search(query: searchController.searchBar.text ?? "")
     }
 }

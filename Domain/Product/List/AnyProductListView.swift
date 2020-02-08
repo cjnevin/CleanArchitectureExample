@@ -10,6 +10,6 @@ import Foundation
 
 public protocol AnyProductListView: AnyObject {
     associatedtype Product: AnyProduct
-    var products: [Product] { get set }
+    var sections: [Section<Product>] { get set }
     var productsUnavailable: Bool { get set }
 }

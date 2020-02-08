@@ -14,7 +14,11 @@ public protocol AnyProduct: Comparable, Decodable {
 }
 
 extension AnyProduct where Self: Comparable {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.id == rhs.id && lhs.name == rhs.name
+    }
+
     public static func < (lhs: Self, rhs: Self) -> Bool {
-        lhs.id < rhs.id
+        lhs.name < rhs.name
     }
 }
