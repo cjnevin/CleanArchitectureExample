@@ -10,9 +10,9 @@ import Combine
 import Foundation
 
 public protocol AnyTabCoordinator: AnyObject {
-    associatedtype ProductListCoordinator: ProductListCoordinating
-    associatedtype MapCoordinator: MapCoordinating
-    associatedtype NotificationsCoordinator: NotificationsCoordinating
+    associatedtype ProductListCoordinator: AnyProductListCoordinator
+    associatedtype MapCoordinator: AnyMapCoordinator
+    associatedtype NotificationsCoordinator: AnyNotificationsCoordinator
     associatedtype SettingsCoordinator: SettingsCoordinating
     var dependencies: AnyDependencies { get }
     var cancellables: [AnyCancellable] { get set }

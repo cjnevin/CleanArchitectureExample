@@ -12,7 +12,7 @@ import UIKit
 class SettingsCoordinator: UINavigationController, SettingsCoordinating {
     let dependencies: SettingsDependencies
 
-    required init<TabCoordinator: TabCoordinating>(dependencies: SettingsDependencies, tabCoordinator: TabCoordinator) {
+    required init<TabCoordinator: AnyTabCoordinator>(dependencies: SettingsDependencies, tabCoordinator: TabCoordinator) {
         self.dependencies = dependencies
         let viewController = SettingsViewController()
         super.init(rootViewController: viewController)

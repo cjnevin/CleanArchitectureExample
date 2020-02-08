@@ -9,7 +9,7 @@
 import Combine
 import Foundation
 
-public class ProductListPresenter<View: AnyProductListView, Coordinator: ProductListCoordinating>: Presenting where Coordinator.Product == View.Product {
+public class ProductListPresenter<View: AnyProductListView, Coordinator: AnyProductListCoordinator>: AnyPresenter where Coordinator.Product == View.Product {
     let searchTrigger = CurrentValueSubject<String, Error>("")
     var listStream: AnyCancellable?
     let deleteUseCase: DeleteProductUseCase<View.Product>

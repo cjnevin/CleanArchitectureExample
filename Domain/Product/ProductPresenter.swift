@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ProductPresenter<View: AnyProductView, Coordinator: ProductCoordinating>: Presenting {
+public struct ProductPresenter<View: AnyProductView, Coordinator: AnyProductCoordinator>: AnyPresenter {
     let coordinator: Coordinator
     let getUseCase: GetProductUseCase<View.Product>
     let editUseCase: EditProductUseCase<View.Product>

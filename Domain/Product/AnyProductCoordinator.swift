@@ -1,5 +1,5 @@
 //
-//  ProductCoordinating.swift
+//  AnyProductCoordinator.swift
 //  Domain
 //
 //  Created by Chris on 04/02/2020.
@@ -8,4 +8,4 @@
 
 import Foundation
 
-public protocol AnyProductCoordinator: PopCoordinating { }
+public protocol AnyProductCoordinator: AnyPopCoordinator { }

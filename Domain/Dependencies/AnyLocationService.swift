@@ -9,6 +9,12 @@
 import Combine
 import Foundation
 
+public protocol AnyLocationService {
+    var locationStatus: AnyPublisher<LocationStatus, Error> { get }
+    func enableLocationService()
+    func disableLocationService()
+}
+
 public struct Location {
     public let latitude: Double
     public let longitude: Double
@@ -22,10 +28,4 @@ public struct Location {
 public enum LocationStatus {
     case enabled(Location)
     case disabled
-}
-
-public protocol AnyLocationService {
-    var locationStatus: AnyPublisher<LocationStatus, Error> { get }
-    func enableLocationService()
-    func disableLocationService()
 }

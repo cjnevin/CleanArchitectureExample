@@ -14,7 +14,7 @@ struct Product: AnyProduct {
     var name: String = "name"
 }
 
-class ProductListCoordinator: ProductListCoordinating {
+class ProductListCoordinator: AnyProductListCoordinator {
     var dependencies: ProductListDependencies
     required init(dependencies: ProductListDependencies) {
         self.dependencies = dependencies
@@ -44,7 +44,7 @@ final class ProductView: AnyProductView {
     }
 }
 
-class ProductCoordinator: ProductCoordinating {
+class ProductCoordinator: AnyProductCoordinator {
     var spyReturnedToList: Bool = false
 
     func pop() {

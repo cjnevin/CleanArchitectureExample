@@ -9,7 +9,7 @@
 import Domain
 import UIKit
 
-class ProductListCoordinator: UINavigationController, ProductListCoordinating {
+class ProductListCoordinator: UINavigationController, AnyProductListCoordinator {
     let dependencies: ProductListDependencies
 
     required init(dependencies: ProductListDependencies) {

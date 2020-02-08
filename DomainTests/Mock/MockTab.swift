@@ -6,18 +6,18 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
+import Combine
 import Domain
 import Foundation
 
-class TabCoordinator: TabCoordinating {
-    func index<T>(of type: T.Type) -> Int? {
-        spyTabs.firstIndex(where: { $0 is T })
-    }
-
+class TabCoordinator: AnyTabCoordinator {
     typealias ProductListCoordinator = DomainTests.ProductListCoordinator
     typealias SettingsCoordinator = DomainTests.SettingsCoordinator
+    typealias MapCoordinator = DomainTests.MapCoordinator
+    typealias NotificationsCoordinator = DomainTests.NotificationsCoordinator
 
     var dependencies: AnyDependencies
+    var cancellables: [AnyCancellable] = []
     required init(dependencies: AnyDependencies) {
         self.dependencies = dependencies
     }
@@ -25,6 +25,10 @@ class TabCoordinator: TabCoordinating {
     var spyTabs: [Any] = []
     func addTab(_ any: Any) {
         spyTabs.append(any)
+    }
+
+    func index<T>(of type: T.Type) -> Int? {
+        spyTabs.firstIndex(where: { $0 is T })
     }
 
     func insertTab(_ any: Any, at index: Int) {

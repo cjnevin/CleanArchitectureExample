@@ -9,7 +9,7 @@
 import Domain
 import Foundation
 
-class RootCoordinator: RootCoordinating {
+class RootCoordinator: AnyRootCoordinator {
     typealias TabCoordinator = DomainTests.TabCoordinator
 
     var dependencies: AnyDependencies

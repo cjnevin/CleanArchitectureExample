@@ -9,7 +9,7 @@
 import Domain
 import UIKit
 
-class NotificationsCoordinator: UINavigationController, NotificationsCoordinating {
+class NotificationsCoordinator: UINavigationController, AnyNotificationsCoordinator {
     let dependencies: NotificationsDependencies
 
     required init(dependencies: NotificationsDependencies) {

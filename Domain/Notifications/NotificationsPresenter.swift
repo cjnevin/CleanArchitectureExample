@@ -9,15 +9,13 @@
 import Combine
 import Foundation
 
-public class NotificationsPresenter<View: AnyNotificationsView, Coordinator: NotificationsCoordinating>: Presenting {
-    let coordinator: Coordinator
+public class NotificationsPresenter<View: AnyNotificationsView, Coordinator: AnyNotificationsCoordinator>: AnyPresenter {
     let getUseCase: GetNotificationsUseCase
     let dropUseCase: DropNotificationsUseCase
     var listCancellable: AnyCancellable?
     var onDetach: (() -> Void)?
 
     public init(coordinator: Coordinator) {
-        self.coordinator = coordinator
         self.getUseCase = GetNotificationsUseCase(database: coordinator.dependencies.database)
         self.dropUseCase = DropNotificationsUseCase(database: coordinator.dependencies.database)
     }

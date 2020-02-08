@@ -1,5 +1,5 @@
 //
-//  ProductListCoordinating.swift
+//  AnyProductListCoordinator.swift
 //  Domain
 //
 //  Created by Chris on 03/02/2020.
@@ -10,7 +10,7 @@ import Foundation
 
 public typealias ProductListDependencies = DatabaseHaving & APIHaving
 
-public protocol AnyProductListCoordinator: PushCoordinating, AnyProductCoordinator {
+public protocol AnyProductListCoordinator: AnyPushCoordinator, AnyProductCoordinator {
     associatedtype ProductView: AnyProductView
     associatedtype Product: AnyProduct
     init(dependencies: ProductListDependencies)

@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct MakeProductItemUseCase<Setting: AnySetting, TabCoordinator: TabCoordinating> {
+struct MakeProductItemUseCase<Setting: AnySetting, TabCoordinator: AnyTabCoordinator> {
     let tabCoordinator: TabCoordinator
-    
+
     func make(callback: @escaping () -> Void) -> Setting {
         tabCoordinator.hasProductList
             ? .init(key: "remove_product_list", value: .action({

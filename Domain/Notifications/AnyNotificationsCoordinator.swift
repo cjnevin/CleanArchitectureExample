@@ -10,7 +10,7 @@ import Foundation
 
 public typealias NotificationsDependencies = DatabaseHaving & NotificationServiceHaving
 
-public protocol NotificationsCoordinating {
+public protocol AnyNotificationsCoordinator {
     init(dependencies: NotificationsDependencies)
     var dependencies: NotificationsDependencies { get }
 }

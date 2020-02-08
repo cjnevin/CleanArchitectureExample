@@ -10,7 +10,7 @@ import Domain
 import Combine
 import UIKit
 
-class TabCoordinator: UITabBarController, TabCoordinating {
+class TabCoordinator: UITabBarController, AnyTabCoordinator {
     typealias ProductListCoordinator = CleanExample.ProductListCoordinator
     typealias MapCoordinator = CleanExample.MapCoordinator
     typealias NotificationsCoordinator = CleanExample.NotificationsCoordinator

@@ -6,6 +6,7 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
+import Combine
 import Domain
 import Foundation
 
@@ -16,15 +17,16 @@ class MockDatabase: AnyDatabase {
     var spyListCount: Int = 0
     var spySetCount: Int = 0
     var spyDeleteCount: Int = 0
+    var spyDropCount: Int = 0
 
     func get<Model>(id: String) -> Model {
         spyGetCount += 1
         return lookup[id] as! Model
     }
     
-    func list<Model>() -> [Model] {
+    func list<Model>() -> AnyPublisher<[Model], Error> {
         spyListCount += 1
-        return lookup.values.compactMap { $0 as? Model }
+        return Result.success(lookup.values.compactMap { $0 as? Model }).publisher.eraseToAnyPublisher()
     }
 
     func set<Model>(_ object: Model, id: String) {
@@ -35,5 +37,10 @@ class MockDatabase: AnyDatabase {
     func delete<Model>(id: String) -> Model {
         spyDeleteCount += 1
         return lookup.removeValue(forKey: id)! as! Model
+    }
+
+    func drop<Model>(type: Model.Type) {
+        spyDropCount += 1
+        lookup = lookup.filter { !($0 is Model) }
     }
 }

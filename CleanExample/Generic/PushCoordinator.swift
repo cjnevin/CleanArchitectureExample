@@ -1,5 +1,5 @@
 //
-//  PushCoordinating.swift
+//  AnyPushCoordinator.swift
 //  CleanExample
 //
 //  Created by Chris on 04/02/2020.
@@ -9,7 +9,7 @@
 import Domain
 import UIKit
 
-extension PushCoordinating where Self: UINavigationController {
+extension AnyPushCoordinator where Self: UINavigationController {
     func push(_ any: Any) {
         pushViewController(any as! UIViewController, animated: true)
     }

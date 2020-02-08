@@ -9,7 +9,7 @@
 import Domain
 import UIKit
 
-class MapCoordinator: UINavigationController, MapCoordinating {
+class MapCoordinator: UINavigationController, AnyMapCoordinator {
     let dependencies: MapDependencies
 
     required init(dependencies: MapDependencies) {

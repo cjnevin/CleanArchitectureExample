@@ -6,4 +6,33 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
+import Combine
+import Domain
 import Foundation
+
+class MockNotificationService: AnyNotificationService {
+    let spyStatus = CurrentValueSubject<NotificationsStatus?, Error>(nil)
+    let notificationStatus: AnyPublisher<NotificationsStatus, Error>
+    init() {
+        notificationStatus = spyStatus.compactMap { $0 }.eraseToAnyPublisher()
+    }
+
+    func enableNotificationService() {
+        spyStatus.send(.enabled(.init(title: "title", body: "body")))
+    }
+
+    func disableNotificationService() {
+        spyStatus.send(.disabled)
+    }
+}
+
+class NotificationsCoordinator: AnyNotificationsCoordinator {
+    required init(dependencies: NotificationsDependencies) {
+        self.dependencies = dependencies
+    }
+    var dependencies: NotificationsDependencies
+}
+
+final class NotificationsView: AnyNotificationsView {
+    var sections: [Section<Domain.Notification>] = []
+}

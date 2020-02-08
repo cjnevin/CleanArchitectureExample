@@ -9,24 +9,20 @@
 import Combine
 import Foundation
 
-public class MapPresenter<View: AnyMapView, Coordinator: MapCoordinating>: Presenting {
-    let coordinator: Coordinator
+public class MapPresenter<View: AnyMapView, Coordinator: AnyMapCoordinator>: AnyPresenter {
+    let updatedLocationUseCase: UpdatedLocationUseCase
     var locationCancellable: AnyCancellable?
     var onDetach: (() -> Void)?
 
     public init(coordinator: Coordinator) {
-        self.coordinator = coordinator
+        self.updatedLocationUseCase = UpdatedLocationUseCase(location: coordinator.dependencies.location)
     }
 
     public func attach(view: View) {
         locationCancellable?.cancel()
-        locationCancellable = coordinator.dependencies.location.locationStatus.sink(
+        locationCancellable = updatedLocationUseCase.watch().sink(
             receiveCompletion: { _ in },
-            receiveValue: { status in
-                if case .enabled(let location) = status {
-                    view.updated(location: location)
-                }
-        })
+            receiveValue: view.updated)
     }
     
     public func detach() {

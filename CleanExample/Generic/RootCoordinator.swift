@@ -9,7 +9,7 @@
 import Domain
 import UIKit
 
-class RootCoordinator: RootCoordinating {
+class RootCoordinator: AnyRootCoordinator {
     typealias TabCoordinator = CleanExample.TabCoordinator
 
     var window: UIWindow!

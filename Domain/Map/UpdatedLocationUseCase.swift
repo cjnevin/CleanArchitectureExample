@@ -6,4 +6,19 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
+import Combine
 import Foundation
+
+struct UpdatedLocationUseCase {
+    let location: AnyLocationService
+
+    func watch() -> AnyPublisher<Location, Error> {
+        location.locationStatus.compactMap { status in
+            if case .enabled(let location) = status {
+                return location
+            } else {
+                return nil
+            }
+        }.eraseToAnyPublisher()
+    }
+}

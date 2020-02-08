@@ -9,7 +9,7 @@
 import Combine
 import Foundation
 
-struct InsertMapTabUseCase<TabCoordinator: TabCoordinating> {
+struct InsertMapTabUseCase<TabCoordinator: AnyTabCoordinator> {
     let dependencies: DatabaseHaving & LocationServiceHaving
     let tabCoordinator: TabCoordinator
 

@@ -9,7 +9,7 @@
 import Combine
 import Foundation
 
-struct TabStartUseCase<TabCoordinator: TabCoordinating> {
+struct TabStartUseCase<TabCoordinator: AnyTabCoordinator> {
     let dependencies: AnyDependencies
     let tabCoordinator: TabCoordinator
 
