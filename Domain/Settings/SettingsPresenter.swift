@@ -14,6 +14,9 @@ public class SettingsPresenter<View: AnySettingsView, Coordinator: SettingsCoord
     let tabCoordinator: TabCoordinator
     let getSettingsUseCase: GetSettingsUseCase
     let editSettingsUseCase: EditSettingsUseCase
+    let toggleLocationUseCase: ToggleLocationUseCase
+    let toggleNotificationsUseCase: ToggleNotificationsUseCase<TabCoordinator>
+    let makeProductItemUseCase: MakeProductItemUseCase<View.Setting, TabCoordinator>
     var onDetach: (() -> Void)?
     
     public init(coordinator: Coordinator, tabCoordinator: TabCoordinator) {
@@ -21,38 +24,26 @@ public class SettingsPresenter<View: AnySettingsView, Coordinator: SettingsCoord
         self.tabCoordinator = tabCoordinator
         self.getSettingsUseCase = GetSettingsUseCase(keyValues: coordinator.dependencies.keyValues)
         self.editSettingsUseCase = EditSettingsUseCase(keyValues: coordinator.dependencies.keyValues)
+        self.toggleLocationUseCase = ToggleLocationUseCase(dependencies: coordinator.dependencies)
+        self.toggleNotificationsUseCase = ToggleNotificationsUseCase(dependencies: coordinator.dependencies, tabCoordinator: tabCoordinator)
+        self.makeProductItemUseCase = MakeProductItemUseCase(tabCoordinator: tabCoordinator)
     }
 
     public func attach(view: View) {
-        func makeProductItem(_ callback: @escaping () -> Void) -> View.Setting {
-            tabCoordinator.hasProductList
-                ? .init(key: "remove_product_list", value: .action({
-                    self.tabCoordinator.removeProductList()
-                    callback()
-                }))
-                : .init(key: "add_product_list", value: .action({
-                    self.tabCoordinator.insertProductList()
-                    callback()
-                }))
-        }
-
         func refresh(settings: StoredSettings) {
             var copy = settings
             view.settings = [
                 .init(key: copy.notifications.key, value: .onOff(settings.notifications.value, toggle: {
                     copy.notifications.value.toggle()
-                    self.save(settings: copy)
+                    self.editSettingsUseCase.edit(settings: copy)
+                    self.toggleNotificationsUseCase.toggle(on: copy.notifications.value)
                 })),
                 .init(key: copy.location.key, value: .onOff(settings.location.value, toggle: {
                     copy.location.value.toggle()
-                    self.save(settings: copy)
-                    if copy.location.value {
-                        self.coordinator.dependencies.location.enableLocationService()
-                    } else {
-                        self.coordinator.dependencies.location.disableLocationService()
-                    }
+                    self.editSettingsUseCase.edit(settings: copy)
+                    self.toggleLocationUseCase.toggle(on: copy.location.value)
                 })),
-                makeProductItem {
+                makeProductItemUseCase.make {
                     refresh(settings: copy)
                 }
             ]
@@ -64,9 +55,5 @@ public class SettingsPresenter<View: AnySettingsView, Coordinator: SettingsCoord
 
     public func detach() {
         onDetach?()
-    }
-
-    private func save(settings: StoredSettings) {
-        editSettingsUseCase.edit(settings: settings)
     }
 }

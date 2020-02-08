@@ -24,4 +24,8 @@ public protocol LocationServiceHaving {
     var location: AnyLocationService { get }
 }
 
-public protocol AnyDependencies: APIHaving, DatabaseHaving, KeyValueStorageHaving, LocationServiceHaving { }
+public protocol NotificationServiceHaving {
+    var notification: AnyNotificationService { get }
+}
+
+public protocol AnyDependencies: APIHaving, DatabaseHaving, KeyValueStorageHaving, LocationServiceHaving, NotificationServiceHaving { }

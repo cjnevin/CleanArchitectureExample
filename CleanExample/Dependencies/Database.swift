@@ -6,27 +6,32 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
+import Combine
 import Domain
 import Foundation
 
 class Database: AnyDatabase {
-    var lookup: [String: Any] = [:]
+    var values = CurrentValueSubject<[String: Any], Error>([:])
 
     func get<Object>(id: String) -> Object {
-        lookup[id] as! Object
+        values.value[id] as! Object
     }
 
-    func list<Object>() -> [Object] {
-        lookup.values.compactMap { $0 as? Object }
+    func list<Object>() -> AnyPublisher<[Object], Error> {
+        values.map { $0.values.compactMap { $0 as? Object } }.eraseToAnyPublisher()
     }
 
     func set<Object>(_ object: Object, id: String) {
-        lookup[id] = object
+        values.value[id] = object
     }
 
     func delete<Model>(id: String) -> Model {
         let object: Model = get(id: id)
-        lookup.removeValue(forKey: id)
+        values.value.removeValue(forKey: id)
         return object
+    }
+
+    func drop<Model>(type: Model.Type) {
+        values.value = values.value.filter { !($1 is Model) }
     }
 }

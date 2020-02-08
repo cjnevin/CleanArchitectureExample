@@ -1,5 +1,5 @@
 //
-//  Presenting.swift
+//  AnyPresenter.swift
 //  Domain
 //
 //  Created by Chris on 03/02/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol Presenting {
+public protocol AnyPresenter {
     associatedtype View
     func attach(view: View)
     func detach()

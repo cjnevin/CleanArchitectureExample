@@ -10,7 +10,7 @@ import Foundation
 
 public typealias ProductListDependencies = DatabaseHaving & APIHaving
 
-public protocol ProductListCoordinating: PushCoordinating, ProductCoordinating {
+public protocol AnyProductListCoordinator: PushCoordinating, AnyProductCoordinator {
     associatedtype ProductView: AnyProductView
     associatedtype Product: AnyProduct
     init(dependencies: ProductListDependencies)
@@ -18,7 +18,7 @@ public protocol ProductListCoordinating: PushCoordinating, ProductCoordinating {
     func view(for product: Product, database: AnyDatabase) -> ProductView
 }
 
-extension ProductListCoordinating {
+extension AnyProductListCoordinator {
     func selectedProduct(_ product: Product) {
         push(view(for: product, database: dependencies.database))
     }

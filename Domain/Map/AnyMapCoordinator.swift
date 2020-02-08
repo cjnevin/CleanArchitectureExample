@@ -1,5 +1,5 @@
 //
-//  MapCoordinating.swift
+//  AnyMapCoordinator.swift
 //  Domain
 //
 //  Created by Chris on 08/02/2020.
@@ -10,7 +10,7 @@ import Foundation
 
 public typealias MapDependencies = LocationServiceHaving
 
-public protocol MapCoordinating {
+public protocol AnyMapCoordinator {
     init(dependencies: MapDependencies)
     var dependencies: MapDependencies { get }
 }

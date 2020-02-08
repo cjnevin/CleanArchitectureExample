@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias SettingsDependencies = KeyValueStorageHaving & LocationServiceHaving
+public typealias SettingsDependencies = KeyValueStorageHaving & LocationServiceHaving & NotificationServiceHaving & DatabaseHaving
 
 public protocol SettingsCoordinating {
     init<TabCoordinator: TabCoordinating>(dependencies: SettingsDependencies, tabCoordinator: TabCoordinator)

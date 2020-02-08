@@ -13,10 +13,11 @@ import UIKit
 class TabCoordinator: UITabBarController, TabCoordinating {
     typealias ProductListCoordinator = CleanExample.ProductListCoordinator
     typealias MapCoordinator = CleanExample.MapCoordinator
+    typealias NotificationsCoordinator = CleanExample.NotificationsCoordinator
     typealias SettingsCoordinator = CleanExample.SettingsCoordinator
 
     var dependencies: AnyDependencies
-    var locationCancellable: AnyCancellable?
+    var cancellables: [AnyCancellable] = []
     
     required init(dependencies: AnyDependencies) {
         self.dependencies = dependencies

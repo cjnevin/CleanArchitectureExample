@@ -1,5 +1,5 @@
 //
-//  PushCoordinating.swift
+//  AnyPushCoordinator.swift
 //  Domain
 //
 //  Created by Chris on 04/02/2020.
@@ -8,6 +8,6 @@
 
 import Foundation
 
-public protocol PushCoordinating {
+public protocol AnyPushCoordinator {
     func push(_ any: Any)
 }

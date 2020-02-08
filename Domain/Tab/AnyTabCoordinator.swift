@@ -1,5 +1,5 @@
 //
-//  TabCoordinating.swift
+//  AnyTabCoordinator.swift
 //  Domain
 //
 //  Created by Chris on 05/02/2020.
@@ -9,12 +9,13 @@
 import Combine
 import Foundation
 
-public protocol TabCoordinating: AnyObject {
+public protocol AnyTabCoordinator: AnyObject {
     associatedtype ProductListCoordinator: ProductListCoordinating
     associatedtype MapCoordinator: MapCoordinating
+    associatedtype NotificationsCoordinator: NotificationsCoordinating
     associatedtype SettingsCoordinator: SettingsCoordinating
     var dependencies: AnyDependencies { get }
-    var locationCancellable: AnyCancellable? { get set }
+    var cancellables: [AnyCancellable] { get set }
     init(dependencies: AnyDependencies)
     func start()
     func addTab(_ any: Any)
@@ -24,29 +25,29 @@ public protocol TabCoordinating: AnyObject {
     func removeTab<T>(_ type: T.Type)
 }
 
-extension TabCoordinating {
+extension AnyTabCoordinator {
     public func start() {
-        addTab(ProductListCoordinator(dependencies: dependencies))
-        addTab(SettingsCoordinator(dependencies: dependencies, tabCoordinator: self))
+        cancellables.forEach { $0.cancel() }
+        cancellables = TabStartUseCase(dependencies: dependencies, tabCoordinator: self).start()
+    }
 
-        if GetSettingsUseCase(keyValues: dependencies.keyValues).get().location.value {
-            dependencies.location.enableLocationService()
-        }
+    func insertNotifications() {
+        insertTab(NotificationsCoordinator(dependencies: dependencies), at: hasProductList ? 1 : 0)
+    }
 
-        locationCancellable?.cancel()
-        locationCancellable = dependencies.location.locationStatus.sink(receiveCompletion: { _ in
+    var hasNotifications: Bool {
+        index(of: NotificationsCoordinator.self) != nil
+    }
 
-        }, receiveValue: { status in
-            if !self.hasMap, case .enabled = status {
-                self.insertMap()
-            } else if self.hasMap, case .disabled = status {
-                self.removeMap()
-            }
-        })
+    func removeNotifications() {
+        removeTab(NotificationsCoordinator.self)
     }
 
     func insertMap() {
-        insertTab(MapCoordinator(dependencies: dependencies), at: hasProductList ? 1 : 0)
+        var index = 0
+        if hasProductList { index += 1 }
+        if hasNotifications { index += 1 }
+        insertTab(MapCoordinator(dependencies: dependencies), at: index)
     }
 
     var hasMap: Bool {

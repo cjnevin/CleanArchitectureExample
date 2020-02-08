@@ -13,11 +13,13 @@ struct GetProductListUseCase<Product: AnyProduct> {
     let dependencies: DatabaseHaving & APIHaving
 
     func list() -> AnyPublisher<[Product], Error> {
-        let products: [Product] = dependencies.database.list().sorted()
-        guard products.isEmpty else {
-            return AnyPublisher(Result<[Product], Error>.success(products).publisher)
-        }
-        return dependencies.api.fetchProducts(into: dependencies.database)
+        dependencies.database.list().flatMap { (items: [Product]) -> AnyPublisher<[Product], Error> in
+            if items.isEmpty {
+                return self.dependencies.api.fetchProducts(into: self.dependencies.database)
+            } else {
+                return Result.success(items.sorted()).publisher.eraseToAnyPublisher()
+            }
+        }.eraseToAnyPublisher()
     }
 }
 
