@@ -9,7 +9,7 @@
 import Domain
 import Foundation
 
-struct Product: ProductModel {
+struct Product: AnyProduct {
     var id: String = "id"
     var name: String = "name"
 }

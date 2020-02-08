@@ -13,6 +13,8 @@ public protocol SettingStorage {
     func set<Value>(_ object: Value, key: String)
 }
 
+// MARK: - Internal
+
 extension SettingStorage {
     func getSetting<Value>(key: String, defaultValue: Value) -> StoredSetting<Value> {
         let value = get(key: key, defaultValue: defaultValue)
@@ -22,4 +24,14 @@ extension SettingStorage {
     func setSetting<Value>(_ setting: StoredSetting<Value>) {
         set(setting.value, key: setting.key)
     }
+}
+
+struct StoredSetting<Value> {
+    let key: String
+    var value: Value
+}
+
+struct StoredSettings {
+    var notifications: StoredSetting<Bool>
+    var location: StoredSetting<Bool>
 }

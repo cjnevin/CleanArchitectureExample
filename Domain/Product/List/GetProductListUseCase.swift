@@ -9,7 +9,7 @@
 import Combine
 import Foundation
 
-struct GetProductListUseCase<Product: ProductModel> {
+struct GetProductListUseCase<Product: AnyProduct> {
     let dependencies: ModelStorageHaving & RequestExecutorHaving
 
     func list() -> AnyPublisher<[Product], Error> {

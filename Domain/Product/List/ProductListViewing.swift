@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol ProductListViewing: AnyObject {
-    associatedtype Product: ProductModel
+    associatedtype Product: AnyProduct
     var products: [Product] { get set }
     var productsUnavailable: Bool { get set }
 }

@@ -31,7 +31,7 @@
 		8376544B23EB132D001D4B5D /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376544A23EB132D001D4B5D /* TabCoordinator.swift */; };
 		8376544E23EB1601001D4B5D /* GetSettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376544D23EB1601001D4B5D /* GetSettingsUseCase.swift */; };
 		8376545023EB160E001D4B5D /* SettingStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376544F23EB160E001D4B5D /* SettingStorage.swift */; };
-		8376545223EB1706001D4B5D /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376545123EB1706001D4B5D /* SettingsModel.swift */; };
+		8376545223EB1706001D4B5D /* AnySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376545123EB1706001D4B5D /* AnySetting.swift */; };
 		8376545423EB1BDB001D4B5D /* EditSettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376545323EB1BDB001D4B5D /* EditSettingsUseCase.swift */; };
 		8376545623EB1DA1001D4B5D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376545523EB1DA1001D4B5D /* Settings.swift */; };
 		8376545923EB1E8B001D4B5D /* SettingsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376545823EB1E8B001D4B5D /* SettingsCoordinator.swift */; };
@@ -57,7 +57,7 @@
 		FEEBF0AD23E7CCC7009DFEDA /* GetProductUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF0A123E7CCC7009DFEDA /* GetProductUseCase.swift */; };
 		FEEBF0AE23E7CCC7009DFEDA /* ProductPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF0A223E7CCC7009DFEDA /* ProductPresenter.swift */; };
 		FEEBF0AF23E7CCC7009DFEDA /* ProductViewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF0A323E7CCC7009DFEDA /* ProductViewing.swift */; };
-		FEEBF0B023E7CCC7009DFEDA /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF0A423E7CCC7009DFEDA /* ProductModel.swift */; };
+		FEEBF0B023E7CCC7009DFEDA /* AnyProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF0A423E7CCC7009DFEDA /* AnyProduct.swift */; };
 		FEEBF0B123E7CCC7009DFEDA /* ProductListViewing.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF0A623E7CCC7009DFEDA /* ProductListViewing.swift */; };
 		FEEBF0B223E7CCC7009DFEDA /* ProductListCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF0A723E7CCC7009DFEDA /* ProductListCoordinating.swift */; };
 		FEEBF0B323E7CCC7009DFEDA /* ProductListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF0A823E7CCC7009DFEDA /* ProductListPresenter.swift */; };
@@ -132,7 +132,7 @@
 		8376544A23EB132D001D4B5D /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		8376544D23EB1601001D4B5D /* GetSettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSettingsUseCase.swift; sourceTree = "<group>"; };
 		8376544F23EB160E001D4B5D /* SettingStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingStorage.swift; sourceTree = "<group>"; };
-		8376545123EB1706001D4B5D /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		8376545123EB1706001D4B5D /* AnySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnySetting.swift; sourceTree = "<group>"; };
 		8376545323EB1BDB001D4B5D /* EditSettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsUseCase.swift; sourceTree = "<group>"; };
 		8376545523EB1DA1001D4B5D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
 		8376545823EB1E8B001D4B5D /* SettingsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCoordinator.swift; sourceTree = "<group>"; };
@@ -161,7 +161,7 @@
 		FEEBF0A123E7CCC7009DFEDA /* GetProductUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetProductUseCase.swift; sourceTree = "<group>"; };
 		FEEBF0A223E7CCC7009DFEDA /* ProductPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductPresenter.swift; sourceTree = "<group>"; };
 		FEEBF0A323E7CCC7009DFEDA /* ProductViewing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductViewing.swift; sourceTree = "<group>"; };
-		FEEBF0A423E7CCC7009DFEDA /* ProductModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
+		FEEBF0A423E7CCC7009DFEDA /* AnyProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyProduct.swift; sourceTree = "<group>"; };
 		FEEBF0A623E7CCC7009DFEDA /* ProductListViewing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListViewing.swift; sourceTree = "<group>"; };
 		FEEBF0A723E7CCC7009DFEDA /* ProductListCoordinating.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListCoordinating.swift; sourceTree = "<group>"; };
 		FEEBF0A823E7CCC7009DFEDA /* ProductListPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductListPresenter.swift; sourceTree = "<group>"; };
@@ -255,10 +255,10 @@
 		8376544C23EB15ED001D4B5D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				8376545123EB1706001D4B5D /* AnySetting.swift */,
 				8376544D23EB1601001D4B5D /* GetSettingsUseCase.swift */,
 				8376545323EB1BDB001D4B5D /* EditSettingsUseCase.swift */,
 				8376545E23EB1F76001D4B5D /* SettingsCoordinating.swift */,
-				8376545123EB1706001D4B5D /* SettingsModel.swift */,
 				8376545C23EB1EEF001D4B5D /* SettingsPresenter.swift */,
 				8376546023EB1F97001D4B5D /* SettingsViewing.swift */,
 			);
@@ -357,10 +357,10 @@
 			isa = PBXGroup;
 			children = (
 				FEEBF0A523E7CCC7009DFEDA /* List */,
+				FEEBF0A423E7CCC7009DFEDA /* AnyProduct.swift */,
 				FEEBF0A123E7CCC7009DFEDA /* GetProductUseCase.swift */,
 				8376546223EB2D44001D4B5D /* DeleteProductUseCase.swift */,
 				837653FD23E88023001D4B5D /* EditProductUseCase.swift */,
-				FEEBF0A423E7CCC7009DFEDA /* ProductModel.swift */,
 				837653FF23E882F7001D4B5D /* ProductCoordinating.swift */,
 				FEEBF0A223E7CCC7009DFEDA /* ProductPresenter.swift */,
 				FEEBF0A323E7CCC7009DFEDA /* ProductViewing.swift */,
@@ -583,12 +583,12 @@
 				837653FE23E88023001D4B5D /* EditProductUseCase.swift in Sources */,
 				8376540023E882F7001D4B5D /* ProductCoordinating.swift in Sources */,
 				FEEBF0B223E7CCC7009DFEDA /* ProductListCoordinating.swift in Sources */,
-				8376545223EB1706001D4B5D /* SettingsModel.swift in Sources */,
+				8376545223EB1706001D4B5D /* AnySetting.swift in Sources */,
 				8376546123EB1F97001D4B5D /* SettingsViewing.swift in Sources */,
 				FEEBF0B423E7CCC7009DFEDA /* GetProductListUseCase.swift in Sources */,
 				8376540623E88A77001D4B5D /* PushCoordinating.swift in Sources */,
 				FEEBF0AD23E7CCC7009DFEDA /* GetProductUseCase.swift in Sources */,
-				FEEBF0B023E7CCC7009DFEDA /* ProductModel.swift in Sources */,
+				FEEBF0B023E7CCC7009DFEDA /* AnyProduct.swift in Sources */,
 				8376540423E88A71001D4B5D /* PopCoordinating.swift in Sources */,
 				8376545D23EB1EEF001D4B5D /* SettingsPresenter.swift in Sources */,
 				FEEBF0B123E7CCC7009DFEDA /* ProductListViewing.swift in Sources */,

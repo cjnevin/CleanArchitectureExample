@@ -8,12 +8,12 @@
 
 import Foundation
 
-public protocol ProductModel: Comparable, Decodable {
+public protocol AnyProduct: Comparable, Decodable {
     var id: String { get }
     var name: String { get set }
 }
 
-extension ProductModel where Self: Comparable {
+extension AnyProduct where Self: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         lhs.id < rhs.id
     }

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct EditProductUseCase<Product: ProductModel> {
+struct EditProductUseCase<Product: AnyProduct> {
     let id: String
     let modelStorage: ModelStorage
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct DeleteProductUseCase<Product: ProductModel> {
+struct DeleteProductUseCase<Product: AnyProduct> {
     let modelStorage: ModelStorage
 
     @discardableResult func delete(id: String) -> Product {

@@ -9,6 +9,6 @@
 import Foundation
 
 public protocol ProductViewing {
-    associatedtype Product: ProductModel
+    associatedtype Product: AnyProduct
     func setProduct(_ product: Product)
 }

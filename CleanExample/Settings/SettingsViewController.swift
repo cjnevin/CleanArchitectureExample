@@ -12,7 +12,7 @@ import UIKit
 class SettingsViewController: UITableViewController, SettingsViewing {
     var presenter: SettingsPresenter<SettingsViewController, SettingsCoordinator>?
 
-    struct Item: Setting {
+    struct Setting: AnySetting {
         let name: String
         let value: SettingValue
 
@@ -22,7 +22,7 @@ class SettingsViewController: UITableViewController, SettingsViewing {
         }
     }
 
-    var settings: [Item] = [] {
+    var settings: [Setting] = [] {
         didSet {
             tableView.reloadData()
         }

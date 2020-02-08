@@ -12,7 +12,7 @@ public typealias ProductListDependencies = ModelStorageHaving & RequestExecutorH
 
 public protocol ProductListCoordinating: PushCoordinating, ProductCoordinating {
     associatedtype ProductView: ProductViewing
-    associatedtype Product: ProductModel
+    associatedtype Product: AnyProduct
     init(dependencies: ProductListDependencies)
     var dependencies: ProductListDependencies { get }
     func view(for product: Product, modelStorage: ModelStorage) -> ProductView
