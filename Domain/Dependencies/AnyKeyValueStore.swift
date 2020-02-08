@@ -1,5 +1,5 @@
 //
-//  AnyKeyValueStorage.swift
+//  AnyKeyValueStore.swift
 //  Domain
 //
 //  Created by Chris on 05/02/2020.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-public protocol AnyKeyValueStorage {
+public protocol AnyKeyValueStore {
     func get<Value>(key: String, defaultValue: Value) -> Value
     func set<Value>(_ object: Value, key: String)
 }
 
 // MARK: - Internal
 
-extension AnyKeyValueStorage {
+extension AnyKeyValueStore {
     func getSetting<Value>(key: String, defaultValue: Value) -> KeyValue<Value> {
         let value = get(key: key, defaultValue: defaultValue)
         return KeyValue(key: key, value: value)

@@ -9,7 +9,7 @@
 import Foundation
 
 struct GetSettingsUseCase {
-    let keyValues: AnyKeyValueStorage
+    let keyValues: AnyKeyValueStore
 
     func get() -> StoredSettings {
         StoredSettings(

@@ -10,7 +10,7 @@ import Domain
 import Foundation
 
 class Dependencies: AnyDependencies {
-    let keyValues: AnyKeyValueStorage = Settings()
-    let requestExecutor: AnyRequestExecutor = API()
+    let keyValues: AnyKeyValueStore = Settings()
+    let api: AnyAPI = API()
     let database: AnyDatabase = Database()
 }

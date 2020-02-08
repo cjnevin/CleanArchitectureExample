@@ -9,7 +9,7 @@
 import Domain
 import Foundation
 
-class MockSettingsStorage: AnyKeyValueStorage {
+class MockSettingsStorage: AnyKeyValueStore {
     var lookup: [String: Any] = [:]
 
     var spyGetCount: Int = 0

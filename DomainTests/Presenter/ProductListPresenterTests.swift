@@ -11,30 +11,30 @@ import Foundation
 import XCTest
 
 class ProductListPresenterTests: XCTestCase {
-    var requestExecutor: MockRequestExecutor!
+    var api: MockRequestExecutor!
     var database: MockDatabase!
     var coordinator: ProductListCoordinator!
     var presenter: ProductListPresenter<ProductListView, ProductListCoordinator>!
     
     override func setUp() {
         super.setUp()
-        requestExecutor = MockRequestExecutor()
+        api = MockRequestExecutor()
         database = MockDatabase()
-        coordinator = ProductListCoordinator(dependencies: MockDependencies(database: database, requestExecutor: requestExecutor))
+        coordinator = ProductListCoordinator(dependencies: MockDependencies(api: api, database: database))
         presenter = ProductListPresenter(coordinator: coordinator)
     }
 
     func testAttachSendsRequestForDataIfStorageIsEmptyThenFailsAndRetriesOnReattach() {
-        requestExecutor.success = false
+        api.success = false
         let view = ProductListView()
         presenter.attach(view: view)
         XCTAssertEqual(view.productsUnavailable, true)
         XCTAssertTrue(view.products.isEmpty)
-        XCTAssertEqual(requestExecutor.spyExecuteCount, 1)
+        XCTAssertEqual(api.spyExecuteCount, 1)
         XCTAssertEqual(database.spyListCount, 1)
         presenter.detach()
         presenter.attach(view: view)
-        XCTAssertEqual(requestExecutor.spyExecuteCount, 2)
+        XCTAssertEqual(api.spyExecuteCount, 2)
         XCTAssertEqual(database.spyListCount, 2)
     }
 
@@ -44,11 +44,11 @@ class ProductListPresenterTests: XCTestCase {
         presenter.attach(view: view)
         XCTAssertEqual(view.productsUnavailable, false)
         XCTAssertEqual(view.products.map { $0.id }, apiProductIds)
-        XCTAssertEqual(requestExecutor.spyExecuteCount, 1)
+        XCTAssertEqual(api.spyExecuteCount, 1)
         XCTAssertEqual(database.spyListCount, 1)
         presenter.detach()
         presenter.attach(view: view)
-        XCTAssertEqual(requestExecutor.spyExecuteCount, 1)
+        XCTAssertEqual(api.spyExecuteCount, 1)
         XCTAssertEqual(database.spyListCount, 2)
     }
     
@@ -61,7 +61,7 @@ class ProductListPresenterTests: XCTestCase {
         XCTAssertEqual(view.productsUnavailable, false)
         XCTAssertEqual(view.products.map { $0.id }, database.lookup.keys.sorted())
         presenter.detach()
-        XCTAssertEqual(requestExecutor.spyExecuteCount, 0)
+        XCTAssertEqual(api.spyExecuteCount, 0)
         XCTAssertEqual(database.spyListCount, 1)
     }
 

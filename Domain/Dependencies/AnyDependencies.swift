@@ -8,16 +8,16 @@
 
 import Foundation
 
-public protocol KeyValueStorageHaving {
-    var keyValues: AnyKeyValueStorage { get }
+public protocol APIHaving {
+    var api: AnyAPI { get }
 }
 
 public protocol DatabaseHaving {
     var database: AnyDatabase { get }
 }
 
-public protocol RequestExecutorHaving {
-    var requestExecutor: AnyRequestExecutor { get }
+public protocol KeyValueStorageHaving {
+    var keyValues: AnyKeyValueStore { get }
 }
 
-public protocol AnyDependencies: DatabaseHaving, RequestExecutorHaving, KeyValueStorageHaving { }
+public protocol AnyDependencies: APIHaving, DatabaseHaving, KeyValueStorageHaving { }

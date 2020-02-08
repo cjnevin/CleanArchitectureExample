@@ -9,7 +9,7 @@
 import Domain
 import Foundation
 
-class Settings: AnyKeyValueStorage {
+class Settings: AnyKeyValueStore {
     let userDefaults: UserDefaults = .standard
 
     func get<Value>(key: String, defaultValue: Value) -> Value {

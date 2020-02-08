@@ -9,6 +9,6 @@
 import Combine
 import Foundation
 
-public protocol AnyRequestExecutor {
+public protocol AnyAPI {
     func execute(request: URLRequest) -> AnyPublisher<Data, Error>
 }

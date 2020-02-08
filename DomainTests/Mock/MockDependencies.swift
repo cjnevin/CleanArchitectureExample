@@ -10,16 +10,16 @@ import Domain
 import Foundation
 
 class MockDependencies: AnyDependencies {
+    let api: AnyAPI
     let database: AnyDatabase
-    let keyValues: AnyKeyValueStorage
-    let requestExecutor: AnyRequestExecutor
+    let keyValues: AnyKeyValueStore
 
-    init(database: AnyDatabase = MockDatabase(),
-         keyValues: AnyKeyValueStorage = MockSettingsStorage(),
-         requestExecutor: AnyRequestExecutor = MockRequestExecutor())
+    init(api: AnyAPI = MockRequestExecutor(),
+         database: AnyDatabase = MockDatabase(),
+         keyValues: AnyKeyValueStore = MockSettingsStorage())
     {
+        self.api = api
         self.database = database
         self.keyValues = keyValues
-        self.requestExecutor = requestExecutor
     }
 }

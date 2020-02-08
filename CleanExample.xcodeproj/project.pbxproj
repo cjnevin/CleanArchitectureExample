@@ -20,7 +20,7 @@
 		8376540823E88DDD001D4B5D /* PushCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376540723E88DDD001D4B5D /* PushCoordinator.swift */; };
 		8376540A23E8901B001D4B5D /* RootCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376540923E8901B001D4B5D /* RootCoordinatorTests.swift */; };
 		8376540D23E97640001D4B5D /* PopCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376540C23E97640001D4B5D /* PopCoordinator.swift */; };
-		8376541223E99F40001D4B5D /* AnyRequestExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376541123E99F40001D4B5D /* AnyRequestExecutor.swift */; };
+		8376541223E99F40001D4B5D /* AnyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376541123E99F40001D4B5D /* AnyAPI.swift */; };
 		8376541A23E9A7A1001D4B5D /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376541923E9A7A1001D4B5D /* Dependencies.swift */; };
 		8376541C23E9AB51001D4B5D /* MockDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376541B23E9AB51001D4B5D /* MockDependencies.swift */; };
 		8376541E23E9AB69001D4B5D /* MockRequestExecutor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376541D23E9AB69001D4B5D /* MockRequestExecutor.swift */; };
@@ -28,7 +28,7 @@
 		8376544923EB1093001D4B5D /* TabCoordinating.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376544823EB1093001D4B5D /* TabCoordinating.swift */; };
 		8376544B23EB132D001D4B5D /* TabCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376544A23EB132D001D4B5D /* TabCoordinator.swift */; };
 		8376544E23EB1601001D4B5D /* GetSettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376544D23EB1601001D4B5D /* GetSettingsUseCase.swift */; };
-		8376545023EB160E001D4B5D /* AnyKeyValueStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376544F23EB160E001D4B5D /* AnyKeyValueStorage.swift */; };
+		8376545023EB160E001D4B5D /* AnyKeyValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376544F23EB160E001D4B5D /* AnyKeyValueStore.swift */; };
 		8376545223EB1706001D4B5D /* AnySetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376545123EB1706001D4B5D /* AnySetting.swift */; };
 		8376545423EB1BDB001D4B5D /* EditSettingsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376545323EB1BDB001D4B5D /* EditSettingsUseCase.swift */; };
 		8376545623EB1DA1001D4B5D /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376545523EB1DA1001D4B5D /* Settings.swift */; };
@@ -122,7 +122,7 @@
 		8376540723E88DDD001D4B5D /* PushCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCoordinator.swift; sourceTree = "<group>"; };
 		8376540923E8901B001D4B5D /* RootCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorTests.swift; sourceTree = "<group>"; };
 		8376540C23E97640001D4B5D /* PopCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCoordinator.swift; sourceTree = "<group>"; };
-		8376541123E99F40001D4B5D /* AnyRequestExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyRequestExecutor.swift; sourceTree = "<group>"; };
+		8376541123E99F40001D4B5D /* AnyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyAPI.swift; sourceTree = "<group>"; };
 		8376541923E9A7A1001D4B5D /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		8376541B23E9AB51001D4B5D /* MockDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDependencies.swift; sourceTree = "<group>"; };
 		8376541D23E9AB69001D4B5D /* MockRequestExecutor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequestExecutor.swift; sourceTree = "<group>"; };
@@ -130,7 +130,7 @@
 		8376544823EB1093001D4B5D /* TabCoordinating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinating.swift; sourceTree = "<group>"; };
 		8376544A23EB132D001D4B5D /* TabCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabCoordinator.swift; sourceTree = "<group>"; };
 		8376544D23EB1601001D4B5D /* GetSettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSettingsUseCase.swift; sourceTree = "<group>"; };
-		8376544F23EB160E001D4B5D /* AnyKeyValueStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyKeyValueStorage.swift; sourceTree = "<group>"; };
+		8376544F23EB160E001D4B5D /* AnyKeyValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyKeyValueStore.swift; sourceTree = "<group>"; };
 		8376545123EB1706001D4B5D /* AnySetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnySetting.swift; sourceTree = "<group>"; };
 		8376545323EB1BDB001D4B5D /* EditSettingsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditSettingsUseCase.swift; sourceTree = "<group>"; };
 		8376545523EB1DA1001D4B5D /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -247,9 +247,9 @@
 			isa = PBXGroup;
 			children = (
 				837807F823EE652000A6580F /* AnyDependencies.swift */,
+				8376541123E99F40001D4B5D /* AnyAPI.swift */,
 				837807FA23EE662F00A6580F /* AnyDatabase.swift */,
-				8376544F23EB160E001D4B5D /* AnyKeyValueStorage.swift */,
-				8376541123E99F40001D4B5D /* AnyRequestExecutor.swift */,
+				8376544F23EB160E001D4B5D /* AnyKeyValueStore.swift */,
 			);
 			path = Dependencies;
 			sourceTree = "<group>";
@@ -574,7 +574,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8376541223E99F40001D4B5D /* AnyRequestExecutor.swift in Sources */,
+				8376541223E99F40001D4B5D /* AnyAPI.swift in Sources */,
 				8376545423EB1BDB001D4B5D /* EditSettingsUseCase.swift in Sources */,
 				FEEBF0AF23E7CCC7009DFEDA /* AnyProductView.swift in Sources */,
 				8376544923EB1093001D4B5D /* TabCoordinating.swift in Sources */,
@@ -598,7 +598,7 @@
 				837807FB23EE662F00A6580F /* AnyDatabase.swift in Sources */,
 				FEEBF0B123E7CCC7009DFEDA /* AnyProductListView.swift in Sources */,
 				8376546323EB2D44001D4B5D /* DeleteProductUseCase.swift in Sources */,
-				8376545023EB160E001D4B5D /* AnyKeyValueStorage.swift in Sources */,
+				8376545023EB160E001D4B5D /* AnyKeyValueStore.swift in Sources */,
 				8376545F23EB1F76001D4B5D /* SettingsCoordinating.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

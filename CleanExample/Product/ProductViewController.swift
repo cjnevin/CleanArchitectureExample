@@ -16,12 +16,15 @@ class ProductViewController: UIViewController, AnyProductView {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
+
         textField.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(textField)
         textField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         textField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20).isActive = true
         textField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20).isActive = true
+
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(save))
+        navigationItem.title = "Change Name"
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -36,7 +39,6 @@ class ProductViewController: UIViewController, AnyProductView {
     }
 
     func setProduct(_ product: Product) {
-        navigationItem.title = "Change Name"
         textField.text = product.name
     }
 
