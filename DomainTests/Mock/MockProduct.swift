@@ -33,7 +33,7 @@ class ProductListCoordinator: ProductListCoordinating {
 
 final class ProductListView: AnyProductListView {
     var productsUnavailable: Bool = false
-    var products: [Product] = []
+    var sections: [Section<Product>] = []
 }
 
 final class ProductView: AnyProductView {

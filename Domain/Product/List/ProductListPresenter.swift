@@ -10,8 +10,7 @@ import Combine
 import Foundation
 
 public class ProductListPresenter<View: AnyProductListView, Coordinator: ProductListCoordinating>: Presenting where Coordinator.Product == View.Product {
-    let refreshTrigger = PassthroughSubject<Void, Error>()
-    let searchTrigger = PassthroughSubject<String, Error>()
+    let searchTrigger = CurrentValueSubject<String, Error>("")
     var listStream: AnyCancellable?
     let deleteUseCase: DeleteProductUseCase<View.Product>
     let searchUseCase: SearchProductListUseCase<View.Product>
@@ -28,8 +27,6 @@ public class ProductListPresenter<View: AnyProductListView, Coordinator: Product
         view.sections = []
         listStream?.cancel()
         listStream = searchTrigger
-            .combineLatest(refreshTrigger)
-            .a
             .flatMap(searchUseCase.search)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -44,8 +41,6 @@ public class ProductListPresenter<View: AnyProductListView, Coordinator: Product
                         Section(name: title, items: products.filter { $0.name.hasPrefix(title) }.sorted())
                     }
             })
-        refreshTrigger.send(())
-        searchTrigger.send("")
     }
 
     public func detach() {
@@ -59,7 +54,7 @@ public class ProductListPresenter<View: AnyProductListView, Coordinator: Product
 
     public func deleted(product: View.Product) {
         deleteUseCase.delete(id: product.id)
-        refreshTrigger.send(())
+        searchTrigger.send(searchTrigger.value)
     }
 
     public func selected(product: View.Product) {

@@ -29,7 +29,7 @@ class ProductListPresenterTests: XCTestCase {
         let view = ProductListView()
         presenter.attach(view: view)
         XCTAssertEqual(view.productsUnavailable, true)
-        XCTAssertTrue(view.products.isEmpty)
+        XCTAssertTrue(view.sections.isEmpty)
         XCTAssertEqual(api.spyExecuteCount, 1)
         XCTAssertEqual(database.spyListCount, 1)
         presenter.detach()
@@ -43,7 +43,7 @@ class ProductListPresenterTests: XCTestCase {
         let view = ProductListView()
         presenter.attach(view: view)
         XCTAssertEqual(view.productsUnavailable, false)
-        XCTAssertEqual(view.products.map { $0.id }, apiProductIds)
+        XCTAssertEqual(view.sections.flatMap { $0.items.map { $0.id } }, apiProductIds)
         XCTAssertEqual(api.spyExecuteCount, 1)
         XCTAssertEqual(database.spyListCount, 1)
         presenter.detach()
@@ -59,7 +59,7 @@ class ProductListPresenterTests: XCTestCase {
         let view = ProductListView()
         presenter.attach(view: view)
         XCTAssertEqual(view.productsUnavailable, false)
-        XCTAssertEqual(view.products.map { $0.id }, database.lookup.keys.sorted())
+        XCTAssertEqual(view.sections.flatMap { $0.items.map { $0.id } }, database.lookup.keys.sorted())
         presenter.detach()
         XCTAssertEqual(api.spyExecuteCount, 0)
         XCTAssertEqual(database.spyListCount, 1)
@@ -68,18 +68,29 @@ class ProductListPresenterTests: XCTestCase {
     func testDeletedProduct() {
         let view = ProductListView()
         presenter.attach(view: view)
-        XCTAssertEqual(view.products.count, 4)
-        presenter.deleted(product: view.products[0])
+        XCTAssertEqual(view.sections[0].items.count, 4)
+        presenter.deleted(product: view.sections[0].items[0])
         XCTAssertEqual(database.spyDeleteCount, 1)
-        XCTAssertEqual(view.products.count, 3)
+        XCTAssertEqual(view.sections[0].items.count, 3)
     }
-    
+
     func testSelectedProduct() {
         database.lookup["id"] = Product()
         let view = ProductListView()
         presenter.attach(view: view)
-        XCTAssertFalse(view.products.isEmpty)
-        presenter.selected(product: view.products[0])
+        XCTAssertFalse(view.sections.isEmpty)
+        presenter.selected(product: view.sections[0].items[0])
         XCTAssertNotNil(coordinator.spySelectedProduct)
+    }
+
+    func testSearchForProduct() {
+        database.lookup["id1"] = Product(id: "id1", name: "nintendo switch")
+        database.lookup["id2"] = Product(id: "id2", name: "nintendo ds")
+        database.lookup["id3"] = Product(id: "id3", name: "ninja")
+        let view = ProductListView()
+        presenter.attach(view: view)
+        XCTAssertFalse(view.sections.isEmpty)
+        presenter.search(query: "nintendo")
+        XCTAssertEqual(view.sections[0].items.map { $0.name }, ["nintendo ds", "nintendo switch"])
     }
 }
