@@ -31,6 +31,12 @@ class TabCoordinator: UITabBarController, TabCoordinating {
         setViewControllers(vcs, animated: false)
     }
 
+    func insertTab(_ any: Any, at index: Int) {
+        var vcs = viewControllers ?? []
+        vcs.insert(any as! UIViewController, at: index)
+        setViewControllers(vcs, animated: false)
+    }
+
     func index<T>(of type: T.Type) -> Int? {
         viewControllers?.firstIndex(where: { $0 is T })
     }

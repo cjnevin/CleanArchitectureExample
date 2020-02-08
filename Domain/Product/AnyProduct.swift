@@ -22,3 +22,11 @@ extension AnyProduct where Self: Comparable {
         lhs.name < rhs.name
     }
 }
+
+extension Sequence where Element: AnyProduct {
+    var sections: [Section<Element>] {
+        Set(map { String($0.name.prefix(1)) })
+            .sorted()
+            .map { title in Section(name: title, items: filter { $0.name.hasPrefix(title) }.sorted()) }
+    }
+}

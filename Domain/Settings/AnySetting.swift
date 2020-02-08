@@ -15,6 +15,7 @@ public protocol AnySetting {
 }
 
 public enum SettingValue {
+    case action(() -> Void)
     case onOff(Bool, toggle: () -> Void)
 }
 

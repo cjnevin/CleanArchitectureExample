@@ -12,11 +12,11 @@ import UIKit
 class SettingsCoordinator: UINavigationController, SettingsCoordinating {
     let dependencies: SettingsDependencies
 
-    required init(dependencies: SettingsDependencies) {
+    required init<TabCoordinator: TabCoordinating>(dependencies: SettingsDependencies, tabCoordinator: TabCoordinator) {
         self.dependencies = dependencies
         let viewController = SettingsViewController()
         super.init(rootViewController: viewController)
-        viewController.presenter = SettingsPresenter(coordinator: self)
+        viewController.presenter = SettingsPresenter(coordinator: self, tabCoordinator: tabCoordinator as! CleanExample.TabCoordinator)
     }
 
     @available(*, unavailable)
@@ -27,6 +27,6 @@ class SettingsCoordinator: UINavigationController, SettingsCoordinating {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 1)
+        tabBarItem = UITabBarItem(title: "Settings", image: UIImage(systemName: "gear"), tag: 1)
     }
 }

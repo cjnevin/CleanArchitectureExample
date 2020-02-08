@@ -13,7 +13,13 @@ struct Setting: AnySetting {
     let value: SettingValue
 
     init(key: String, value: SettingValue) {
-        self.name = key == "notifications" ? "Enable Notifications" : "Enable Location"
+        switch key {
+        case "notifications": self.name = "Enable Notifications"
+        case "location": self.name = "Enable Location"
+        case "remove_product_list": self.name = "Hide Products"
+        case "add_product_list": self.name = "Show Products"
+        default: self.name = ""
+        }
         self.value = value
     }
 }

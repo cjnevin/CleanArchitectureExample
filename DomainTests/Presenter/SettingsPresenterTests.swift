@@ -13,13 +13,16 @@ import XCTest
 class SettingsPresenterTests: XCTestCase {
     var keyValues: MockSettingsStorage!
     var coordinator: SettingsCoordinator!
-    var presenter: SettingsPresenter<SettingsView, SettingsCoordinator>!
+    var tabCoordinator: TabCoordinator!
+    var presenter: SettingsPresenter<SettingsView, SettingsCoordinator, TabCoordinator>!
 
     override func setUp() {
         super.setUp()
         keyValues = MockSettingsStorage()
-        coordinator = SettingsCoordinator(dependencies: MockDependencies(keyValues: keyValues))
-        presenter = SettingsPresenter(coordinator: coordinator)
+        let dependencies = MockDependencies(keyValues: keyValues)
+        tabCoordinator = TabCoordinator(dependencies: dependencies)
+        coordinator = SettingsCoordinator(dependencies: dependencies, tabCoordinator: tabCoordinator)
+        presenter = SettingsPresenter(coordinator: coordinator, tabCoordinator: tabCoordinator)
     }
 
     func testAttachAndDetach() {
@@ -39,11 +42,33 @@ class SettingsPresenterTests: XCTestCase {
         XCTAssertFalse(keyValues.get(key: "notifications", defaultValue: false))
         view.settings.forEach { item in
             switch item.value {
+            case .action: break
             case let .onOff(_, toggle): toggle()
             }
         }
         XCTAssertEqual(keyValues.spySetCount, 4)
         XCTAssertTrue(keyValues.get(key: "location", defaultValue: false))
         XCTAssertTrue(keyValues.get(key: "notifications", defaultValue: false))
+    }
+
+    func testRemoveAndAddProductList() {
+        // Note: TabCoordinator contains no tabs because start() is not called
+        let view = SettingsView()
+        presenter.attach(view: view)
+        XCTAssertNil(tabCoordinator.index(of: TabCoordinator.ProductListCoordinator.self))
+        view.settings.forEach { item in
+            switch item.value {
+            case let .action(action): action()
+            case .onOff: break
+            }
+        }
+        XCTAssertNotNil(tabCoordinator.index(of: TabCoordinator.ProductListCoordinator.self))
+        view.settings.forEach { item in
+            switch item.value {
+            case let .action(action): action()
+            case .onOff: break
+            }
+        }
+        XCTAssertNil(tabCoordinator.index(of: TabCoordinator.ProductListCoordinator.self))
     }
 }

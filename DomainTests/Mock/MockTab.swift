@@ -10,6 +10,10 @@ import Domain
 import Foundation
 
 class TabCoordinator: TabCoordinating {
+    func index<T>(of type: T.Type) -> Int? {
+        spyTabs.firstIndex(where: { $0 is T })
+    }
+
     typealias ProductListCoordinator = DomainTests.ProductListCoordinator
     typealias SettingsCoordinator = DomainTests.SettingsCoordinator
 
@@ -21,6 +25,10 @@ class TabCoordinator: TabCoordinating {
     var spyTabs: [Any] = []
     func addTab(_ any: Any) {
         spyTabs.append(any)
+    }
+
+    func insertTab(_ any: Any, at index: Int) {
+        spyTabs.insert(any, at: index)
     }
 
     func removeTab<T>(_ type: T.Type) {

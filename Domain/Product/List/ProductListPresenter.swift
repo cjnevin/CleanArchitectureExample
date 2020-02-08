@@ -31,15 +31,10 @@ public class ProductListPresenter<View: AnyProductListView, Coordinator: Product
             .sink(receiveCompletion: { completion in
                 switch completion {
                 case .finished: break
-                case .failure:
-                    view.productsUnavailable = true
+                case .failure: view.productsUnavailable = true
                 }
             }, receiveValue: { products in
-                view.sections = Set(products.map { String($0.name.prefix(1)) })
-                    .sorted()
-                    .map { title in
-                        Section(name: title, items: products.filter { $0.name.hasPrefix(title) }.sorted())
-                    }
+                view.sections = products.sections
             })
     }
 

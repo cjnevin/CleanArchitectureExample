@@ -19,7 +19,7 @@ class TabCoordinatorTests: XCTestCase {
     }
 
     func testStartAddsProductAndSettingsTabs() {
-        coordinator.start()
+        coordinator!.start()
         XCTAssertEqual(coordinator.spyTabs.count, 2)
         XCTAssertNotNil(coordinator.spyTabs.first as? ProductListCoordinator)
         XCTAssertNotNil(coordinator.spyTabs.last as? SettingsCoordinator)

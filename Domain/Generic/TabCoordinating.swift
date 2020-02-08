@@ -15,6 +15,8 @@ public protocol TabCoordinating {
     init(dependencies: AnyDependencies)
     func start()
     func addTab(_ any: Any)
+    func insertTab(_ any: Any, at index: Int)
+    func index<T>(of type: T.Type) -> Int?
     func showTab<T>(_ type: T.Type)
     func removeTab<T>(_ type: T.Type)
 }
@@ -22,6 +24,18 @@ public protocol TabCoordinating {
 extension TabCoordinating {
     public func start() {
         addTab(ProductListCoordinator(dependencies: dependencies))
-        addTab(SettingsCoordinator(dependencies: dependencies))
+        addTab(SettingsCoordinator(dependencies: dependencies, tabCoordinator: self))
+    }
+
+    func addProductList() {
+        insertTab(ProductListCoordinator(dependencies: dependencies), at: 0)
+    }
+
+    var hasProductList: Bool {
+        index(of: ProductListCoordinator.self) != nil
+    }
+
+    func removeProductList() {
+        removeTab(ProductListCoordinator.self)
     }
 }

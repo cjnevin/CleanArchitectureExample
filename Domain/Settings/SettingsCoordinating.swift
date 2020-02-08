@@ -11,6 +11,6 @@ import Foundation
 public typealias SettingsDependencies = KeyValueStorageHaving
 
 public protocol SettingsCoordinating {
-    init(dependencies: SettingsDependencies)
+    init<TabCoordinator: TabCoordinating>(dependencies: SettingsDependencies, tabCoordinator: TabCoordinator)
     var dependencies: SettingsDependencies { get }
 }
