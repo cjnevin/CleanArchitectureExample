@@ -27,7 +27,7 @@ class ProductListCoordinator: UINavigationController, ProductListCoordinating {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        tabBarItem = UITabBarItem(title: "Products", image: UIImage(systemName: "gamecontroller.fill"), tag: 0)
+        tabBarItem = UITabBarItem(title: "Consoles", image: UIImage(systemName: "gamecontroller.fill"), tag: 0)
     }
 
     func view(for product: Product, database: AnyDatabase) -> ProductViewController {

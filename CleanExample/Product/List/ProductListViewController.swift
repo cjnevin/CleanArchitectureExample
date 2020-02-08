@@ -28,10 +28,10 @@ class ProductListViewController: UITableViewController, AnyProductListView {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.white
-        navigationItem.title = "Products"
+        navigationItem.title = "Consoles"
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Products"
+        searchController.searchBar.placeholder = "Search Consoles"
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }

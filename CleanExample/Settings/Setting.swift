@@ -16,8 +16,8 @@ struct Setting: AnySetting {
         switch key {
         case "notifications": self.name = "Enable Notifications"
         case "location": self.name = "Enable Location"
-        case "remove_product_list": self.name = "Hide Products"
-        case "add_product_list": self.name = "Show Products"
+        case "remove_product_list": self.name = "Hide Consoles"
+        case "add_product_list": self.name = "Show Consoles"
         default: self.name = ""
         }
         self.value = value
