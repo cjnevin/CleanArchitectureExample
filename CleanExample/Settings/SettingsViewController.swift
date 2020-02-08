@@ -12,16 +12,6 @@ import UIKit
 class SettingsViewController: UITableViewController, SettingsViewing {
     var presenter: SettingsPresenter<SettingsViewController, SettingsCoordinator>?
 
-    struct Setting: AnySetting {
-        let name: String
-        let value: SettingValue
-
-        init(key: String, value: SettingValue) {
-            self.name = key == "notifications" ? "Enable Notifications" : "Enable Location"
-            self.value = value
-        }
-    }
-
     var settings: [Setting] = [] {
         didSet {
             tableView.reloadData()

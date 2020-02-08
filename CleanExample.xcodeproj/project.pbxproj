@@ -46,6 +46,7 @@
 		8376546B23EB3004001D4B5D /* MockTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376546A23EB3004001D4B5D /* MockTab.swift */; };
 		8376546D23EB319F001D4B5D /* MockRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376546C23EB319F001D4B5D /* MockRoot.swift */; };
 		8376546F23EB324B001D4B5D /* SettingsPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376546E23EB324B001D4B5D /* SettingsPresenterTests.swift */; };
+		837807F523EE625E00A6580F /* Setting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 837807F423EE625E00A6580F /* Setting.swift */; };
 		FEEBF05623E7CC8F009DFEDA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF05523E7CC8F009DFEDA /* AppDelegate.swift */; };
 		FEEBF05A23E7CC8F009DFEDA /* ProductListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEEBF05923E7CC8F009DFEDA /* ProductListViewController.swift */; };
 		FEEBF05F23E7CC90009DFEDA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEEBF05E23E7CC90009DFEDA /* Assets.xcassets */; };
@@ -147,6 +148,7 @@
 		8376546A23EB3004001D4B5D /* MockTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockTab.swift; sourceTree = "<group>"; };
 		8376546C23EB319F001D4B5D /* MockRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRoot.swift; sourceTree = "<group>"; };
 		8376546E23EB324B001D4B5D /* SettingsPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenterTests.swift; sourceTree = "<group>"; };
+		837807F423EE625E00A6580F /* Setting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Setting.swift; sourceTree = "<group>"; };
 		FEEBF05223E7CC8F009DFEDA /* CleanExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CleanExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEEBF05523E7CC8F009DFEDA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEEBF05923E7CC8F009DFEDA /* ProductListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductListViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		8376545723EB1E80001D4B5D /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				837807F423EE625E00A6580F /* Setting.swift */,
 				8376545823EB1E8B001D4B5D /* SettingsCoordinator.swift */,
 				8376545A23EB1EC2001D4B5D /* SettingsViewController.swift */,
 			);
@@ -562,6 +565,7 @@
 				837653EB23E8623B001D4B5D /* ProductListCoordinator.swift in Sources */,
 				837653E923E86232001D4B5D /* ProductViewController.swift in Sources */,
 				8376542123E9C015001D4B5D /* API.swift in Sources */,
+				837807F523EE625E00A6580F /* Setting.swift in Sources */,
 				837653ED23E86286001D4B5D /* Database.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
