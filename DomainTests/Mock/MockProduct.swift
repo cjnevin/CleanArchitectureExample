@@ -20,7 +20,7 @@ class ProductListCoordinator: ProductListCoordinating {
         self.dependencies = dependencies
     }
 
-    func view(for product: Product, modelStorage: ModelStorage) -> ProductView {
+    func view(for product: Product, database: AnyDatabase) -> ProductView {
         ProductView()
     }
 
@@ -31,12 +31,12 @@ class ProductListCoordinator: ProductListCoordinating {
     func pop() { }
 }
 
-final class ProductListView: ProductListViewing {
+final class ProductListView: AnyProductListView {
     var productsUnavailable: Bool = false
     var products: [Product] = []
 }
 
-final class ProductView: ProductViewing {
+final class ProductView: AnyProductView {
     var spyProduct: Product?
 
     func setProduct(_ product: Product) {

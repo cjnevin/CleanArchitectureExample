@@ -10,10 +10,10 @@ import Combine
 import Foundation
 
 struct GetProductListUseCase<Product: AnyProduct> {
-    let dependencies: ModelStorageHaving & RequestExecutorHaving
+    let dependencies: DatabaseHaving & RequestExecutorHaving
 
     func list() -> AnyPublisher<[Product], Error> {
-        let products: [Product] = dependencies.modelStorage.list().sorted()
+        let products: [Product] = dependencies.database.list().sorted()
         guard products.isEmpty else {
             return AnyPublisher(Result<[Product], Error>.success(products).publisher)
         }
@@ -25,7 +25,7 @@ struct GetProductListUseCase<Product: AnyProduct> {
             .tryMap { data -> [Product] in
                 let products = try decoder.decode([Product].self, from: data)
                 products.forEach {
-                    self.dependencies.modelStorage.set($0, id: $0.id)
+                    self.dependencies.database.set($0, id: $0.id)
                 }
                 return products.sorted()
             }

@@ -1,5 +1,5 @@
 //
-//  SettingsViewing.swift
+//  AnySettingsView.swift
 //  Domain
 //
 //  Created by Chris on 06/02/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol SettingsViewing: AnyObject {
+public protocol AnySettingsView: AnyObject {
     associatedtype Setting: AnySetting
     var settings: [Setting] { get set }
 }

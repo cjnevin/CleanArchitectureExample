@@ -1,5 +1,5 @@
 //
-//  ModelStorage.swift
+//  AnyDatabase.swift
 //  Domain
 //
 //  Created by Chris on 03/02/2020.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol ModelStorage {
+public protocol AnyDatabase {
     func get<Model>(id: String) -> Model
     func list<Model>() -> [Model]
     func set<Model>(_ object: Model, id: String)

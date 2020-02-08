@@ -9,12 +9,12 @@
 import Foundation
 
 struct GetSettingsUseCase {
-    let settingStorage: SettingStorage
+    let keyValues: AnyKeyValueStorage
 
     func get() -> StoredSettings {
         StoredSettings(
-            notifications: settingStorage.getSetting(key: "notifications", defaultValue: false),
-            location: settingStorage.getSetting(key: "location", defaultValue: false)
+            notifications: keyValues.getSetting(key: "notifications", defaultValue: false),
+            location: keyValues.getSetting(key: "location", defaultValue: false)
         )
     }
 }

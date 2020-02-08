@@ -9,9 +9,9 @@
 import Foundation
 
 struct DeleteProductUseCase<Product: AnyProduct> {
-    let modelStorage: ModelStorage
+    let database: AnyDatabase
 
     @discardableResult func delete(id: String) -> Product {
-        modelStorage.delete(id: id)
+        database.delete(id: id)
     }
 }

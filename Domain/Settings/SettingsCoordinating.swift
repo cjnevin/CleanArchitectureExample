@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias SettingsDependencies = SettingStorageHaving
+public typealias SettingsDependencies = KeyValueStorageHaving
 
 public protocol SettingsCoordinating {
     init(dependencies: SettingsDependencies)

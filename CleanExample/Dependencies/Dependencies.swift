@@ -9,8 +9,8 @@
 import Domain
 import Foundation
 
-class AllDependencies: Dependencies {
-    let settingStorage: SettingStorage = Settings()
-    let requestExecutor: RequestExecutor = API()
-    let modelStorage: ModelStorage = Database()
+class Dependencies: AnyDependencies {
+    let keyValues: AnyKeyValueStorage = Settings()
+    let requestExecutor: AnyRequestExecutor = API()
+    let database: AnyDatabase = Database()
 }

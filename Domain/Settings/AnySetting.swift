@@ -17,3 +17,8 @@ public protocol AnySetting {
 public enum SettingValue {
     case onOff(Bool, toggle: () -> Void)
 }
+
+struct StoredSettings {
+    var notifications: KeyValue<Bool>
+    var location: KeyValue<Bool>
+}

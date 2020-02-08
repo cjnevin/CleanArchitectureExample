@@ -8,15 +8,15 @@
 
 import Foundation
 
-public struct ProductPresenter<View: ProductViewing, Coordinator: ProductCoordinating>: Presenting {
+public struct ProductPresenter<View: AnyProductView, Coordinator: ProductCoordinating>: Presenting {
     let coordinator: Coordinator
     let getUseCase: GetProductUseCase<View.Product>
     let editUseCase: EditProductUseCase<View.Product>
 
-    public init(id: String, modelStorage: ModelStorage, coordinator: Coordinator) {
+    public init(id: String, database: AnyDatabase, coordinator: Coordinator) {
         self.coordinator = coordinator
-        self.getUseCase = GetProductUseCase(id: id, modelStorage: modelStorage)
-        self.editUseCase = EditProductUseCase(id: id, modelStorage: modelStorage)
+        self.getUseCase = GetProductUseCase(id: id, database: database)
+        self.editUseCase = EditProductUseCase(id: id, database: database)
     }
 
     public func attach(view: View) {

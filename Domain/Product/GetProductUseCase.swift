@@ -10,9 +10,9 @@ import Foundation
 
 struct GetProductUseCase<Product: AnyProduct> {
     let id: String
-    let modelStorage: ModelStorage
+    let database: AnyDatabase
 
     func get() -> Product {
-        modelStorage.get(id: id)
+        database.get(id: id)
     }
 }

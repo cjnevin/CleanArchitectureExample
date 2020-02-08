@@ -30,9 +30,9 @@ class ProductListCoordinator: UINavigationController, ProductListCoordinating {
         tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 0)
     }
 
-    func view(for product: Product, modelStorage: ModelStorage) -> ProductViewController {
+    func view(for product: Product, database: AnyDatabase) -> ProductViewController {
         let viewController = ProductViewController()
-        viewController.presenter = ProductPresenter<ProductViewController, ProductListCoordinator>(id: product.id, modelStorage: dependencies.modelStorage, coordinator: self)
+        viewController.presenter = ProductPresenter<ProductViewController, ProductListCoordinator>(id: product.id, database: dependencies.database, coordinator: self)
         return viewController
     }
 }

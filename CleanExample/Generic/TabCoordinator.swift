@@ -13,8 +13,8 @@ class TabCoordinator: UITabBarController, TabCoordinating {
     typealias ProductListCoordinator = CleanExample.ProductListCoordinator
     typealias SettingsCoordinator = CleanExample.SettingsCoordinator
 
-    var dependencies: Dependencies
-    required init(dependencies: Dependencies) {
+    var dependencies: AnyDependencies
+    required init(dependencies: AnyDependencies) {
         self.dependencies = dependencies
         super.init(nibName: nil, bundle: nil)
         view.backgroundColor = .white

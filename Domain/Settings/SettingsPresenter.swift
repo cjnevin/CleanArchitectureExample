@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class SettingsPresenter<View: SettingsViewing, Coordinator: SettingsCoordinating>: Presenting {
+public class SettingsPresenter<View: AnySettingsView, Coordinator: SettingsCoordinating>: Presenting {
     let coordinator: Coordinator
     let getSettingsUseCase: GetSettingsUseCase
     let editSettingsUseCase: EditSettingsUseCase
@@ -16,8 +16,8 @@ public class SettingsPresenter<View: SettingsViewing, Coordinator: SettingsCoord
 
     public init(coordinator: Coordinator) {
         self.coordinator = coordinator
-        self.getSettingsUseCase = GetSettingsUseCase(settingStorage: coordinator.dependencies.settingStorage)
-        self.editSettingsUseCase = EditSettingsUseCase(settingStorage: coordinator.dependencies.settingStorage)
+        self.getSettingsUseCase = GetSettingsUseCase(keyValues: coordinator.dependencies.keyValues)
+        self.editSettingsUseCase = EditSettingsUseCase(keyValues: coordinator.dependencies.keyValues)
     }
 
     public func attach(view: View) {

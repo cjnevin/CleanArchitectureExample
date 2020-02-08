@@ -10,7 +10,7 @@ import Foundation
 
 public protocol RootCoordinating {
     associatedtype TabCoordinator: TabCoordinating
-    var dependencies: Dependencies { get }
+    var dependencies: AnyDependencies { get }
     func start()
     func setRoot(_ any: Any)
 }

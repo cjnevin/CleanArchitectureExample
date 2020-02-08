@@ -9,7 +9,7 @@
 import Domain
 import UIKit
 
-class SettingsViewController: UITableViewController, SettingsViewing {
+class SettingsViewController: UITableViewController, AnySettingsView {
     var presenter: SettingsPresenter<SettingsViewController, SettingsCoordinator>?
 
     var settings: [Setting] = [] {

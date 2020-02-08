@@ -13,8 +13,8 @@ class TabCoordinator: TabCoordinating {
     typealias ProductListCoordinator = DomainTests.ProductListCoordinator
     typealias SettingsCoordinator = DomainTests.SettingsCoordinator
 
-    var dependencies: Dependencies
-    required init(dependencies: Dependencies) {
+    var dependencies: AnyDependencies
+    required init(dependencies: AnyDependencies) {
         self.dependencies = dependencies
     }
 

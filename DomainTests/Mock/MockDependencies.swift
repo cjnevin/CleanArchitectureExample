@@ -9,17 +9,17 @@
 import Domain
 import Foundation
 
-class MockDependencies: Dependencies {
-    let settingStorage: SettingStorage
-    let modelStorage: ModelStorage
-    let requestExecutor: RequestExecutor
+class MockDependencies: AnyDependencies {
+    let database: AnyDatabase
+    let keyValues: AnyKeyValueStorage
+    let requestExecutor: AnyRequestExecutor
 
-    init(settingStorage: SettingStorage = MockSettingsStorage(),
-         modelStorage: ModelStorage = MockDatabase(),
-         requestExecutor: RequestExecutor = MockRequestExecutor())
+    init(database: AnyDatabase = MockDatabase(),
+         keyValues: AnyKeyValueStorage = MockSettingsStorage(),
+         requestExecutor: AnyRequestExecutor = MockRequestExecutor())
     {
-        self.settingStorage = settingStorage
-        self.modelStorage = modelStorage
+        self.database = database
+        self.keyValues = keyValues
         self.requestExecutor = requestExecutor
     }
 }

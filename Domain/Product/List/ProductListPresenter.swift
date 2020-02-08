@@ -9,7 +9,7 @@
 import Combine
 import Foundation
 
-public class ProductListPresenter<View: ProductListViewing, Coordinator: ProductListCoordinating>: Presenting where Coordinator.Product == View.Product {
+public class ProductListPresenter<View: AnyProductListView, Coordinator: ProductListCoordinating>: Presenting where Coordinator.Product == View.Product {
     let refreshTrigger = PassthroughSubject<Void, Error>()
     var listStream: AnyCancellable?
     let deleteUseCase: DeleteProductUseCase<View.Product>
@@ -17,7 +17,7 @@ public class ProductListPresenter<View: ProductListViewing, Coordinator: Product
     let coordinator: Coordinator
 
     public init(coordinator: Coordinator) {
-        self.deleteUseCase = DeleteProductUseCase(modelStorage: coordinator.dependencies.modelStorage)
+        self.deleteUseCase = DeleteProductUseCase(database: coordinator.dependencies.database)
         self.listUseCase = GetProductListUseCase(dependencies: coordinator.dependencies)
         self.coordinator = coordinator
     }

@@ -13,9 +13,9 @@ class RootCoordinator: RootCoordinating {
     typealias TabCoordinator = CleanExample.TabCoordinator
 
     var window: UIWindow!
-    var dependencies: Dependencies
+    var dependencies: AnyDependencies
 
-    init(dependencies: Dependencies) {
+    init(dependencies: AnyDependencies) {
         self.dependencies = dependencies
     }
 

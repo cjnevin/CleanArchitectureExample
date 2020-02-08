@@ -11,16 +11,16 @@ import Foundation
 import XCTest
 
 class ProductPresenterTests: XCTestCase {
-    var modelStorage: MockDatabase!
+    var database: MockDatabase!
     var coordinator: ProductCoordinator!
     var presenter: ProductPresenter<ProductView, ProductCoordinator>!
     
     override func setUp() {
         super.setUp()
-        modelStorage = MockDatabase()
-        modelStorage.lookup["id"] = Product()
+        database = MockDatabase()
+        database.lookup["id"] = Product()
         coordinator = ProductCoordinator()
-        presenter = ProductPresenter(id: "id", modelStorage: modelStorage, coordinator: coordinator)
+        presenter = ProductPresenter(id: "id", database: database, coordinator: coordinator)
     }
     
     func testAttach() {
@@ -28,22 +28,22 @@ class ProductPresenterTests: XCTestCase {
         presenter.attach(view: view)
         XCTAssertNotNil(view.spyProduct)
         presenter.detach()
-        XCTAssertEqual(modelStorage.spyGetCount, 1)
+        XCTAssertEqual(database.spyGetCount, 1)
     }
 
     func testSave() {
         let view = ProductView()
         presenter.attach(view: view)
         XCTAssertNotNil(view.spyProduct)
-        XCTAssertEqual(modelStorage.spyGetCount, 1)
+        XCTAssertEqual(database.spyGetCount, 1)
 
-        XCTAssertEqual(modelStorage.spySetCount, 0)
+        XCTAssertEqual(database.spySetCount, 0)
         XCTAssertFalse(coordinator.spyReturnedToList)
         presenter.save(name: "new name")
-        XCTAssertEqual(modelStorage.spySetCount, 1)
+        XCTAssertEqual(database.spySetCount, 1)
         XCTAssertTrue(coordinator.spyReturnedToList)
 
-        let product: Product = modelStorage.get(id: "id")
+        let product: Product = database.get(id: "id")
         XCTAssertEqual(product.name, "new name")
     }
 }

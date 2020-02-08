@@ -12,8 +12,8 @@ import Foundation
 class RootCoordinator: RootCoordinating {
     typealias TabCoordinator = DomainTests.TabCoordinator
 
-    var dependencies: Dependencies
-    init(dependencies: Dependencies) {
+    var dependencies: AnyDependencies
+    init(dependencies: AnyDependencies) {
         self.dependencies = dependencies
     }
 

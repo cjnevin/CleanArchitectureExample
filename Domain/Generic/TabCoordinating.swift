@@ -11,8 +11,8 @@ import Foundation
 public protocol TabCoordinating {
     associatedtype ProductListCoordinator: ProductListCoordinating
     associatedtype SettingsCoordinator: SettingsCoordinating
-    var dependencies: Dependencies { get }
-    init(dependencies: Dependencies)
+    var dependencies: AnyDependencies { get }
+    init(dependencies: AnyDependencies)
     func start()
     func addTab(_ any: Any)
     func showTab<T>(_ type: T.Type)

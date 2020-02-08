@@ -9,7 +9,7 @@
 import Domain
 import Foundation
 
-class MockSettingsStorage: SettingStorage {
+class MockSettingsStorage: AnyKeyValueStorage {
     var lookup: [String: Any] = [:]
 
     var spyGetCount: Int = 0
@@ -33,7 +33,7 @@ class SettingsCoordinator: SettingsCoordinating {
     }
 }
 
-final class SettingsView: SettingsViewing {
+final class SettingsView: AnySettingsView {
     struct Setting: AnySetting {
         let name: String
         let value: SettingValue

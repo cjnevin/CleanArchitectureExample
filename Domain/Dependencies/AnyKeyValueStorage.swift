@@ -1,5 +1,5 @@
 //
-//  SettingStorage.swift
+//  AnyKeyValueStorage.swift
 //  Domain
 //
 //  Created by Chris on 05/02/2020.
@@ -8,30 +8,25 @@
 
 import Foundation
 
-public protocol SettingStorage {
+public protocol AnyKeyValueStorage {
     func get<Value>(key: String, defaultValue: Value) -> Value
     func set<Value>(_ object: Value, key: String)
 }
 
 // MARK: - Internal
 
-extension SettingStorage {
-    func getSetting<Value>(key: String, defaultValue: Value) -> StoredSetting<Value> {
+extension AnyKeyValueStorage {
+    func getSetting<Value>(key: String, defaultValue: Value) -> KeyValue<Value> {
         let value = get(key: key, defaultValue: defaultValue)
-        return StoredSetting(key: key, value: value)
+        return KeyValue(key: key, value: value)
     }
 
-    func setSetting<Value>(_ setting: StoredSetting<Value>) {
+    func setSetting<Value>(_ setting: KeyValue<Value>) {
         set(setting.value, key: setting.key)
     }
 }
 
-struct StoredSetting<Value> {
+struct KeyValue<Value> {
     let key: String
     var value: Value
-}
-
-struct StoredSettings {
-    var notifications: StoredSetting<Bool>
-    var location: StoredSetting<Bool>
 }

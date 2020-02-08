@@ -9,10 +9,10 @@
 import Foundation
 
 struct EditSettingsUseCase {
-    let settingStorage: SettingStorage
+    let keyValues: AnyKeyValueStorage
 
     func edit(settings: StoredSettings) {
-        settingStorage.setSetting(settings.notifications)
-        settingStorage.setSetting(settings.location)
+        keyValues.setSetting(settings.notifications)
+        keyValues.setSetting(settings.location)
     }
 }

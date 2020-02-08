@@ -10,7 +10,7 @@ import Combine
 import Domain
 import Foundation
 
-class API: RequestExecutor {
+class API: AnyRequestExecutor {
     func execute(request: URLRequest) -> AnyPublisher<Data, Error> {
         let exampleResponse = """
 [

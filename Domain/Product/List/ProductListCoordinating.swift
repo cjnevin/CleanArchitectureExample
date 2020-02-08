@@ -8,18 +8,18 @@
 
 import Foundation
 
-public typealias ProductListDependencies = ModelStorageHaving & RequestExecutorHaving
+public typealias ProductListDependencies = DatabaseHaving & RequestExecutorHaving
 
 public protocol ProductListCoordinating: PushCoordinating, ProductCoordinating {
-    associatedtype ProductView: ProductViewing
+    associatedtype ProductView: AnyProductView
     associatedtype Product: AnyProduct
     init(dependencies: ProductListDependencies)
     var dependencies: ProductListDependencies { get }
-    func view(for product: Product, modelStorage: ModelStorage) -> ProductView
+    func view(for product: Product, database: AnyDatabase) -> ProductView
 }
 
 extension ProductListCoordinating {
     func selectedProduct(_ product: Product) {
-        push(view(for: product, modelStorage: dependencies.modelStorage))
+        push(view(for: product, database: dependencies.database))
     }
 }
