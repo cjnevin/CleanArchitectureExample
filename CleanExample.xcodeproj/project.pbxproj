@@ -17,9 +17,9 @@
 		8376540223E88A64001D4B5D /* AnyRootCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376540123E88A64001D4B5D /* AnyRootCoordinator.swift */; };
 		8376540423E88A71001D4B5D /* AnyPopCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376540323E88A71001D4B5D /* AnyPopCoordinator.swift */; };
 		8376540623E88A77001D4B5D /* AnyPushCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376540523E88A77001D4B5D /* AnyPushCoordinator.swift */; };
-		8376540823E88DDD001D4B5D /* PushCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376540723E88DDD001D4B5D /* PushCoordinator.swift */; };
+		8376540823E88DDD001D4B5D /* UINavigationController+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376540723E88DDD001D4B5D /* UINavigationController+Push.swift */; };
 		8376540A23E8901B001D4B5D /* RootCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376540923E8901B001D4B5D /* RootCoordinatorTests.swift */; };
-		8376540D23E97640001D4B5D /* PopCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376540C23E97640001D4B5D /* PopCoordinator.swift */; };
+		8376540D23E97640001D4B5D /* UINavigationController+Pop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376540C23E97640001D4B5D /* UINavigationController+Pop.swift */; };
 		8376541223E99F40001D4B5D /* AnyAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376541123E99F40001D4B5D /* AnyAPI.swift */; };
 		8376541A23E9A7A1001D4B5D /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376541923E9A7A1001D4B5D /* Dependencies.swift */; };
 		8376541C23E9AB51001D4B5D /* MockDependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8376541B23E9AB51001D4B5D /* MockDependencies.swift */; };
@@ -150,9 +150,9 @@
 		8376540123E88A64001D4B5D /* AnyRootCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyRootCoordinator.swift; sourceTree = "<group>"; };
 		8376540323E88A71001D4B5D /* AnyPopCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyPopCoordinator.swift; sourceTree = "<group>"; };
 		8376540523E88A77001D4B5D /* AnyPushCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyPushCoordinator.swift; sourceTree = "<group>"; };
-		8376540723E88DDD001D4B5D /* PushCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushCoordinator.swift; sourceTree = "<group>"; };
+		8376540723E88DDD001D4B5D /* UINavigationController+Push.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Push.swift"; sourceTree = "<group>"; };
 		8376540923E8901B001D4B5D /* RootCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootCoordinatorTests.swift; sourceTree = "<group>"; };
-		8376540C23E97640001D4B5D /* PopCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCoordinator.swift; sourceTree = "<group>"; };
+		8376540C23E97640001D4B5D /* UINavigationController+Pop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Pop.swift"; sourceTree = "<group>"; };
 		8376541123E99F40001D4B5D /* AnyAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyAPI.swift; sourceTree = "<group>"; };
 		8376541923E9A7A1001D4B5D /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
 		8376541B23E9AB51001D4B5D /* MockDependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDependencies.swift; sourceTree = "<group>"; };
@@ -268,9 +268,9 @@
 			isa = PBXGroup;
 			children = (
 				837653F223E866B5001D4B5D /* RootCoordinator.swift */,
-				8376540C23E97640001D4B5D /* PopCoordinator.swift */,
-				8376540723E88DDD001D4B5D /* PushCoordinator.swift */,
 				8376544A23EB132D001D4B5D /* TabCoordinator.swift */,
+				8376540C23E97640001D4B5D /* UINavigationController+Pop.swift */,
+				8376540723E88DDD001D4B5D /* UINavigationController+Push.swift */,
 			);
 			path = Generic;
 			sourceTree = "<group>";
@@ -684,13 +684,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				8376541A23E9A7A1001D4B5D /* Dependencies.swift in Sources */,
-				8376540823E88DDD001D4B5D /* PushCoordinator.swift in Sources */,
+				8376540823E88DDD001D4B5D /* UINavigationController+Push.swift in Sources */,
 				8378081123EEC92200A6580F /* LocationService.swift in Sources */,
 				FEEBF05A23E7CC8F009DFEDA /* ProductListViewController.swift in Sources */,
 				8376544B23EB132D001D4B5D /* TabCoordinator.swift in Sources */,
 				8378082623EEDAD800A6580F /* NotificationsCoordinator.swift in Sources */,
 				8376545623EB1DA1001D4B5D /* Settings.swift in Sources */,
-				8376540D23E97640001D4B5D /* PopCoordinator.swift in Sources */,
+				8376540D23E97640001D4B5D /* UINavigationController+Pop.swift in Sources */,
 				837653F323E866B5001D4B5D /* RootCoordinator.swift in Sources */,
 				8378080F23EEC80E00A6580F /* MapViewController.swift in Sources */,
 				8376545B23EB1EC2001D4B5D /* SettingsViewController.swift in Sources */,

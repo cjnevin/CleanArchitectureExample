@@ -49,6 +49,15 @@ class SettingsPresenterTests: XCTestCase {
         XCTAssertEqual(keyValues.spySetCount, 4)
         XCTAssertTrue(keyValues.get(key: "location", defaultValue: false))
         XCTAssertTrue(keyValues.get(key: "notifications", defaultValue: false))
+        view.settings.forEach { item in
+            switch item.value {
+            case .action: break
+            case let .onOff(_, toggle): toggle()
+            }
+        }
+        XCTAssertEqual(keyValues.spySetCount, 8)
+        XCTAssertFalse(keyValues.get(key: "location", defaultValue: false))
+        XCTAssertFalse(keyValues.get(key: "notifications", defaultValue: false))
     }
 
     func testRemoveAndAddProductList() {
