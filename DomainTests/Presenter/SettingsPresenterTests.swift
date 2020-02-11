@@ -23,6 +23,7 @@ class SettingsPresenterTests: XCTestCase {
         tabCoordinator = TabCoordinator(dependencies: dependencies)
         coordinator = SettingsCoordinator(dependencies: dependencies, tabCoordinator: tabCoordinator)
         presenter = SettingsPresenter(coordinator: coordinator, tabCoordinator: tabCoordinator)
+        tabCoordinator.start()
     }
 
     func testAttachAndDetach() {
@@ -37,9 +38,10 @@ class SettingsPresenterTests: XCTestCase {
     func testModifySettings() {
         let view = SettingsView()
         presenter.attach(view: view)
-        XCTAssertEqual(keyValues.spyGetCount, 2)
+        XCTAssertEqual(keyValues.spyGetCount, 4)
         XCTAssertFalse(keyValues.get(key: "location", defaultValue: false))
         XCTAssertFalse(keyValues.get(key: "notifications", defaultValue: false))
+        XCTAssertEqual(tabCoordinator.spyTabs.count, 2)
         view.settings.forEach { item in
             switch item.value {
             case .action: break
@@ -49,6 +51,7 @@ class SettingsPresenterTests: XCTestCase {
         XCTAssertEqual(keyValues.spySetCount, 4)
         XCTAssertTrue(keyValues.get(key: "location", defaultValue: false))
         XCTAssertTrue(keyValues.get(key: "notifications", defaultValue: false))
+        XCTAssertEqual(tabCoordinator.spyTabs.count, 4)
         view.settings.forEach { item in
             switch item.value {
             case .action: break
@@ -58,19 +61,13 @@ class SettingsPresenterTests: XCTestCase {
         XCTAssertEqual(keyValues.spySetCount, 8)
         XCTAssertFalse(keyValues.get(key: "location", defaultValue: false))
         XCTAssertFalse(keyValues.get(key: "notifications", defaultValue: false))
+        XCTAssertEqual(tabCoordinator.spyTabs.count, 2)
     }
 
     func testRemoveAndAddProductList() {
         // Note: TabCoordinator contains no tabs because start() is not called
         let view = SettingsView()
         presenter.attach(view: view)
-        XCTAssertNil(tabCoordinator.index(of: TabCoordinator.ProductListCoordinator.self))
-        view.settings.forEach { item in
-            switch item.value {
-            case let .action(action): action()
-            case .onOff: break
-            }
-        }
         XCTAssertNotNil(tabCoordinator.index(of: TabCoordinator.ProductListCoordinator.self))
         view.settings.forEach { item in
             switch item.value {
@@ -79,5 +76,12 @@ class SettingsPresenterTests: XCTestCase {
             }
         }
         XCTAssertNil(tabCoordinator.index(of: TabCoordinator.ProductListCoordinator.self))
+        view.settings.forEach { item in
+            switch item.value {
+            case let .action(action): action()
+            case .onOff: break
+            }
+        }
+        XCTAssertNotNil(tabCoordinator.index(of: TabCoordinator.ProductListCoordinator.self))
     }
 }

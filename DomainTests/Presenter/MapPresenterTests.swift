@@ -31,5 +31,7 @@ class MapPresenterTests: XCTestCase {
         presenter.attach(view: view)
         XCTAssertNotNil(view.spyLocation)
         presenter.detach()
+        
+        locationService.disableLocationService()
     }
 }

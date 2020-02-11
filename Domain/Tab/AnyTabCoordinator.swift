@@ -27,7 +27,6 @@ public protocol AnyTabCoordinator: AnyObject {
 
 extension AnyTabCoordinator {
     public func start() {
-        cancellables.forEach { $0.cancel() }
         cancellables = TabStartUseCase(dependencies: dependencies, tabCoordinator: self).start()
     }
 
