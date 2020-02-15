@@ -11,9 +11,6 @@ import Common
 
 class TabCoordinator: AnyTabCoordinator {
     typealias ProductListCoordinator = DomainTests.ProductListCoordinator
-    typealias SettingsCoordinator = DomainTests.SettingsCoordinator
-    typealias MapCoordinator = DomainTests.MapCoordinator
-    typealias NotificationsCoordinator = DomainTests.NotificationsCoordinator
 
     var dependencies: AnyDependencies
     var cancellables: [AnyCancellable] = []

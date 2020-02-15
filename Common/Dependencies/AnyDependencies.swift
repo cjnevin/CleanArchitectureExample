@@ -16,16 +16,4 @@ public protocol DatabaseHaving {
     var database: AnyDatabase { get }
 }
 
-public protocol KeyValueStorageHaving {
-    var keyValues: AnyKeyValueStore { get }
-}
-
-public protocol LocationServiceHaving {
-    var location: AnyLocationService { get }
-}
-
-public protocol NotificationServiceHaving {
-    var notification: AnyNotificationService { get }
-}
-
-public protocol AnyDependencies: APIHaving, DatabaseHaving, KeyValueStorageHaving, LocationServiceHaving, NotificationServiceHaving { }
+public protocol AnyDependencies: APIHaving, DatabaseHaving { }

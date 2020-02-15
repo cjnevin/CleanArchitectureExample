@@ -12,9 +12,6 @@ import UIKit
 
 class TabCoordinator: UITabBarController, AnyTabCoordinator {
     typealias ProductListCoordinator = CleanExample.ProductListCoordinator
-    typealias MapCoordinator = CleanExample.MapCoordinator
-    typealias NotificationsCoordinator = CleanExample.NotificationsCoordinator
-    typealias SettingsCoordinator = CleanExample.SettingsCoordinator
 
     var dependencies: AnyDependencies
     var cancellables: [AnyCancellable] = []

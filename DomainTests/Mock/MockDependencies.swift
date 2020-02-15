@@ -11,20 +11,11 @@ import Common
 class MockDependencies: AnyDependencies {
     let api: AnyAPI
     let database: AnyDatabase
-    let keyValues: AnyKeyValueStore
-    let location: AnyLocationService
-    let notification: AnyNotificationService
 
     init(api: AnyAPI = MockRequestExecutor(),
-         database: AnyDatabase = MockDatabase(),
-         keyValues: AnyKeyValueStore = MockSettingsStorage(),
-         location: AnyLocationService = MockLocationService(),
-         notification: AnyNotificationService = MockNotificationService())
+         database: AnyDatabase = MockDatabase())
     {
         self.api = api
         self.database = database
-        self.keyValues = keyValues
-        self.location = location
-        self.notification = notification
     }
 }

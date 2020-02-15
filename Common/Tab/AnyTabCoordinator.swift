@@ -11,9 +11,6 @@ import Foundation
 
 public protocol AnyTabCoordinator: AnyObject {
     associatedtype ProductListCoordinator: AnyProductListCoordinator
-    associatedtype MapCoordinator: AnyMapCoordinator
-    associatedtype NotificationsCoordinator: AnyNotificationsCoordinator
-    associatedtype SettingsCoordinator: AnySettingsCoordinator
     var dependencies: AnyDependencies { get }
     var cancellables: [AnyCancellable] { get set }
     init(dependencies: AnyDependencies)

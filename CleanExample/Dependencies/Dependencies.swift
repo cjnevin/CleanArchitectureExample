@@ -11,7 +11,4 @@ import Common
 class Dependencies: AnyDependencies {
     let api: AnyAPI = API()
     let database: AnyDatabase = Database()
-    let keyValues: AnyKeyValueStore = Settings()
-    let location: AnyLocationService = LocationService()
-    let notification: AnyNotificationService = NotificationService()
 }
