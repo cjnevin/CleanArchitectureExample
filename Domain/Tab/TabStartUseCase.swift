@@ -14,7 +14,10 @@ struct TabStartUseCase<TabCoordinator: AnyTabCoordinator> {
     let tabCoordinator: TabCoordinator
 
     func start() -> [AnyCancellable] {
-        tabCoordinator.addTab(TabCoordinator.ProductListCoordinator(dependencies: dependencies))
+        if tabCoordinator.hasProductList {
+            tabCoordinator.removeProductList()
+        }
+        tabCoordinator.insertProductList()
         return []
     }
 }
@@ -23,7 +26,7 @@ extension AnyTabCoordinator {
     public func start() {
         cancellables = TabStartUseCase(dependencies: dependencies, tabCoordinator: self).start()
     }
-    
+
     func insertProductList() {
         insertTab(ProductListCoordinator(dependencies: dependencies), at: 0)
     }

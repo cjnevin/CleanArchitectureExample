@@ -23,4 +23,12 @@ class TabCoordinatorTests: XCTestCase {
         XCTAssertEqual(coordinator.spyTabs.count, 1)
         XCTAssertNotNil(coordinator.spyTabs.first as? ProductListCoordinator)
     }
+
+    func testStartMultipleTimesDoesNotAddMultipleProducts() {
+        coordinator!.start()
+        coordinator!.start()
+        coordinator!.start()
+        XCTAssertEqual(coordinator.spyTabs.count, 1)
+        XCTAssertNotNil(coordinator.spyTabs.first as? ProductListCoordinator)
+    }
 }
