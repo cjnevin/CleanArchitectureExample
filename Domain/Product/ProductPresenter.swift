@@ -8,18 +8,18 @@
 
 import Common
 
-public struct ProductPresenter<View: AnyProductView, Coordinator: AnyProductCoordinator>: AnyPresenter {
-    let coordinator: Coordinator
-    let getUseCase: GetProductUseCase<View.Product>
-    let editUseCase: EditProductUseCase<View.Product>
+public struct ProductPresenter<Product: AnyProduct>: AnyProductPresenter {
+    let pop: () -> Void
+    let getUseCase: GetProductUseCase<Product>
+    let editUseCase: EditProductUseCase<Product>
 
-    public init(id: String, database: AnyDatabase, coordinator: Coordinator) {
-        self.coordinator = coordinator
+    public init<Coordinator: AnyProductCoordinator>(id: String, database: AnyDatabase, coordinator: Coordinator) {
+        self.pop = coordinator.pop
         self.getUseCase = GetProductUseCase(id: id, database: database)
         self.editUseCase = EditProductUseCase(id: id, database: database)
     }
 
-    public func attach(view: View) {
+    public func attach<View: AnyProductView>(view: View) where View.Presenter.Product == Product {
         view.setProduct(getUseCase.get())
     }
 
@@ -29,6 +29,6 @@ public struct ProductPresenter<View: AnyProductView, Coordinator: AnyProductCoor
 
     public func save(name: String) {
         editUseCase.edit(name: name)
-        coordinator.pop()
+        pop()
     }
 }

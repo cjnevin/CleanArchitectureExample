@@ -9,6 +9,7 @@
 import Foundation
 
 public protocol AnyProductView {
-    associatedtype Product: AnyProduct
-    func setProduct(_ product: Product)
+    associatedtype Presenter: AnyProductPresenter
+    var presenter: Presenter? { get set }
+    func setProduct(_ product: Presenter.Product)
 }

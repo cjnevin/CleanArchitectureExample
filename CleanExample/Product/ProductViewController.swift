@@ -7,12 +7,11 @@
 //
 
 import Common
-import Domain
 import UIKit
 
-class ProductViewController: UIViewController, AnyProductView {
+class ProductViewController<Presenter: AnyProductPresenter>: UIViewController, AnyProductView where Presenter.Product == Product {
     let textField = UITextField()
-    var presenter: ProductPresenter<ProductViewController, ProductListCoordinator>?
+    var presenter: Presenter?
 
     override func viewDidLoad() {
         super.viewDidLoad()

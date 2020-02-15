@@ -31,9 +31,9 @@ class ProductListCoordinator: UINavigationController, AnyProductListCoordinator 
         tabBarItem = UITabBarItem(title: "Consoles", image: UIImage(systemName: "gamecontroller.fill"), tag: 0)
     }
 
-    func view(for product: Product, database: AnyDatabase) -> ProductViewController {
-        let viewController = ProductViewController()
-        viewController.presenter = ProductPresenter<ProductViewController, ProductListCoordinator>(id: product.id, database: dependencies.database, coordinator: self)
+    func view(for product: Product, database: AnyDatabase) -> ProductViewController<ProductPresenter<Product>> {
+        let viewController = ProductViewController<ProductPresenter<Product>>()
+        viewController.presenter = ProductPresenter<Product>(id: product.id, database: dependencies.database, coordinator: self)
         return viewController
     }
 }
