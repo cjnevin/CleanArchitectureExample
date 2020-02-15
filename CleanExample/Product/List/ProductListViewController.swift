@@ -7,12 +7,11 @@
 //
 
 import Common
-import Domain
 import UIKit
 
-class ProductListViewController: UITableViewController, AnyProductListView {
+class ProductListViewController<Presenter: AnyProductListPresenter>: UITableViewController, UISearchResultsUpdating, AnyProductListView where Presenter.Product == Product {
     let searchController = UISearchController(searchResultsController: nil)
-    var presenter: ProductListPresenter<ProductListViewController, ProductListCoordinator>?
+    var presenter: Presenter?
 
     var productsUnavailable: Bool = false {
         didSet {
@@ -81,9 +80,7 @@ class ProductListViewController: UITableViewController, AnyProductListView {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter?.selected(product: sections[indexPath.section].items[indexPath.row])
     }
-}
 
-extension ProductListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         presenter?.search(query: searchController.searchBar.text ?? "")
     }

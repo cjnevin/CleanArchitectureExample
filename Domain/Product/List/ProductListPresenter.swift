@@ -9,20 +9,20 @@
 import Combine
 import Common
 
-public class ProductListPresenter<View: AnyProductListView, Coordinator: AnyProductListCoordinator>: AnyPresenter where Coordinator.Product == View.Product {
+public class ProductListPresenter<Product: AnyProduct>: AnyProductListPresenter {
     let searchTrigger = CurrentValueSubject<String, Error>("")
     var listStream: AnyCancellable?
-    let deleteUseCase: DeleteProductUseCase<View.Product>
-    let searchUseCase: SearchProductListUseCase<View.Product>
-    let coordinator: Coordinator
+    let deleteUseCase: DeleteProductUseCase<Product>
+    let searchUseCase: SearchProductListUseCase<Product>
+    let selectedProduct: (Product) -> Void
 
-    public init(coordinator: Coordinator) {
+    public init<Coordinator: AnyProductListCoordinator>(coordinator: Coordinator) where Coordinator.Product == Product {
         self.deleteUseCase = DeleteProductUseCase(database: coordinator.dependencies.database)
         self.searchUseCase = SearchProductListUseCase(listUseCase: GetProductListUseCase(dependencies: coordinator.dependencies))
-        self.coordinator = coordinator
+        self.selectedProduct = coordinator.selectedProduct
     }
 
-    public func attach(view: View) {
+    public func attach<View: AnyProductListView>(view: View) where View.Presenter.Product == Product {
         view.productsUnavailable = false
         view.sections = []
         listStream?.cancel()
@@ -47,13 +47,13 @@ public class ProductListPresenter<View: AnyProductListView, Coordinator: AnyProd
         searchTrigger.send(query)
     }
 
-    public func deleted(product: View.Product) {
+    public func deleted(product: Product) {
         deleteUseCase.delete(id: product.id)
         searchTrigger.send(searchTrigger.value)
     }
 
-    public func selected(product: View.Product) {
-        coordinator.selectedProduct(product)
+    public func selected(product: Product) {
+        selectedProduct(product)
     }
 }
 

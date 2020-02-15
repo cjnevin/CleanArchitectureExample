@@ -9,7 +9,8 @@
 import Foundation
 
 public protocol AnyProductListView: AnyObject {
-    associatedtype Product: AnyProduct
-    var sections: [Section<Product>] { get set }
+    associatedtype Presenter: AnyProductListPresenter
+    var presenter: Presenter? { get set }
+    var sections: [Section<Presenter.Product>] { get set }
     var productsUnavailable: Bool { get set }
 }

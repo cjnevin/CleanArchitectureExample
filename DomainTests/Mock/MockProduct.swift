@@ -32,6 +32,7 @@ class ProductListCoordinator: AnyProductListCoordinator {
 }
 
 final class ProductListView: AnyProductListView {
+    var presenter: ProductListPresenter<Product>?
     var productsUnavailable: Bool = false
     var sections: [Section<Product>] = []
 }

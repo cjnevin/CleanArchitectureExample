@@ -15,7 +15,7 @@ class ProductListPresenterTests: XCTestCase {
     var api: MockRequestExecutor!
     var database: MockDatabase!
     var coordinator: ProductListCoordinator!
-    var presenter: ProductListPresenter<ProductListView, ProductListCoordinator>!
+    var presenter: ProductListPresenter<Product>!
     
     override func setUp() {
         super.setUp()

@@ -15,7 +15,7 @@ class ProductListCoordinator: UINavigationController, AnyProductListCoordinator 
 
     required init(dependencies: ProductListDependencies) {
         self.dependencies = dependencies
-        let viewController = ProductListViewController()
+        let viewController = ProductListViewController<ProductListPresenter<Product>>()
         super.init(rootViewController: viewController)
         viewController.presenter = ProductListPresenter(coordinator: self)
     }
