@@ -13,7 +13,7 @@ import XCTest
 class ProductPresenterTests: XCTestCase {
     var database: MockDatabase!
     var coordinator: ProductCoordinator!
-    var presenter: ProductPresenter<ProductView, ProductCoordinator>!
+    var presenter: ProductPresenter<Product>!
     
     override func setUp() {
         super.setUp()

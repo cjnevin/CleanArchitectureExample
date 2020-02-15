@@ -7,6 +7,7 @@
 //
 
 import Common
+import Domain
 
 struct Product: AnyProduct {
     var id: String = "id"
@@ -36,6 +37,8 @@ final class ProductListView: AnyProductListView {
 }
 
 final class ProductView: AnyProductView {
+    var presenter: ProductPresenter<Product>?
+
     var spyProduct: Product?
 
     func setProduct(_ product: Product) {
