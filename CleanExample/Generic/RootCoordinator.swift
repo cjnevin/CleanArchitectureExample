@@ -6,7 +6,7 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
-import Domain
+import Common
 import UIKit
 
 class RootCoordinator: AnyRootCoordinator {

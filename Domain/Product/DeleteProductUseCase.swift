@@ -6,7 +6,7 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
-import Foundation
+import Common
 
 struct DeleteProductUseCase<Product: AnyProduct> {
     let database: AnyDatabase

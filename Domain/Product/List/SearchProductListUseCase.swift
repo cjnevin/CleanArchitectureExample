@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Foundation
+import Common
 
 struct SearchProductListUseCase<Product: AnyProduct> {
     let listUseCase: GetProductListUseCase<Product>

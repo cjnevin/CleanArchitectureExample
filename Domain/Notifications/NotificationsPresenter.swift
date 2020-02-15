@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Foundation
+import Common
 
 public class NotificationsPresenter<View: AnyNotificationsView, Coordinator: AnyNotificationsCoordinator>: AnyPresenter {
     let getUseCase: GetNotificationsUseCase

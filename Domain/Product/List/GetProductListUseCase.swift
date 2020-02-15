@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Foundation
+import Common
 
 struct GetProductListUseCase<Product: AnyProduct> {
     let dependencies: DatabaseHaving & APIHaving

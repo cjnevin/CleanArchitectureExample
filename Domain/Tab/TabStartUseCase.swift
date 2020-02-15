@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Foundation
+import Common
 
 struct TabStartUseCase<TabCoordinator: AnyTabCoordinator> {
     let dependencies: AnyDependencies
@@ -29,5 +29,50 @@ struct TabStartUseCase<TabCoordinator: AnyTabCoordinator> {
             StoreNotificationsUseCase(dependencies: dependencies).continuously(),
             InsertMapTabUseCase(dependencies: dependencies, tabCoordinator: tabCoordinator).watch()
         ]
+    }
+}
+
+extension AnyTabCoordinator {
+    public func start() {
+        cancellables = TabStartUseCase(dependencies: dependencies, tabCoordinator: self).start()
+    }
+    
+    func insertNotifications() {
+        insertTab(NotificationsCoordinator(dependencies: dependencies), at: hasProductList ? 1 : 0)
+    }
+
+    var hasNotifications: Bool {
+        index(of: NotificationsCoordinator.self) != nil
+    }
+
+    func removeNotifications() {
+        removeTab(NotificationsCoordinator.self)
+    }
+
+    func insertMap() {
+        var index = 0
+        if hasProductList { index += 1 }
+        if hasNotifications { index += 1 }
+        insertTab(MapCoordinator(dependencies: dependencies), at: index)
+    }
+
+    var hasMap: Bool {
+        index(of: MapCoordinator.self) != nil
+    }
+
+    func removeMap() {
+        removeTab(MapCoordinator.self)
+    }
+
+    func insertProductList() {
+        insertTab(ProductListCoordinator(dependencies: dependencies), at: 0)
+    }
+
+    var hasProductList: Bool {
+        index(of: ProductListCoordinator.self) != nil
+    }
+
+    func removeProductList() {
+        removeTab(ProductListCoordinator.self)
     }
 }

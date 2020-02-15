@@ -7,9 +7,9 @@
 //
 
 import Combine
-import Foundation
+import Common
 
-public class SettingsPresenter<View: AnySettingsView, Coordinator: SettingsCoordinating, TabCoordinator: AnyTabCoordinator>: AnyPresenter {
+public class SettingsPresenter<View: AnySettingsView, Coordinator: AnySettingsCoordinator, TabCoordinator: AnyTabCoordinator>: AnyPresenter {
     let coordinator: Coordinator
     let tabCoordinator: TabCoordinator
     let getSettingsUseCase: GetSettingsUseCase

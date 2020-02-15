@@ -6,7 +6,7 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
-import Domain
+import Common
 import Foundation
 
 // This example object looks like a Realm one by using dynamic dispatch to prove the concept is sound.

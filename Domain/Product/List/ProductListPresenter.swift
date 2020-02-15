@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Foundation
+import Common
 
 public class ProductListPresenter<View: AnyProductListView, Coordinator: AnyProductListCoordinator>: AnyPresenter where Coordinator.Product == View.Product {
     let searchTrigger = CurrentValueSubject<String, Error>("")
@@ -54,5 +54,19 @@ public class ProductListPresenter<View: AnyProductListView, Coordinator: AnyProd
 
     public func selected(product: View.Product) {
         coordinator.selectedProduct(product)
+    }
+}
+
+extension AnyProductListCoordinator {
+    func selectedProduct(_ product: Product) {
+        push(view(for: product, database: dependencies.database))
+    }
+}
+
+extension Sequence where Element: AnyProduct {
+    var sections: [Section<Element>] {
+        Set(map { String($0.name.prefix(1)) })
+            .sorted()
+            .map { title in Section(name: title, items: filter { $0.name.hasPrefix(title) }.sorted()) }
     }
 }

@@ -7,8 +7,7 @@
 //
 
 import Combine
-import Domain
-import Foundation
+import Common
 
 class Database: AnyDatabase {
     var values = CurrentValueSubject<[String: Any], Error>([:])

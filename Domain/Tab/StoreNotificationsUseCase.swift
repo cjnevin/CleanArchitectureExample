@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Foundation
+import Common
 
 struct StoreNotificationsUseCase {
     let dependencies: DatabaseHaving & NotificationServiceHaving

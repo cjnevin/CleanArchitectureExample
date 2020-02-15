@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Foundation
+import Common
 
 public class MapPresenter<View: AnyMapView, Coordinator: AnyMapCoordinator>: AnyPresenter {
     let updatedLocationUseCase: UpdatedLocationUseCase

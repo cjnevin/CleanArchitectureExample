@@ -8,7 +8,7 @@
 
 import Combine
 import Domain
-import Foundation
+import Common
 
 class API: AnyAPI {
     func execute(request: URLRequest) -> AnyPublisher<Data, Error> {

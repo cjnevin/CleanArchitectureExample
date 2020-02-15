@@ -1,19 +1,17 @@
 //
-//  AnyKeyValueStore.swift
+//  StoredSettings.swift
 //  Domain
 //
-//  Created by Chris on 05/02/2020.
+//  Created by Chris on 15/02/2020.
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
-import Foundation
+import Common
 
-public protocol AnyKeyValueStore {
-    func get<Value>(key: String, defaultValue: Value) -> Value
-    func set<Value>(_ object: Value, key: String)
+struct StoredSettings {
+    var notifications: KeyValue<Bool>
+    var location: KeyValue<Bool>
 }
-
-// MARK: - Internal
 
 extension AnyKeyValueStore {
     func getSetting<Value>(key: String, defaultValue: Value) -> KeyValue<Value> {

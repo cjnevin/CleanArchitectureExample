@@ -6,12 +6,12 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
-import Foundation
+import Common
 
 struct DropNotificationsUseCase {
     let database: AnyDatabase
 
     func drop() {
-        database.drop(type: Notification.self)
+        database.drop(type: Common.Notification.self)
     }
 }

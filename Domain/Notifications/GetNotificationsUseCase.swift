@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Foundation
+import Common
 
 struct GetNotificationsUseCase {
     let database: AnyDatabase
@@ -15,7 +15,7 @@ struct GetNotificationsUseCase {
         self.database = database
     }
 
-    func list() -> AnyPublisher<[Notification], Error> {
+    func list() -> AnyPublisher<[Common.Notification], Error> {
         database.list().map { $0.sorted() }.eraseToAnyPublisher()
     }
 }

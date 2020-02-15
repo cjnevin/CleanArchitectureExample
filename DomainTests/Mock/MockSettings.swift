@@ -26,7 +26,7 @@ class MockSettingsStorage: AnyKeyValueStore {
     }
 }
 
-class SettingsCoordinator: SettingsCoordinating {
+class SettingsCoordinator: AnySettingsCoordinator {
     var dependencies: SettingsDependencies
     required init<TabCoordinator: AnyTabCoordinator>(dependencies: SettingsDependencies, tabCoordinator: TabCoordinator) {
         self.dependencies = dependencies

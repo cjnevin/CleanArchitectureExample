@@ -10,7 +10,7 @@ import Foundation
 
 public typealias SettingsDependencies = KeyValueStorageHaving & LocationServiceHaving & NotificationServiceHaving & DatabaseHaving
 
-public protocol SettingsCoordinating {
+public protocol AnySettingsCoordinator {
     init<TabCoordinator: AnyTabCoordinator>(dependencies: SettingsDependencies, tabCoordinator: TabCoordinator)
     var dependencies: SettingsDependencies { get }
 }

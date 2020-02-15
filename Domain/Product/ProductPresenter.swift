@@ -6,7 +6,7 @@
 //  Copyright © 2020 cjnevin. All rights reserved.
 //
 
-import Foundation
+import Common
 
 public struct ProductPresenter<View: AnyProductView, Coordinator: AnyProductCoordinator>: AnyPresenter {
     let coordinator: Coordinator

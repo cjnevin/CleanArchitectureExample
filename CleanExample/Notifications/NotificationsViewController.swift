@@ -6,12 +6,13 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
+import Common
 import Domain
 import UIKit
 
 class NotificationsViewController: UITableViewController, AnyNotificationsView {
     var presenter: NotificationsPresenter<NotificationsViewController, NotificationsCoordinator>?
-    var sections: [Section<Domain.Notification>] = [] {
+    var sections: [Section<Common.Notification>] = [] {
         didSet {
             tableView.reloadData()
         }

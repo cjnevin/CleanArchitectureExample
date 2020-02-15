@@ -17,9 +17,3 @@ public protocol AnyProductListCoordinator: AnyPushCoordinator, AnyProductCoordin
     var dependencies: ProductListDependencies { get }
     func view(for product: Product, database: AnyDatabase) -> ProductView
 }
-
-extension AnyProductListCoordinator {
-    func selectedProduct(_ product: Product) {
-        push(view(for: product, database: dependencies.database))
-    }
-}

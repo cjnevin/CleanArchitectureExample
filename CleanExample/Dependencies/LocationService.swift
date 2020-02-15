@@ -8,8 +8,7 @@
 
 import Combine
 import CoreLocation
-import Domain
-import Foundation
+import Common
 
 class LocationService: NSObject, AnyLocationService, CLLocationManagerDelegate {
     let locationManager = CLLocationManager()

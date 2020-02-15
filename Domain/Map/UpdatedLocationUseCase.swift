@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Foundation
+import Common
 
 struct UpdatedLocationUseCase {
     let location: AnyLocationService

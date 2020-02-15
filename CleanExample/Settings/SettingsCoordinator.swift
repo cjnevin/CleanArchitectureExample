@@ -6,10 +6,11 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
+import Common
 import Domain
 import UIKit
 
-class SettingsCoordinator: UINavigationController, SettingsCoordinating {
+class SettingsCoordinator: UINavigationController, AnySettingsCoordinator {
     let dependencies: SettingsDependencies
 
     required init<TabCoordinator: AnyTabCoordinator>(dependencies: SettingsDependencies, tabCoordinator: TabCoordinator) {

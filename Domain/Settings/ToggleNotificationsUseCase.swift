@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Foundation
+import Common
 
 struct ToggleNotificationsUseCase<TabCoordinator: AnyTabCoordinator> {
     let dependencies: DatabaseHaving & NotificationServiceHaving

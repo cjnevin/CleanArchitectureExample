@@ -6,7 +6,7 @@
 //  Copyright © 2020 cjnevin. All rights reserved.
 //
 
-import Foundation
+import Common
 
 struct GetProductUseCase<Product: AnyProduct> {
     let id: String

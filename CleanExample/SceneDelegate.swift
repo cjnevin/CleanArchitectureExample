@@ -6,6 +6,7 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
+import Common
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

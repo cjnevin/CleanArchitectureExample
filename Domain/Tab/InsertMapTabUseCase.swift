@@ -7,7 +7,7 @@
 //
 
 import Combine
-import Foundation
+import Common
 
 struct InsertMapTabUseCase<TabCoordinator: AnyTabCoordinator> {
     let dependencies: DatabaseHaving & LocationServiceHaving
