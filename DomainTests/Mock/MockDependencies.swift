@@ -6,8 +6,7 @@
 //  Copyright © 2020 Chris Nevin. All rights reserved.
 //
 
-import Domain
-import Foundation
+import Common
 
 class MockDependencies: AnyDependencies {
     let api: AnyAPI

@@ -7,8 +7,7 @@
 //
 
 import Combine
-import Domain
-import Foundation
+import Common
 
 class MockLocationService: AnyLocationService {
     var spyStatus = CurrentValueSubject<LocationStatus?, Error>(nil)

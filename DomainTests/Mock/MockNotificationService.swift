@@ -7,8 +7,7 @@
 //
 
 import Combine
-import Domain
-import Foundation
+import Common
 
 class MockNotificationService: AnyNotificationService {
     let spyStatus = CurrentValueSubject<NotificationsStatus?, Error>(nil)
@@ -34,5 +33,5 @@ class NotificationsCoordinator: AnyNotificationsCoordinator {
 }
 
 final class NotificationsView: AnyNotificationsView {
-    var sections: [Section<Domain.Notification>] = []
+    var sections: [Section<Common.Notification>] = []
 }

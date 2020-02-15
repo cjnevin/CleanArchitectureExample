@@ -7,8 +7,7 @@
 //
 
 import Combine
-import Domain
-import Foundation
+import Common
 
 class TabCoordinator: AnyTabCoordinator {
     typealias ProductListCoordinator = DomainTests.ProductListCoordinator

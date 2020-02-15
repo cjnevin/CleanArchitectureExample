@@ -7,8 +7,7 @@
 //
 
 import Combine
-import Domain
-import Foundation
+import Common
 
 class MockDatabase: AnyDatabase {
     var lookup: [String: Any] = [:]

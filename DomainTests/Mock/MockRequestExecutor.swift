@@ -7,8 +7,7 @@
 //
 
 import Combine
-import Domain
-import Foundation
+import Common
 
 class MockRequestExecutor: AnyAPI {
     var spyExecuteCount: Int = 0

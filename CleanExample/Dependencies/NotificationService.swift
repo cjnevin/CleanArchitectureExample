@@ -8,7 +8,6 @@
 
 import Combine
 import Common
-import Domain
 import UserNotifications
 
 class NotificationService: NSObject, AnyNotificationService, UNUserNotificationCenterDelegate {
