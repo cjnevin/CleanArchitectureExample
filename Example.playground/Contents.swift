@@ -7,8 +7,33 @@ protocol AnyStorage {
     func setValue<Value>(_ value: Value, forKey key: String)
 }
 
-protocol AnyCounterCoordinator {
+protocol StorageHaving {
     var storage: AnyStorage { get }
+}
+
+enum Common {
+    private class Storage: AnyStorage {
+        typealias Key = String
+        private var storage: [Key: Any] = [:]
+
+        func getValue<Value>(forKey key: Key, defaultValue: Value) -> Value {
+            storage[key] as? Value ?? defaultValue
+        }
+
+        func setValue<Value>(_ value: Value, forKey key: Key) {
+            storage[key] = value
+        }
+    }
+
+    struct Dependencies: StorageHaving {
+        let storage: AnyStorage = Storage()
+    }
+}
+
+// MARK: - Interfaces
+
+protocol AnyCounterCoordinator {
+    var dependencies: StorageHaving { get }
 
     func makeCounterView() -> AnyCounterView
 }
@@ -31,31 +56,33 @@ protocol AnyCounterPresenter {
 
 // MARK: - Domain
 
-enum Domain {
+enum Counter {
     private struct GetCountUseCase {
-        let storage: AnyStorage
+        let dependencies: StorageHaving
 
         func get() -> Int {
-            storage.getValue(forKey: "count", defaultValue: 0)
+            dependencies.storage.getValue(forKey: "count", defaultValue: 0)
         }
     }
+
     private struct IncrementUseCase {
-        let storage: AnyStorage
+        let dependencies: StorageHaving
 
         func increment() -> Int {
-            let getCountUseCase = GetCountUseCase(storage: storage)
-            storage.setValue(getCountUseCase.get() + 1, forKey: "count")
+            let getCountUseCase = GetCountUseCase(dependencies: dependencies)
+            dependencies.storage.setValue(getCountUseCase.get() + 1, forKey: "count")
             return getCountUseCase.get()
         }
     }
-    class CounterPresenter: AnyCounterPresenter {
+
+    class Presenter: AnyCounterPresenter {
         private var view: AnyCounterView?
         private let getCountUseCase: GetCountUseCase
         private let incrementUseCase: IncrementUseCase
 
         init(coordinator: AnyCounterCoordinator) {
-            getCountUseCase = GetCountUseCase(storage: coordinator.storage)
-            incrementUseCase = IncrementUseCase(storage: coordinator.storage)
+            getCountUseCase = GetCountUseCase(dependencies: coordinator.dependencies)
+            incrementUseCase = IncrementUseCase(dependencies: coordinator.dependencies)
         }
 
         func attach<View: AnyCounterView>(view: View) {
@@ -76,8 +103,8 @@ enum Domain {
 
 // MARK: - App
 
-enum App {
-    class CounterView: AnyCounterView {
+extension Counter {
+    private class View: AnyCounterView {
         var presenter: AnyCounterPresenter?
 
         func appeared() {
@@ -97,31 +124,22 @@ enum App {
         }
     }
 
-    class CounterStorage: AnyStorage {
-        typealias Key = String
-        private var storage: [Key: Any] = [:]
-
-        func getValue<Value>(forKey key: Key, defaultValue: Value) -> Value {
-            storage[key] as? Value ?? defaultValue
+    class Coordinator: AnyCounterCoordinator {
+        var dependencies: StorageHaving
+        init(dependencies: StorageHaving) {
+            self.dependencies = dependencies
         }
-
-        func setValue<Value>(_ value: Value, forKey key: Key) {
-            storage[key] = value
-        }
-    }
-
-    class CounterCoordinator: AnyCounterCoordinator {
-        var storage: AnyStorage = CounterStorage()
 
         func makeCounterView() -> AnyCounterView {
-            let view = CounterView()
-            view.presenter = Domain.CounterPresenter(coordinator: self)
+            let view = View()
+            view.presenter = Presenter(coordinator: self)
             return view
         }
     }
 }
 
-let coordinator = App.CounterCoordinator()
+let dependencies = Common.Dependencies()
+let coordinator = Counter.Coordinator(dependencies: dependencies)
 let view = coordinator.makeCounterView()
 view.appeared()
 view.tappedIncrement()
