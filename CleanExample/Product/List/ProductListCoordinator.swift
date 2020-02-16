@@ -33,7 +33,7 @@ class ProductListCoordinator: UINavigationController, AnyProductListCoordinator 
 
     func view(for product: Product, database: AnyDatabase) -> ProductViewController<ProductPresenter<Product>> {
         let viewController = ProductViewController<ProductPresenter<Product>>()
-        viewController.presenter = ProductPresenter<Product>(id: product.id, database: dependencies.database, coordinator: self)
+        viewController.presenter = ProductPresenter<Product>(id: product.id, dependencies: dependencies, coordinator: self)
         return viewController
     }
 }

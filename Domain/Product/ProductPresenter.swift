@@ -13,10 +13,10 @@ public struct ProductPresenter<Product: AnyProduct>: AnyProductPresenter {
     let getUseCase: GetProductUseCase<Product>
     let editUseCase: EditProductUseCase<Product>
 
-    public init<Coordinator: AnyProductCoordinator>(id: String, database: AnyDatabase, coordinator: Coordinator) {
+    public init<Coordinator: AnyProductCoordinator>(id: String, dependencies: ProductDependencies, coordinator: Coordinator) {
         self.pop = coordinator.pop
-        self.getUseCase = GetProductUseCase(id: id, database: database)
-        self.editUseCase = EditProductUseCase(id: id, database: database)
+        self.getUseCase = GetProductUseCase(id: id, database: dependencies.database)
+        self.editUseCase = EditProductUseCase(id: id, database: dependencies.database)
     }
 
     public func attach<View: AnyProductView>(view: View) where View.Presenter.Product == Product {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public typealias ProductListDependencies = DatabaseHaving & APIHaving
+public typealias ProductListDependencies = APIHaving & ProductDependencies
 
 public protocol AnyProductListCoordinator: AnyPushCoordinator, AnyProductCoordinator {
     associatedtype ProductView: AnyProductView

@@ -8,4 +8,6 @@
 
 import Foundation
 
+public typealias ProductDependencies = DatabaseHaving
+
 public protocol AnyProductCoordinator: AnyPopCoordinator { }

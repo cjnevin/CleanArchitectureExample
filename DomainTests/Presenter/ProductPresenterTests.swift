@@ -20,7 +20,7 @@ class ProductPresenterTests: XCTestCase {
         database = MockDatabase()
         database.lookup["id"] = Product()
         coordinator = ProductCoordinator()
-        presenter = ProductPresenter(id: "id", database: database, coordinator: coordinator)
+        presenter = ProductPresenter(id: "id", dependencies: MockDependencies(database: database), coordinator: coordinator)
     }
     
     func testAttach() {
