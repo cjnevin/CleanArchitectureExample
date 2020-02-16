@@ -2,6 +2,17 @@ import UIKit
 
 // MARK: - Common
 
+protocol AnyStorage {
+    func getValue<Value>(forKey key: String, defaultValue: Value) -> Value
+    func setValue<Value>(_ value: Value, forKey key: String)
+}
+
+protocol AnyCounterCoordinator {
+    var storage: AnyStorage { get }
+
+    func makeCounterView() -> AnyCounterView
+}
+
 protocol AnyCounterView {
     var presenter: AnyCounterPresenter? { get set }
 
@@ -18,17 +29,6 @@ protocol AnyCounterPresenter {
     func increment()
 }
 
-protocol AnyStorage {
-    func getValue<Value>(forKey key: String) -> Value?
-    func setValue<Value>(_ value: Value, forKey key: String)
-}
-
-protocol AnyCounterCoordinator {
-    var storage: AnyStorage { get }
-
-    func makeCounterView() -> AnyCounterView
-}
-
 // MARK: - Domain
 
 enum Domain {
@@ -36,17 +36,16 @@ enum Domain {
         let storage: AnyStorage
 
         func get() -> Int {
-            storage.getValue(forKey: "count") ?? 0
+            storage.getValue(forKey: "count", defaultValue: 0)
         }
     }
     private struct IncrementUseCase {
         let storage: AnyStorage
 
         func increment() -> Int {
-            let get = GetCountUseCase(storage: storage)
-            let count = get.get()
-            storage.setValue(count + 1, forKey: "count")
-            return get.get()
+            let getCountUseCase = GetCountUseCase(storage: storage)
+            storage.setValue(getCountUseCase.get() + 1, forKey: "count")
+            return getCountUseCase.get()
         }
     }
     class CounterPresenter: AnyCounterPresenter {
@@ -102,8 +101,8 @@ enum App {
         typealias Key = String
         private var storage: [Key: Any] = [:]
 
-        func getValue<Value>(forKey key: Key) -> Value? {
-            storage[key] as? Value
+        func getValue<Value>(forKey key: Key, defaultValue: Value) -> Value {
+            storage[key] as? Value ?? defaultValue
         }
 
         func setValue<Value>(_ value: Value, forKey key: Key) {
